@@ -6,8 +6,16 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Drivetrain.h"
+#include "include.h"
 
-Drivetrain::Drivetrain() {}
+Drivetrain::Drivetrain() {
+forntLeft = new PWMVictorSPX(PWM::FRONT_LEFT);
+frontRight = new PWMVictorSPX(PWM::FRONT_LEFT);
+rear
+
+
+
+}
 
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() {}
