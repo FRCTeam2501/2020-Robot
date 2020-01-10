@@ -17,7 +17,7 @@ Drivetrain::~Drivetrain(){
     delete rearLeft;
     delete rearRight;
     delete xSpeed;
-    delete zSpeed;
+    delete zSpeed; //a
 }
 
 void Drivetrain::setSpeed(double x, double z){
