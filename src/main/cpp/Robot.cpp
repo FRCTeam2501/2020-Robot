@@ -1,16 +1,22 @@
-/*----------------------------------------------------------------------------*/
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #include "Robot.h"
-
+#include "Drivetrain/ManualDrive.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
-void Robot::RobotInit() {}
+using namespace frc;
 
+Drivetrain *Robot::drive;
+OI *Robot::oi;
+
+void Robot::RobotInit() {
+
+  drive = new Drivetrain();
+  oi = new OI();
+
+  frc2::Command *x = new ManualDrive();
+  frc2::CommandScheduler::GetInstance().Schedule(x);
+  frc2::CommandScheduler::GetInstance().RegisterSubsystem(drive);
+}
 /**
  * This function is called every robot packet, no matter the mode. Use
  * this for items like diagnostics that you want to run during disabled,
@@ -19,7 +25,9 @@ void Robot::RobotInit() {}
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
+void Robot::RobotPeriodic() { 
+  cout << "robit\n";
+  frc2::CommandScheduler::GetInstance().Run(); }
 
 /**
  * This function is called once each time the robot enters Disabled mode. You

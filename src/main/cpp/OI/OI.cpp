@@ -1,10 +1,24 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #include "OI/OI.h"
+#include "Utils/include.h"
 
-OI::OI() {}
+using namespace frc;
+
+Joystick
+*OI::driverStick,
+*OI::driverStick2,
+*OI::controlStick;
+
+//make the shit
+OI::OI() {
+
+    driverStick = new Joystick(JOYSTICK::DRIVER);
+    driverStick2 = new Joystick(JOYSTICK::DRIVER);
+    controlStick = new Joystick(JOYSTICK::DRIVER);
+}
+
+//break the shit
+OI::~OI() {
+    delete driverStick;
+    delete driverStick2;
+    delete controlStick;
+}

@@ -28,10 +28,10 @@ namespace PWM		//RoboRIO PWM Ports
 	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT
 	{
-		RIGHT_FRONT = 0,
+		LEFT_REAR = 0,
 		RIGHT_REAR,
+		RIGHT_FRONT,
 		LEFT_FRONT,
-		LEFT_REAR,
 		LIFTER,
 		EMPTY_5,
 		EMPTY_6,

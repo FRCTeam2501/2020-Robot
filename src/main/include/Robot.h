@@ -9,6 +9,9 @@
 
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
+#include "Utils/include.h"
+#include "Drivetrain/Drivetrain.h"
+#include "OI/OI.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -21,6 +24,8 @@ class Robot : public frc::TimedRobot {
   void TeleopInit() override;
   void TeleopPeriodic() override;
   void TestPeriodic() override;
+    
+    static Drivetrain *drive;
+    static OI *oi;
 
- private:
 };

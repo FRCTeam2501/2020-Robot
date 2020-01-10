@@ -7,6 +7,11 @@ Drivetrain::Drivetrain() {
     rearLeft = new PWMVictorSPX(PWM::LEFT_REAR);
     rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
 
+    left = new SpeedControllerGroup(*frontLeft, *rearLeft);
+    right = new SpeedControllerGroup(*frontRight, *rearRight);
+
+    drive = new DifferentialDrive(*left, *right);
+
     xSpeed = new double (0.0);
     zSpeed = new double (0.0);
 }
@@ -17,13 +22,16 @@ Drivetrain::~Drivetrain(){
     delete rearLeft;
     delete rearRight;
     delete xSpeed;
-    delete zSpeed; //a
+    delete zSpeed;
+    delete left;
+    delete right;
+    delete drive;
 }
 
 void Drivetrain::setSpeed(double x, double z){
     drive->ArcadeDrive(x, z);
-        z = *zSpeed;
-        x = *xSpeed;
+        *zSpeed = z;
+        *xSpeed = x;
 }
 
 double Drivetrain::getXSpeed(){
@@ -33,4 +41,7 @@ double Drivetrain::getZSpeed(){
     return *zSpeed;
 }
 
-void Drivetrain::Periodic() {}
+void Drivetrain::Periodic() {
+    drive->ArcadeDrive(*xSpeed, *zSpeed);
+  cout << "PERIODIC\n";
+}

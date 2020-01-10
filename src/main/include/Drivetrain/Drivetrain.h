@@ -23,6 +23,7 @@ public:
 private:
 	DifferentialDrive *drive;
 	PWMVictorSPX *frontLeft, *rearLeft, *frontRight, *rearRight;
+	SpeedControllerGroup *left, *right;
 
 	double *xSpeed, *zSpeed;
 	// Components (e.g. motor controllers and sensors) should generally be
