@@ -6,12 +6,19 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+#include "utils/include.h"
 
 #include <frc2/command/SubsystemBase.h>
+using namespace frc;
 
 class Drivetrain : public frc2::SubsystemBase {
  public:
   Drivetrain();
+  ~Drivetrain();
+  void set (double x, double y);
+
+  double getXSpeed();
+  double getYSpeed();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -19,6 +26,12 @@ class Drivetrain : public frc2::SubsystemBase {
   void Periodic();
 
  private:
+
+
+  PWMVictorSPX *frontLeft , *frontRight , *rearLeft , * rearRight;
+
+  double *xSpeed, *ySpeed;
+
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };

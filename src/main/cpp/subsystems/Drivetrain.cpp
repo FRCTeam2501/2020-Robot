@@ -6,16 +6,36 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/Drivetrain.h"
-#include "include.h"
+
 
 Drivetrain::Drivetrain() {
-forntLeft = new PWMVictorSPX(PWM::FRONT_LEFT);
-frontRight = new PWMVictorSPX(PWM::FRONT_LEFT);
-rear
+frontLeft = new PWMVictorSPX(PWM::LEFT_FRONT);
+frontRight = new PWMVictorSPX(PWM::RIGHT_FRONT);
+rearLeft = new PWMVictorSPX(PWM::LEFT_REAR);
+rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
+
+xSpeed = new double (0.0);
+ySpeed = new double (0.0);
 
 
 
 }
 
-// This method will be called once per scheduler run
-void Drivetrain::Periodic() {}
+
+Drivetrain::~Drivetrain() {
+    delete frontLeft;
+    delete frontRight;
+    delete rearLeft;
+    delete rearRight;
+    delete xSpeed;
+    delete ySpeed;
+// Deleets stuf to not be like Google Chrome
+}
+double Drivetrain::getXSpeed(){
+    return xSpeed;
+}
+
+double Drivetrain::getXspeed(){
+    return xSpeed;
+}
+
