@@ -1,5 +1,6 @@
 #include "Utils/include.h"
 #include "Drivetrain/Drivetrain.h"
+#include "Robot.h"
 
 Drivetrain::Drivetrain() {
     frontLeft = new PWMVictorSPX(PWM::LEFT_FRONT);
@@ -14,6 +15,8 @@ Drivetrain::Drivetrain() {
 
     xSpeed = new double (0.0);
     zSpeed = new double (0.0);
+
+    Register();
 }
 
 Drivetrain::~Drivetrain(){
@@ -32,6 +35,7 @@ void Drivetrain::setSpeed(double x, double z){
     drive->ArcadeDrive(x, z);
         *zSpeed = z;
         *xSpeed = x;
+        cout << "setspeed\n";
 }
 
 double Drivetrain::getXSpeed(){
@@ -42,6 +46,6 @@ double Drivetrain::getZSpeed(){
 }
 
 void Drivetrain::Periodic() {
-    drive->ArcadeDrive(*xSpeed, *zSpeed);
+    drive->ArcadeDrive(Robot::oi->getXSpeed(), Robot::oi->getZSpeed());
   cout << "PERIODIC\n";
 }

@@ -1,5 +1,4 @@
 #include "Robot.h"
-#include "Drivetrain/ManualDrive.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
@@ -12,10 +11,6 @@ void Robot::RobotInit() {
 
   drive = new Drivetrain();
   oi = new OI();
-
-  frc2::Command *x = new ManualDrive();
-  frc2::CommandScheduler::GetInstance().Schedule(x);
-  frc2::CommandScheduler::GetInstance().RegisterSubsystem(drive);
 }
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -26,7 +21,7 @@ void Robot::RobotInit() {
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() { 
-  cout << "robit\n";
+  //cout << "robit\n";
   frc2::CommandScheduler::GetInstance().Run(); }
 
 /**
@@ -62,6 +57,11 @@ void Robot::TeleopPeriodic() {}
 /**
  * This function is called periodically during test mode.
  */
+void Robot::TestPeriodic() {}
+
+#ifndef RUNNING_FRC_TESTS
+int main() { return frc::StartRobot<Robot>(); }
+#endif
 void Robot::TestPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
