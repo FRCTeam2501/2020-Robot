@@ -4,19 +4,16 @@
 
 using namespace frc;
 
-class Drivetrain : public frc2::SubsystemBase {
+class Drivetrain : public frc2::SubsystemBase
+{
 public:
 	Drivetrain();
 	~Drivetrain();
 
-	void setSpeed(double x, double z);
-
+	void setSpeed(double x, double r);
 	double getXSpeed();
-	double getZSpeed();
+	double getRSpeed();
 
-	/**
-	 * Will be called periodically whenever the CommandScheduler runs.
-	 */
 	void Periodic();
 
 
@@ -24,7 +21,5 @@ private:
 	DifferentialDrive *drive;
 	PWMVictorSPX *frontLeft, *rearLeft, *frontRight, *rearRight;
 
-	double *xSpeed, *zSpeed;
-	// Components (e.g. motor controllers and sensors) should generally be
-	// declared private and exposed only through public methods.
+	double *xSpeed, *rSpeed;
 };
