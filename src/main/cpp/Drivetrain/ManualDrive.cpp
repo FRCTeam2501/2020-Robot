@@ -1,28 +1,33 @@
-#include "Drivetrain/ManualDrive.h"
-#include "Utils/include.h"
 #include "Robot.h"
+#include "Drivetrain/ManualDrive.h"
 
-using namespace frc;
 
-ManualDrive::ManualDrive() {
-  // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(Robot::drive);
+ManualDrive::ManualDrive(Drivetrain *drive, std::function<double()> y,
+            	std::function<double()> rz) : 
+				drive(drive), y(y), rz(rz) {
+	AddRequirements(drive);
+	cout << "Created ManualDrive\n";
 }
 
-// Called when the command is initially scheduled.
-void ManualDrive::Initialize() {}
+ManualDrive::~ManualDrive() {
+	cout << "Destructing ManualDrive\n";
+}
 
-// Called repeatedly when this Command is scheduled to run
+void ManualDrive::Initialize() {
+	cout << "Initialized ManualDrive\n";
+}
+
 void ManualDrive::Execute() {
-  Robot::drive->setSpeed(
-    Robot::oi->getXSpeed(),
-    Robot::oi->getZSpeed()
-  );
-  cout << "RUNNING\n";
+	cout << "Executing start\n";
+	drive->SetSpeed(y(), rz());
+	cout << "Executing end\n";
 }
 
-// Called once the command ends or is interrupted.
-void ManualDrive::End(bool interrupted) {}
+void ManualDrive::End(bool interrupted) {
+	cout << "Ending: " << interrupted << "\n";
+}
 
-// Returns true when the command should end.
-bool ManualDrive::IsFinished() { return false; }
+bool ManualDrive::IsFinished() {
+	cout << "IsFinished\n";
+	return false;
+}

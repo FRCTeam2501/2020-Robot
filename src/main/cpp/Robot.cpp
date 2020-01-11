@@ -1,69 +1,58 @@
 #include "Robot.h"
-#include "Drivetrain/ManualDrive.h"
-#include <frc/smartdashboard/SmartDashboard.h>
-#include <frc2/command/CommandScheduler.h>
 
-using namespace frc;
+RobotContainer *Robot::robit;
 
-Drivetrain *Robot::drive;
-OI *Robot::oi;
+Robot::Robot() {
+	robit = new RobotContainer();
+	cout << "Built container\n";
+}
+
+Robot::~Robot() {
+	delete robit;
+}
 
 void Robot::RobotInit() {
-
-  drive = new Drivetrain();
-  oi = new OI();
-
-  frc2::Command *x = new ManualDrive();
-  frc2::CommandScheduler::GetInstance().Schedule(x);
-  frc2::CommandScheduler::GetInstance().RegisterSubsystem(drive);
+	//
 }
-/**
- * This function is called every robot packet, no matter the mode. Use
- * this for items like diagnostics that you want to run during disabled,
- * autonomous, teleoperated and test.
- *
- * <p> This runs after the mode specific periodic functions, but before
- * LiveWindow and SmartDashboard integrated updating.
- */
-void Robot::RobotPeriodic() { 
-  cout << "robit\n";
-  frc2::CommandScheduler::GetInstance().Run(); }
 
-/**
- * This function is called once each time the robot enters Disabled mode. You
- * can use it to reset any subsystem information you want to clear when the
- * robot is disabled.
- */
-void Robot::DisabledInit() {}
+void Robot::RobotPeriodic() {
+	cout << "Starting run\n";
+	//frc2::CommandScheduler::GetInstance().Enable();
+	//cout << "Enabled\n";
+	frc2::CommandScheduler::GetInstance().Run();
+	cout << "Ending run\n";
+}
 
-void Robot::DisabledPeriodic() {}
+void Robot::DisabledInit() {
+	//
+}
 
-/**
- * This autonomous runs the autonomous command selected by your {@link
- * RobotContainer} class.
- */
+void Robot::DisabledPeriodic() {
+	//
+}
+
 void Robot::AutonomousInit() {
+	//
 }
 
-void Robot::AutonomousPeriodic() {}
+void Robot::AutonomousPeriodic() {
+	//
+}
 
 void Robot::TeleopInit() {
-  // This makes sure that the autonomous stops running when
-  // teleop starts running. If you want the autonomous to
-  // continue until interrupted by another command, remove
-  // this line or comment it out.
+	//
 }
 
-/**
- * This function is called periodically during operator control.
- */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+	//
+}
 
-/**
- * This function is called periodically during test mode.
- */
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() {
+
+}
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<Robot>(); }
+int main() {
+	return frc::StartRobot<Robot>();
+}
 #endif
