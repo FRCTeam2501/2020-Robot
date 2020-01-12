@@ -8,9 +8,9 @@
 
 #include "Constants.h"
 
-class DriveSubsystem : public frc2::SubsystemBase {
+class Drivetrain : public frc2::SubsystemBase {
 public:
-	DriveSubsystem();
+	Drivetrain();
 	void Periodic() override;
 
 	void ArcadeDrive(double fwd, double rot);

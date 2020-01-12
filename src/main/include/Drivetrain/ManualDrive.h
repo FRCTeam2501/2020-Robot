@@ -3,17 +3,17 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/DriveSubsystem.h"
+#include "Drivetrain/Drivetrain.h"
 
 
-class DefaultDrive
-    : public frc2::CommandHelper<frc2::CommandBase, DefaultDrive> {
+class ManualDrive
+    : public frc2::CommandHelper<frc2::CommandBase, ManualDrive> {
 public:
-	DefaultDrive(DriveSubsystem* subsystem, std::function<double()> forward,
+	ManualDrive(Drivetrain* subsystem, std::function<double()> forward,
 			std::function<double()> rotation);
 	void Execute() override;
 private:
-	DriveSubsystem* drive;
+	Drivetrain* drive;
 	std::function<double()> forward;
 	std::function<double()> rotation;
 };
