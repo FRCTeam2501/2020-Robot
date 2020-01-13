@@ -6,7 +6,7 @@
 RobotContainer::RobotContainer() {
   	drive.SetDefaultCommand(ManualDrive(
 		&drive,
-		[this] { return driverController.GetY(frc::GenericHID::kLeftHand); },
-		[this] { return driverController.GetX(frc::GenericHID::kRightHand); }
+		[this] { return driverController.GetRawAxis(1); },
+		[this] { return driverController.GetRawAxis(0); }
 	));
 }
