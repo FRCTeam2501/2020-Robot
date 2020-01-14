@@ -1,6 +1,7 @@
 #pragma once
 
 #include <frc/XboxController.h>
+#include <frc/Joystick.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/Command.h>
 
@@ -12,6 +13,6 @@ class RobotContainer {
 public:
 	RobotContainer();
 private:
-	Drivetrain drive;
-	frc::XboxController driverController{OIConstants::kDriverControllerPort};
+	Drivetrain *drive;
+	frc::Joystick *driveStick;
 };

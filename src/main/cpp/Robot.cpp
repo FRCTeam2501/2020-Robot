@@ -3,6 +3,15 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
+
+Robot::Robot() {
+	container = new RobotContainer();
+}
+
+Robot::~Robot() {
+	delete container;
+}
+
 void Robot::RobotInit() {}
 
 void Robot::RobotPeriodic() {
