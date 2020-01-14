@@ -1,11 +1,10 @@
 #include "RobotContainer.h"
+using namespace frc;
 
-#include <frc/shuffleboard/Shuffleboard.h>
-#include <frc2/command/button/JoystickButton.h>
 
 RobotContainer::RobotContainer() {
 	drive = new Drivetrain();
-	driveStick = new frc::Joystick(OIConstants::kDriverControllerPort);
+	driveStick = new Joystick(OIConstants::kDriverControllerPort);
 
   	drive->SetDefaultCommand(ManualDrive(
 		drive,

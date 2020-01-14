@@ -1,18 +1,17 @@
 #include "Drivetrain/Drivetrain.h"
-
-using namespace DriveConstants;
+using namespace frc;
 
 
 Drivetrain::Drivetrain() {
-	left1 = new frc::PWMVictorSPX(kLeftMotor1Port);
-	left2 = new frc::PWMVictorSPX(kLeftMotor2Port);
-	right1 = new frc::PWMVictorSPX(kRightMotor1Port);
-	right2 = new frc::PWMVictorSPX(kRightMotor2Port);
+	left1 = new PWMVictorSPX(DriveConstants::kLeftMotor1Port);
+	left2 = new PWMVictorSPX(DriveConstants::kLeftMotor2Port);
+	right1 = new PWMVictorSPX(DriveConstants::kRightMotor1Port);
+	right2 = new PWMVictorSPX(DriveConstants::kRightMotor2Port);
 
-	left = new frc::SpeedControllerGroup(*left1, *left2);
-	right = new frc::SpeedControllerGroup(*right1, *right2);
+	left = new SpeedControllerGroup(*left1, *left2);
+	right = new SpeedControllerGroup(*right1, *right2);
 
-	drive = new frc::DifferentialDrive(*left, *right);
+	drive = new DifferentialDrive(*left, *right);
 }
 
 Drivetrain::~Drivetrain() {

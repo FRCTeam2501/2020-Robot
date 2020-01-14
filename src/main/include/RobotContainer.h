@@ -1,18 +1,15 @@
 #pragma once
-
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
-#include <frc/smartdashboard/SendableChooser.h>
-#include <frc2/command/Command.h>
-
-#include "Constants.h"
-#include "Drivetrain/ManualDrive.h"
+#include "include.h"
 #include "Drivetrain/Drivetrain.h"
+#include "Drivetrain/ManualDrive.h"
+using namespace frc;
+
 
 class RobotContainer {
 public:
 	RobotContainer();
+
 private:
 	Drivetrain *drive;
-	frc::Joystick *driveStick;
+	Joystick *driveStick;
 };

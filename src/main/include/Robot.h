@@ -1,12 +1,10 @@
 #pragma once
-
-#include <frc/TimedRobot.h>
-#include <frc2/command/Command.h>
-
+#include "include.h"
 #include "RobotContainer.h"
+using namespace frc;
 
 
-class Robot : public frc::TimedRobot {
+class Robot : public TimedRobot {
 public:
 	Robot();
 	~Robot();
