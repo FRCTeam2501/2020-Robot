@@ -9,7 +9,15 @@ class RobotContainer {
 public:
 	RobotContainer();
 
+	static double GetDriveY() {
+		return -1.0 * driveStick->GetRawAxis(1);
+	}
+
+	static double GetDriveX() {
+		return driveStick->GetRawAxis(0);
+	}
+
 private:
-	Drivetrain *drive;
-	Joystick *driveStick;
+	static Drivetrain *drive;
+	static Joystick *driveStick;
 };

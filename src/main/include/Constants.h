@@ -8,5 +8,5 @@ namespace DriveConstants {
 }
 
 namespace OIConstants {
-    constexpr int kDriverControllerPort = 2;
+    constexpr int kDriverControllerPort = 0;
 }

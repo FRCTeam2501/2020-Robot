@@ -3,12 +3,12 @@ using namespace frc;
 
 
 ManualDrive::ManualDrive(Drivetrain* subsystem,
-	std::function<double()> forward,
-	std::function<double()> rotation)
-	: drive(subsystem), forward(forward), rotation(rotation) {
+	std::function<double()> y,
+	std::function<double()> rz)
+	: drive(subsystem), y(y), rz(rz) {
 	AddRequirements(subsystem);
 }
 
 void ManualDrive::Execute() {
-	drive->ArcadeDrive(forward(), rotation());	
+	drive->ArcadeDrive(y(), rz());	
 }
