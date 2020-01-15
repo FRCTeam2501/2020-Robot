@@ -2,27 +2,21 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+
 #include "Utils/include.h"
+#include "Drivetrain/Drivetrain.h"
 
+using namespace frc;
 
-
-/**
- * An example command.
- *
- * <p>Note that this extends CommandHelper, rather extending CommandBase
- * directly; this is crucially important, or else the decorator functions in
- * Command will *not* work!
- */
 class ManualDrive
     : public frc2::CommandHelper<frc2::CommandBase, ManualDrive> {
  public:
-  ManualDrive();
-
-  void Initialize() override;
-
-  void Execute() override;
-
-  void End(bool interrupted) override;
-
-  bool IsFinished() override;
+  	ManualDrive(Drivetrain *subsystem, std::function<double()> forward,
+			std::function<double()> rotation);
+	  void Execute() override;
+  
+  private:
+    Drivetrain *drive;
+    std::function<double()> forward;
+	  std::function<double()> rotation;
 };

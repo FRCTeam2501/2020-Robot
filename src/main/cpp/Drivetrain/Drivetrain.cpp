@@ -1,47 +1,33 @@
-#include "Utils/include.h"
 #include "Drivetrain/Drivetrain.h"
 
+void Drivetrain::Periodic(){}
+
 Drivetrain::Drivetrain() {
-    frontLeft = new PWMVictorSPX(PWM::LEFT_FRONT);
-    frontRight = new PWMVictorSPX(PWM::RIGHT_FRONT);
-    rearLeft = new PWMVictorSPX(PWM::LEFT_REAR);
-    rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
+
+    frontLeft = new PWMVictorSPX(DriveConstants::kLeftMotor1Port);
+    frontRight = new PWMVictorSPX(DriveConstants::kRightMotor1Port);
+    rearLeft = new PWMVictorSPX(DriveConstants::kLeftMotor2Port);
+    rearRight = new PWMVictorSPX(DriveConstants::kRightMotor2Port);
 
     left = new SpeedControllerGroup(*frontLeft, *rearLeft);
     right = new SpeedControllerGroup(*frontRight, *rearRight);
 
     drive = new DifferentialDrive(*left, *right);
-
-    xSpeed = new double (0.0);
-    zSpeed = new double (0.0);
 }
 
-Drivetrain::~Drivetrain(){
+Drivetrain::~Drivetrain() {
+
     delete frontLeft;
     delete frontRight;
     delete rearLeft;
     delete rearRight;
-    delete xSpeed;
-    delete zSpeed;
+
     delete left;
     delete right;
+
     delete drive;
 }
 
-void Drivetrain::setSpeed(double x, double z){
+void Drivetrain::ArcadeDrive(double x, double z){
     drive->ArcadeDrive(x, z);
-        *zSpeed = z;
-        *xSpeed = x;
-}
-
-double Drivetrain::getXSpeed(){
-    return *xSpeed;
-}
-double Drivetrain::getZSpeed(){
-    return *zSpeed;
-}
-
-void Drivetrain::Periodic() {
-    drive->ArcadeDrive(*xSpeed, *zSpeed);
-  cout << "PERIODIC\n";
 }
