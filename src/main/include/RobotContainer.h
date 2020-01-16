@@ -8,6 +8,7 @@ using namespace frc;
 class RobotContainer {
 public:
 	RobotContainer();
+	~RobotContainer();
 
 	static double GetDriveY() {
 		return -1.0 * driveStick->GetRawAxis(1);

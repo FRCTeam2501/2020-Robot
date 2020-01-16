@@ -8,6 +8,7 @@ class Robot : public TimedRobot {
 public:
 	Robot();
 	~Robot();
+
 	void RobotInit() override;
 	void RobotPeriodic() override;
 	void DisabledInit() override;

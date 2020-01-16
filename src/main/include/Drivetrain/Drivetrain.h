@@ -10,6 +10,7 @@ public:
 	void Periodic() override;
 
 	void ArcadeDrive(double y, double rz);
+
 private:
 	PWMVictorSPX *leftFront, *leftRear, *rightFront, *rightRear;
 	SpeedControllerGroup *left, *right;

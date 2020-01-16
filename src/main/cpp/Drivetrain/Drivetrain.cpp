@@ -3,10 +3,10 @@ using namespace frc;
 
 
 Drivetrain::Drivetrain() {
-	leftFront = new PWMVictorSPX(DriveConstants::kLeftMotor1Port);
-	leftRear = new PWMVictorSPX(DriveConstants::kLeftMotor2Port);
-	rightFront = new PWMVictorSPX(DriveConstants::kRightMotor1Port);
-	rightRear = new PWMVictorSPX(DriveConstants::kRightMotor2Port);
+	leftFront = new PWMVictorSPX(PWM::LEFT_FRONT);
+	leftRear = new PWMVictorSPX(PWM::LEFT_REAR);
+	rightFront = new PWMVictorSPX(PWM::RIGHT_FRONT);
+	rightRear = new PWMVictorSPX(PWM::RIGHT_REAR);
 
 	left = new SpeedControllerGroup(*leftFront, *leftRear);
 	right = new SpeedControllerGroup(*rightFront, *rightRear);
