@@ -28,7 +28,7 @@ namespace PWM {				//RoboRIO PWM Ports
 		RIGHT_REAR,
 		LEFT_FRONT,
 		LEFT_REAR,
-		EMPTY_4,
+		INTAKE,
 		EMPTY_5,
 		EMPTY_6,
 		EMPTY_7,

@@ -6,15 +6,20 @@
 #include "Climber/ManualClimber.h"
 #include "Climber/EnableClimber.h"
 #include "Climber/ToggleClimber.h"
+#include "Intake/Intake.h"
+#include "Intake/ManualIntake.h"
+#include "Intake/ToggleIntake.h"
+#include "Intake/ReverseIntake.h"
 #include "Pneumatics/Pneumatics.h"
 using namespace frc;
 
 
 class RobotContainer {
 private:
-	static Pneumatics *pneumatics;
 	static Drivetrain *drive;
+	static Pneumatics *pneumatics;
 	static Climber *climber;
+	static Intake *intake;
 	static Joystick *driveStick, *controlStick;
 	static frc2::JoystickButton *toggleClimber, *enableClimber, *toggleIntake, *reverseIntake;
 
@@ -32,5 +37,9 @@ public:
 
 	static double GetClimbSpeed() {
 		return controlStick->GetRawAxis(CONTROLLER::X::L_TRIGGER);
+	}
+
+	static double GetIntakeSpeed() {
+		return controlStick->GetRawAxis(CONTROLLER::X::R_TRIGGER);
 	}
 };
