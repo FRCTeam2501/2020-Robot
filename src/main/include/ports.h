@@ -17,8 +17,8 @@ namespace JOYSTICK {		//USB Joystick Ports
 	//Can have a dynamic number of devices
 	enum JOYSTICK_ID {
 		DRIVER = 0,
-		DRIVER_2,
-		CONTROL
+		CONTROL,
+		DRIVER_2
 	};
 }
 namespace PWM {				//RoboRIO PWM Ports
@@ -39,8 +39,10 @@ namespace PWM {				//RoboRIO PWM Ports
 namespace CAN {				//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES {
-		CAN_PCM = 0,
-		EMPTY_1
+		PDP = 0,
+		PCM,
+		CLIMBER_RIGHT,
+		CLIMBER_LEFT
 	};
 }
 namespace DIO {				//RoboRIO DIO Ports
@@ -129,10 +131,10 @@ namespace PCM {				//Pnuematics Control Module Ports
 	//Note: Must have PNUEMATICS defined to be included
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS {
-		EMPTY_0 = 0,
-		EMPTY_1,
-		EMPTY_2,
-		EMPTY_3,
+		CLIMBER_RIGHT = 0,
+		CLIMBER_LEFT,
+		INTAKE_RIGHT,
+		INTAKE_LEFT,
 		EMPTY_4,
 		EMPTY_5,
 		EMPTY_6,
