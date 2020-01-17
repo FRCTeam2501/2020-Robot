@@ -6,31 +6,30 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+
 #include "utils/include.h"
 
-#include <frc2/command/SubsystemBase.h>
 using namespace frc;
 
 class Drivetrain : public frc2::SubsystemBase {
  public:
   Drivetrain();
   ~Drivetrain();
-  void set (double x, double y);
-
-  double getXSpeed();
-  double getYSpeed();
-
+  
+  
+  void ArcadeDrive( double x, double y);
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic();
+ void Periodic();
 
  private:
 
 
   PWMVictorSPX *frontLeft , *frontRight , *rearLeft , * rearRight;
 
-  double *xSpeed, *ySpeed;
+  SpeedControllerGroup *left, *right;
+  DifferentialDrive *drive; 
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

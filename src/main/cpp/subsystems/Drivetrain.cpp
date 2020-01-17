@@ -5,8 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "subsystems/Drivetrain.h"
-
+#include "subsystems/RobotContainer.h"
+using namespace frc;
 
 Drivetrain::Drivetrain() {
 frontLeft = new PWMVictorSPX(PWM::LEFT_FRONT);
@@ -14,11 +14,10 @@ frontRight = new PWMVictorSPX(PWM::RIGHT_FRONT);
 rearLeft = new PWMVictorSPX(PWM::LEFT_REAR);
 rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
 
-xSpeed = new double (0.0);
-ySpeed = new double (0.0);
+left = new SpeedControllerGroup (*frontLeft, *rearLeft);
+right = new SpeedControllerGroup(*frontRight, *rearRight);
 
-
-
+drive = new DifferentialDrive (*drive);
 }
 
 
@@ -27,15 +26,20 @@ Drivetrain::~Drivetrain() {
     delete frontRight;
     delete rearLeft;
     delete rearRight;
-    delete xSpeed;
-    delete ySpeed;
+    delete left;
+    delete right;
+    delete drive;
 // Deleets stuf to not be like Google Chrome
 }
-double Drivetrain::getXSpeed(){
-    return xSpeed;
+
+void Drivetrain::Periodic() {}
+
+
+void Drivetrain::ArcadeDrive(double x, double y){
+
+
 }
 
-double Drivetrain::getXspeed(){
-    return xSpeed;
-}
+
+
 

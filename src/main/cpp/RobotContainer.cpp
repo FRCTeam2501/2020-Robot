@@ -5,20 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "RobotContainer.h"
+#include "subsystems/RobotContainer.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
-  // Initialize all of your commands and subsystems here
+RobotContainer::RobotContainer (){
 
-  // Configure the button bindings
-  ConfigureButtonBindings();
+Drivetrain *RobotContainer::drive;
+Joystick *RobotContainer::drivestick;
+
+  drive = new Drivetrain;
+  driveStick = new Joystick(OIConstants::kDriverControllerPort);
+
+drive->SetDefaltCommand(manualDrive(drive, getXSpeed, getYSpeed));
+
+
+
 }
 
-void RobotContainer::ConfigureButtonBindings() {
-  // Configure your button bindings here
-}
+ 
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return &m_autonomousCommand;
-}
+
