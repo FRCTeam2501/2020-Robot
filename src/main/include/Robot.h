@@ -5,6 +5,9 @@ using namespace frc;
 
 
 class Robot : public TimedRobot {
+private:
+	RobotContainer *container;
+
 public:
 	Robot();
 	~Robot();
@@ -18,7 +21,4 @@ public:
 	void TeleopInit() override;
 	void TeleopPeriodic() override;
 	void TestPeriodic() override;
-
-private:
-	RobotContainer *container;
 };

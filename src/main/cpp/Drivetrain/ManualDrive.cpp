@@ -2,13 +2,13 @@
 using namespace frc;
 
 
-ManualDrive::ManualDrive(Drivetrain* subsystem,
+ManualDrive::ManualDrive(Drivetrain* drive,
 	std::function<double()> y,
 	std::function<double()> rz)
-	: drive(subsystem), y(y), rz(rz) {
-	AddRequirements(subsystem);
+	: drive(drive), y(y), rz(rz) {
+	AddRequirements(drive);
 }
 
 void ManualDrive::Execute() {
-	drive->ArcadeDrive(y(), rz());	
+	drive->ArcadeDrive(y(), rz());
 }

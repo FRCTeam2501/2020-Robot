@@ -6,13 +6,13 @@ using namespace frc;
 
 class ManualDrive
     : public frc2::CommandHelper<frc2::CommandBase, ManualDrive> {
-public:
-	ManualDrive(Drivetrain* subsystem, std::function<double()> y,
-			std::function<double()> rz);
-	void Execute() override;
-
 private:
 	Drivetrain* drive;
 	std::function<double()> y;
 	std::function<double()> rz;
+
+public:
+	ManualDrive(Drivetrain* drive, std::function<double()> y,
+			std::function<double()> rz);
+	void Execute() override;
 };
