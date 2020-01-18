@@ -1,13 +1,24 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+#include "Cameras/Cameras.h"
 
-#include "Cameras.h"
+Cameras::Cameras() {
+    wideCam = new cs::UsbCamera("Top Camera", 0);
 
-Cameras::Cameras() {}
+    dashStream = new cs::MjpegServer("Dashboard Stream", 1185);
 
-// This method will be called once per scheduler run
+    wideCam->SetResolution(WIDTH, HEIGHT);
+	wideCam->SetFPS(FPS);
+	wideCam->SetConnectionStrategy(cs::VideoSource::kConnectionKeepOpen);
+
+    dashStream->SetResolution(WIDTH, HEIGHT);
+	dashStream->SetFPS(FPS);
+
+    dashStream->SetSource(*wideCam);
+}
+
+Cameras::~Cameras() {
+    delete wideCam;
+    delete dashStream;
+}
+
 void Cameras::Periodic() {}
+
