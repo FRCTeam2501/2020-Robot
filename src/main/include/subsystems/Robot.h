@@ -3,31 +3,28 @@
 #include "RobotContainer.h"
 using namespace frc;
 
-class Robot : public timedRobot
-{
+class Robot : public TimedRobot {
+
     public:
+
     Robot();
     ~Robot();
-    void RobotInit() override;
-    void RobotPeriodic() override;
-    void DisabledInit() override;
-    void disableperiodic() override;
-    void AutonomousInit() override;
-    void AutonomousPeriodic() override;
-    void TeleopInit() override;
-    void TeleopPeriodic() override;
-};
+    void RobotInit();
+    void RobotPeriodic();
+    void DisabledInit();
+    void Disableperiodic();
+    void AutonomousInit();
+    void AutonomousPeriodic();
+    void TeleopInit();
+    void TeleopPeriodic();
+    void TestPeriodic();
 
-Robot::Robot()
-{
-}
 
-Robot::~Robot()
-{
+
 private:
-  RobotContainer *container;
 
-}
+  RobotContainer *container;
+};
 
 
 

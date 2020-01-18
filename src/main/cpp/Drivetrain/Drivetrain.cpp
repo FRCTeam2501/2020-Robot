@@ -17,7 +17,7 @@ rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
 left = new SpeedControllerGroup (*frontLeft, *rearLeft);
 right = new SpeedControllerGroup(*frontRight, *rearRight);
 
-drive = new DifferentialDrive (*drive);
+drive = new DifferentialDrive (*left, *right);
 }
 
 

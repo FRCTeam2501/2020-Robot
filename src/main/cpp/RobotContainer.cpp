@@ -6,16 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/RobotContainer.h"
-
-RobotContainer::RobotContainer (){
+using namespace frc; 
 
 Drivetrain *RobotContainer::drive;
-Joystick *RobotContainer::drivestick;
+Joystick *RobotContainer::driveStick;
+
+RobotContainer::RobotContainer (){
 
   drive = new Drivetrain;
   driveStick = new Joystick(OIConstants::kDriverControllerPort);
 
-drive->SetDefaltCommand(manualDrive(drive, getXSpeed, getYSpeed));
+drive->SetDefaltCommand(ManualDrive(
+  drive, 
+  getDriveX,
+  getDriveY));
 
 
 
