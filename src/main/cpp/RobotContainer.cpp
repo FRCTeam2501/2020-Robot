@@ -47,8 +47,17 @@ RobotContainer::RobotContainer() {
 }
 
 RobotContainer::~RobotContainer() {
-	delete pneumatics;
 	delete drive;
+	delete pneumatics;
 	delete climber;
+	delete intake;
+
 	delete driveStick;
+	delete controlStick;
+
+	delete toggleDrive;
+	delete toggleClimber;
+	delete enableClimber;
+	delete toggleIntake;
+	delete reverseIntake;
 }
