@@ -6,7 +6,6 @@
 #include "Drivetrain/Drivetrain.h"
 #include "Drivetrain/ManualDrive.h"
 
-#include "Cameras/Cameras.h"
 
 using namespace frc;
 
@@ -20,6 +19,4 @@ class RobotContainer {
   
   Drivetrain *drive;
   Joystick *driveStick;
-  Cameras *cameras;
-
 };
