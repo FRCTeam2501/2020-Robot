@@ -171,4 +171,4 @@ gradlew.bat
 settings.gradle
 *.vcxproj*
 .vs/*
-*.sln
+*.sln 
