@@ -12,6 +12,8 @@ Drivetrain::Drivetrain() {
 	right = new SpeedControllerGroup(*rightFront, *rightRear);
 
 	drive = new DifferentialDrive(*left, *right);
+
+	inverted = new bool(false);
 }
 
 Drivetrain::~Drivetrain() {
@@ -24,10 +26,15 @@ Drivetrain::~Drivetrain() {
 	delete right;
 
 	delete drive;
+
+	delete inverted;
 }
 
 void Drivetrain::Periodic() {}
 
 void Drivetrain::ArcadeDrive(double y, double rz) {
+	if(*inverted)
+		y *= -1.0;
+
 	drive->ArcadeDrive(y, rz);
 }

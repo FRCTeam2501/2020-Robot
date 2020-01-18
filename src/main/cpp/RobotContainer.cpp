@@ -7,7 +7,9 @@ Pneumatics *RobotContainer::pneumatics;
 Climber *RobotContainer::climber;
 Intake *RobotContainer::intake;
 Joystick *RobotContainer::driveStick, *RobotContainer::controlStick;
-frc2::JoystickButton *RobotContainer::toggleClimber, *RobotContainer::enableClimber, *RobotContainer::toggleIntake, *RobotContainer::reverseIntake;
+frc2::JoystickButton *RobotContainer::toggleDrive,
+	*RobotContainer::toggleClimber, *RobotContainer::enableClimber,
+	*RobotContainer::toggleIntake, *RobotContainer::reverseIntake;
 
 RobotContainer::RobotContainer() {
 	drive = new Drivetrain();
@@ -31,11 +33,13 @@ RobotContainer::RobotContainer() {
 		GetIntakeSpeed
 	));
 
+	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	toggleClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::LB);
 	enableClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::START);
-	toggleIntake = new frc2::JoystickButton(driveStick, CONTROLLER::X::RB);
+	toggleIntake = new frc2::JoystickButton(controlStick, CONTROLLER::X::RB);
 	reverseIntake = new frc2::JoystickButton(controlStick, CONTROLLER::X::X);
 
+	toggleDrive->WhenPressed(new ToggleDrive(drive));
 	toggleClimber->WhenPressed(new ToggleClimber(climber));
 	enableClimber->WhenPressed(new EnableClimber(climber));
 	toggleIntake->WhenPressed(new ToggleIntake(intake));

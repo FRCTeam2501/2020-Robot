@@ -2,6 +2,7 @@
 #include "include.h"
 #include "Drivetrain/Drivetrain.h"
 #include "Drivetrain/ManualDrive.h"
+#include "Drivetrain/ToggleDrive.h"
 #include "Climber/Climber.h"
 #include "Climber/ManualClimber.h"
 #include "Climber/EnableClimber.h"
@@ -21,7 +22,9 @@ private:
 	static Climber *climber;
 	static Intake *intake;
 	static Joystick *driveStick, *controlStick;
-	static frc2::JoystickButton *toggleClimber, *enableClimber, *toggleIntake, *reverseIntake;
+	static frc2::JoystickButton *toggleDrive,
+		*toggleClimber, *enableClimber,
+		*toggleIntake, *reverseIntake;
 
 public:
 	RobotContainer();

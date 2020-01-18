@@ -8,6 +8,7 @@ private:
 	PWMVictorSPX *leftFront, *leftRear, *rightFront, *rightRear;
 	SpeedControllerGroup *left, *right;
 	DifferentialDrive *drive;
+	bool *inverted;
 
 public:
 	Drivetrain();
@@ -15,4 +16,16 @@ public:
 	void Periodic() override;
 
 	void ArcadeDrive(double y, double rz);
+
+	void ToggleInverted() {
+		*inverted = !*inverted;
+	}
+
+	void SetInverted(bool inverted) {
+		*Drivetrain::inverted = inverted;
+	}
+
+	bool GetInverted() {
+		return *inverted;
+	}
 };
