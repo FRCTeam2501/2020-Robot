@@ -7,14 +7,26 @@
 
 #pragma once
 
+#include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/InstantCommand.h>
 
+/**
+ * An example command.
+ *
+ * <p>Note that this extends CommandHelper, rather extending CommandBase
+ * directly; this is crucially important, or else the decorator functions in
+ * Command will *not* work!
+ */
 class SwitchDirection
-    : public frc2::CommandHelper<frc2::InstantCommand,
-                                 SwitchDirection> {
+    : public frc2::CommandHelper<frc2::CommandBase, SwitchDirection> {
  public:
   SwitchDirection();
 
   void Initialize() override;
+
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
 };

@@ -7,12 +7,18 @@
 
 #include "Drivetrain/SwitchDirection.h"
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.
-// For more information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 SwitchDirection::SwitchDirection() {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
 void SwitchDirection::Initialize() {}
+
+// Called repeatedly when this Command is scheduled to run
+void SwitchDirection::Execute() {}
+
+// Called once the command ends or is interrupted.
+void SwitchDirection::End(bool interrupted) {}
+
+// Returns true when the command should end.
+bool SwitchDirection::IsFinished() { return false; }
