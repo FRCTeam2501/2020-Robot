@@ -37,14 +37,7 @@ void Robot::RobotPeriodic() {
   frc2::CommandScheduler::GetInstance().Run(); 
 }
 
-    void RobotInit() {}
-    void RobotPeriodic() {}
-    void Disabledinit() {}
-    void disableperiodic() {}
-    void AutonomousInit() {}
-    void AutonomousPeriodic() {}
-    void TeleopInit() {}
-    void TeleopPeriodic() {}
+   
 /**
  * This function is called once each time the robot enters Disabled mode. You
  * can use it to reset any subsystem information you want to clear when the
@@ -52,7 +45,7 @@ void Robot::RobotPeriodic() {
  */
 void Robot::DisabledInit() {}
 
-void Robot::Disableperiodic() {}
+ void Robot::DisabledPeriodic() {}
 
 /**
  * This autonomous runs the autonomous command selected by your {@link

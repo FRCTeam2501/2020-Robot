@@ -12,25 +12,15 @@
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "Drivetrain/Drivetrain.h"
+#include "Drivetrain/ManualDrive.h"
 using namespace frc;
-
 
 
 class RobotContainer {
  public:
   RobotContainer();
+~RobotContainer();
 
-
-static double getDriveY(){
-
-  return driveStick->GetRawAxis(1);
-}
-
-static double getDriveX(){
-
-  return driveStick->GetRawAxis(0);
-}
-  //frc2::Command* GetAutonomousCommand();
 
 private:
   

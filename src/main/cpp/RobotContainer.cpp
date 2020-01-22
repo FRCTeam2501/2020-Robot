@@ -11,20 +11,22 @@ using namespace frc;
 Drivetrain *RobotContainer::drive;
 Joystick *RobotContainer::driveStick;
 
-RobotContainer::RobotContainer (){
+RobotContainer::RobotContainer(){
 
-  drive = new Drivetrain;
-  driveStick = new Joystick(OIConstants::kDriverControllerPort);
+  drive = new Drivetrain();
+  driveStick = new Joystick(JOYSTICK::DRIVER);
 
-drive->SetDefaltCommand(ManualDrive(
-  drive, 
-  getDriveX,
-  getDriveY));
-
+drive->SetDefaultCommand(ManualDrive(
+		  drive,
+		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
+		  [this] { return driveStick->GetRawAxis(0); }
+	));
 
 
 }
-
- 
+RobotContainer::~RobotContainer(){
+	delete drive;
+	delete driveStick;
+}
 
 
