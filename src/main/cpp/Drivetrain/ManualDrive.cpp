@@ -10,7 +10,6 @@ std::function<double()> x)
 }
 
 
-
 void ManualDrive::Execute(){
 
 drive->ArcadeDrive(y(), x());

@@ -15,6 +15,7 @@ private:
     std::function<double()> y;
     
 public:
+
     ManualDrive(Drivetrain* subsystem, 
     std::function<double()> y,
 	std::function<double()> x);
