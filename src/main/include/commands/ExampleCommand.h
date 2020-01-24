@@ -10,23 +10,25 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
+#include "subsystems/ExampleSubsystem.h"
+
 /**
- * An example command.
+ * An example command that uses an example subsystem.
  *
  * <p>Note that this extends CommandHelper, rather extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoDrive
-    : public frc2::CommandHelper<frc2::CommandBase, AutoDrive> {
+class ExampleCommand
+    : public frc2::CommandHelper<frc2::CommandBase, ExampleCommand> {
  public:
-  AutoDrive();
+  /**
+   * Creates a new ExampleCommand.
+   *
+   * @param subsystem The subsystem used by this command.
+   */
+  explicit ExampleCommand(ExampleSubsystem* subsystem);
 
-  void Initialize() override;
-
-  void Execute() override;
-
-  void End(bool interrupted) override;
-
-  bool IsFinished() override;
+ private:
+  ExampleSubsystem* m_subsystem;
 };

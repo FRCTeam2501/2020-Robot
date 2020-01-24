@@ -5,20 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Drivetrain/AutoDrive.h"
+#include "commands/ExampleCommand.h"
 
-AutoDrive::AutoDrive() {
-  // Use addRequirements() here to declare subsystem dependencies.
-}
-
-// Called when the command is initially scheduled.
-void AutoDrive::Initialize() {}
-
-// Called repeatedly when this Command is scheduled to run
-void AutoDrive::Execute() {}
-
-// Called once the command ends or is interrupted.
-void AutoDrive::End(bool interrupted) {}
-
-// Returns true when the command should end.
-bool AutoDrive::IsFinished() { return false; }
+ExampleCommand::ExampleCommand(ExampleSubsystem* subsystem)
+    : m_subsystem{subsystem} {}
