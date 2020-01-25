@@ -8,6 +8,8 @@
 #include <frc/PWMVictorSPX.h>
 #include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/DoubleSolenoid.h>
+#include <frc/Compressor.h>
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>
@@ -19,4 +21,5 @@
 
 #include "Utils/Constants.h"
 #include "Utils/ButtonMap.h"
+#include "Utils/ports.h"
 

@@ -9,6 +9,10 @@
 
 #include "Cameras/Cameras.h"
 
+#include "Pneumatics/Pneumatics.h"
+#include "Pneumatics/TogglePneu.h"
+#include "Pneumatics/TogglePneu2.h"
+
 using namespace frc;
 
 class RobotContainer {
@@ -22,6 +26,6 @@ class RobotContainer {
   Drivetrain *drive;
   Joystick *driveStick;
   Cameras *cameras;
-  frc2::JoystickButton *switchDirection;
-
+  frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2;
+  Pneumatics *pneu;
 };

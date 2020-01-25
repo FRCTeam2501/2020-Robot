@@ -1,20 +1,18 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #pragma once
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/InstantCommand.h>
+#include "Utils/include.h"
+#include "Pneumatics/Pneumatics.h"
 
-class TogglePneu2
+class ToggleClimb
     : public frc2::CommandHelper<frc2::InstantCommand,
-                                 TogglePneu2> {
+                                 ToggleClimb> {
  public:
-  TogglePneu2();
+  ToggleClimb(Pneumatics *subsystem);
 
   void Initialize() override;
+
+  private:
+    Pneumatics *pneu2;
 };

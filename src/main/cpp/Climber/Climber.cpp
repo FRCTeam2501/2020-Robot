@@ -8,4 +8,6 @@ Climber::Climber() {
 
 void Climber::Periodic() {}
 
-Climber::~Climber() {}
+Climber::~Climber() {
+    
+}

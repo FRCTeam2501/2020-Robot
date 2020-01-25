@@ -1,13 +1,95 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+#include "Pneumatics/Pneumatics.h"
 
-#include "Pnuematics/Pnuematics.h"
 
-Pnuematics::Pnuematics() {}
 
-// This method will be called once per scheduler run
-void Pnuematics::Periodic() {}
+
+Pneumatics::Pneumatics() {
+
+compressor = new Compressor(CAN::CAN_PCM);
+VerticalLift = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIFT_B);
+
+Climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
+
+
+
+}
+
+
+Pneumatics::~Pneumatics(){
+
+delete compressor;
+delete VerticalLift;
+delete Climb;
+
+}
+
+
+void Pneumatics::InitPneumatics(){
+
+VerticalLift->Set(DoubleSolenoid::kReverse);
+Climb->Set(DoubleSolenoid::kReverse);
+
+}
+
+void Pneumatics::DisableAll()
+{
+	VerticalLift->Set(DoubleSolenoid::kOff);
+	Climb->Set(DoubleSolenoid::kOff);
+}
+ 
+void Pneumatics::VerticalLiftExtend(){
+    VerticalLift->Set(DoubleSolenoid::kForward);
+}
+
+void Pneumatics::VerticalLiftRetract(){
+    VerticalLift->Set(DoubleSolenoid::kReverse);
+}
+
+void Pneumatics::ClimbExtend(){
+    Climb->Set(DoubleSolenoid::kForward);
+}
+
+void Pneumatics::ClimbRetract(){
+    Climb->Set(DoubleSolenoid::kReverse);
+}
+
+void Pneumatics::ToggleVert(){
+    switch(VerticalLift->Get()){
+        case DoubleSolenoid::kForward:
+             VerticalLift->Set(DoubleSolenoid::kReverse);
+            break;
+
+        case DoubleSolenoid::kReverse:
+             VerticalLift->Set(DoubleSolenoid::kForward);
+             break;
+
+        case DoubleSolenoid::kOff:
+             VerticalLift->Set(DoubleSolenoid::kForward);
+            break;
+
+        default:
+            break;
+    }
+}
+
+void Pneumatics::ToggleClimb(){
+    switch(Climb->Get()){    
+        case DoubleSolenoid::kForward:
+             Climb->Set(DoubleSolenoid::kForward);     
+            break;
+
+        case DoubleSolenoid::kReverse:
+             Climb->Set(DoubleSolenoid::kReverse);
+            break;
+
+        case DoubleSolenoid::kOff:
+             Climb->Set(DoubleSolenoid::kForward);
+            break;
+
+        default:
+            break;
+    }
+}
+
+
+
