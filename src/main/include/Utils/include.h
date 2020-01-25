@@ -10,4 +10,8 @@
 #include "frc2/command/CommandBase.h"
 #include "frc2/command/CommandHelper.h"
 #include "frc2/command/Command.h"
+#include "rev/CANSparkMax.h"
+#include "rev/CANPIDController.h"
+#include "rev/CANEncoder.h"
+
 #define cout wpi::outs()

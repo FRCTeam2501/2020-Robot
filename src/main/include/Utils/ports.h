@@ -46,7 +46,8 @@ namespace CAN		//RoboRIO CAN Devices
 	enum CAN_DEVICES
 	{
 		CAN_PCM = 0,
-		EMPTY_1
+		SPINNYTHROWER,
+		EMPTY_2
 	};
 }
 namespace DIO		//RoboRIO DIO Ports
