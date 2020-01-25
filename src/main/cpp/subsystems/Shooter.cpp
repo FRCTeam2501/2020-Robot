@@ -5,8 +5,6 @@ using namespace rev;
 Shooter::Shooter(){
 
 spinnyThrower = new CANSparkMax(CAN::SPINNYTHROWER,CANSparkMax::MotorType::kBrushless);
-//spinnyThrower is the motor controller for the flywhele.
-
 
     spinnyThrower->GetPIDController().SetP(kP);
     spinnyThrower->GetPIDController().SetI(kI);
@@ -18,11 +16,11 @@ spinnyThrower = new CANSparkMax(CAN::SPINNYTHROWER,CANSparkMax::MotorType::kBrus
 }
 
 
-
 Shooter::~Shooter(){
 delete spinnyThrower;
 
 }
+
 
 
 
