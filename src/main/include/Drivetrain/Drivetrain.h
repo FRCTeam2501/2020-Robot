@@ -13,9 +13,12 @@ public:
 
 	void Periodic();
 
+	void Switch();
+
 
 private:
 	DifferentialDrive *drive;
 	PWMVictorSPX *frontLeft, *rearLeft, *frontRight, *rearRight;
 	SpeedControllerGroup *left, *right;
+	bool direction = false;
 };

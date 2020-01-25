@@ -1,4 +1,5 @@
 #include "Drivetrain/Drivetrain.h"
+#include "Utils/include.h"
 
 void Drivetrain::Periodic(){}
 
@@ -13,6 +14,9 @@ Drivetrain::Drivetrain() {
     right = new SpeedControllerGroup(*frontRight, *rearRight);
 
     drive = new DifferentialDrive(*left, *right);
+}
+void Drivetrain::Switch(){
+    direction!=direction;
 }
 
 Drivetrain::~Drivetrain() {
@@ -29,5 +33,8 @@ Drivetrain::~Drivetrain() {
 }
 
 void Drivetrain::ArcadeDrive(double x, double z){
+    if(direction)
+        x*=-1.0;
+        
     drive->ArcadeDrive(x, z);
 }

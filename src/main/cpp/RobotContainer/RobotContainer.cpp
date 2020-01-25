@@ -11,10 +11,15 @@ RobotContainer::RobotContainer()  {
 	));
 
 	cameras = new Cameras();
+
+	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
+	
+	switchDirection->WhenPressed(new SwitchDirection(drive));
 }
 
 RobotContainer::~RobotContainer() {
 	delete drive;
 	delete driveStick;
 	delete cameras;
+	delete switchDirection;
 }
