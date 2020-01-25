@@ -1,21 +1,21 @@
-#inlcude "subsystems/Cameras.h"
+#include "subsystems/Cameras.h"
 
 
 
 Cameras::Cameras(){
 
- wideCam = new cs::UsbCamera("Top Camera", 0);
+ WideCam = new cs::UsbCamera("Top Camera", 0);
 
   dashStream = new cs::MjpegServer("Dashboard Stream", 1185);
 
     WideCam->SetResolution(WITH, HEIGHT);
     WideCam->SetFPS(FPS);
-    wideCam->SetConnectionStrategy(cs::VideoSource::kConnectionKeepOpen);
+    WideCam->SetConnectionStrategy(cs::VideoSource::kConnectionKeepOpen);
 
     dashStream->SetResolution(WITH, HEIGHT);
     dashStream->SetFPS(FPS);
 
-    dashStream->SetScource(*wideCam);
+    dashStream->SetSource(*WideCam);
 }
 
 Cameras::~Cameras(){

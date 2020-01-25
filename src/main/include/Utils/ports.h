@@ -150,14 +150,14 @@ namespace PCM		//Pnuematics Control Module Ports
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS
 	{
-		SOL_LEFT_A = 0,
-		SOL_LEFT_B,
-		SOL_RIGHT_A,
-		SOL_RIGHT_B,
-		SOL_RAISE_A,
-		SOL_RAISE_B,
-		EMPTY_6,
-		EMPTY_7
+		SOL_VERTICALIFYER_A = 0,
+		SOL_verticalifyer_B,
+		//verticalifyer2_A,
+		//verticalifyer2_B,
+		SOL_UPPYWUPPY_A,
+		SOL_UPPYWUPPY_B,
+		//uppyWuppy2_A,
+		//uppyWuppy2_B
 	};
 }
 #endif

@@ -2,13 +2,12 @@
 
 #include "Utils/include.h"
 
+using namespace frc;
 
-
-
-class Cameras : frc2 SubsystemBase
+class Cameras : frc2::SubsystemBase
 {
 private:
-    cs::UsbCamera *wideCam;
+    cs::UsbCamera *WideCam;
     cs::MjpegServer *dashStream;
 
     const int WITH = 320;

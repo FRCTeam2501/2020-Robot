@@ -1,6 +1,8 @@
 #include "Drivetrain/ManualDrive.h"
 using namespace frc;
 
+
+
 ManualDrive::ManualDrive( Drivetrain* subsystem,
 std::function<double()> y, 
 std::function<double()> x) 
