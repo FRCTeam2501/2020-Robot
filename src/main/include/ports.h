@@ -39,10 +39,11 @@ namespace PWM {				//RoboRIO PWM Ports
 namespace CAN {				//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES {
+		PCM = 0,
 		PDP = 0,
-		PCM,
 		CLIMBER_RIGHT,
-		CLIMBER_LEFT
+		CLIMBER_LEFT,
+		SHOOTER
 	};
 }
 namespace DIO {				//RoboRIO DIO Ports

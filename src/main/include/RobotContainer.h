@@ -3,6 +3,7 @@
 #include "Drivetrain/Drivetrain.h"
 #include "Drivetrain/ManualDrive.h"
 #include "Drivetrain/ToggleDrive.h"
+#include "Pneumatics/Pneumatics.h"
 #include "Climber/Climber.h"
 #include "Climber/ManualClimber.h"
 #include "Climber/EnableClimber.h"
@@ -11,7 +12,8 @@
 #include "Intake/ManualIntake.h"
 #include "Intake/ToggleIntake.h"
 #include "Intake/ReverseIntake.h"
-#include "Pneumatics/Pneumatics.h"
+#include "Shooter/Shooter.h"
+#include "Shooter/ToggleShooter.h"
 using namespace frc;
 
 
@@ -21,10 +23,12 @@ private:
 	static Pneumatics *pneumatics;
 	static Climber *climber;
 	static Intake *intake;
+	static Shooter *shooter;
 	static Joystick *driveStick, *controlStick;
 	static frc2::JoystickButton *toggleDrive,
 		*toggleClimber, *enableClimber,
-		*toggleIntake, *reverseIntake;
+		*toggleIntake, *reverseIntake,
+		*toggleShooter;
 
 public:
 	RobotContainer();
