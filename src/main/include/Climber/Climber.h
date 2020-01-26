@@ -8,7 +8,20 @@ class Climber : public frc2::SubsystemBase {
 private:
 	Pneumatics *pneumatics;
 	rev::CANSparkMax *right, *left;
+	uint8_t *state;
 	bool *enabled;
+
+	enum STATE {
+		DOWN = 0,
+		UP,
+		EXTEND,
+		RETRACT,
+		ILLEGAL,
+		OFF
+	};
+
+	void SetArm(bool up);
+	void SetExtend(bool extend);
 
 public:
 	Climber(Pneumatics *pneumatics);
@@ -16,10 +29,8 @@ public:
 	void Periodic();
 
 	void SetWinch(double speed);
-	void ToggleArm();
-	void ToggleExtend();
-	void SetArm(bool up);
-	void SetExtend(bool extend);
+	void Forward();
+	void Reverse();
 
 	void ToggleEnable() {
 		*enabled = !*enabled;

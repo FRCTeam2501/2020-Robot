@@ -4,12 +4,12 @@
 using namespace frc;
 
 
-class ToggleClimber
-	: public frc2::CommandHelper<frc2::InstantCommand, ToggleClimber> {
+class ForwardClimb
+	: public frc2::CommandHelper<frc2::InstantCommand, ForwardClimb> {
 private:
 	Climber *climber;
 
 public:
-	ToggleClimber(Climber *climber);
+	ForwardClimb(Climber *climber);
 	void Initialize() override;
 };

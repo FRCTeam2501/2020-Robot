@@ -26,3 +26,5 @@
 #include "constants.h"
 #include "ports.h"
 #include "buttonMap.h"
+
+#define cout wpi::outs()

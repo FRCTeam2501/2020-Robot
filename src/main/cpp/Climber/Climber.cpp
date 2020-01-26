@@ -11,6 +11,7 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 
 	left->Follow(*right);
 
+	state = new uint8_t(OFF);
 	enabled = new bool(false);
 }
 
@@ -18,42 +19,67 @@ Climber::~Climber() {
 	delete right;
 	delete left;
 
+	delete state;
 	delete enabled;
 }
 
 void Climber::Periodic() {}
 
 void Climber::SetWinch(double speed) {
-	right->Set(speed);
-}
-
-void Climber::ToggleArm() {
-	if(*enabled) {
-		switch(pneumatics->GetClimbArm()) {
-			case DoubleSolenoid::kForward:
-				pneumatics->SetClimbArm(DoubleSolenoid::kReverse);
-				break;
-			case DoubleSolenoid::kReverse:
-				pneumatics->SetClimbArm(DoubleSolenoid::kForward);
-				break;
-			default:
-				break;
-		}
+	if(*enabled && *state == RETRACT) {
+		right->Set(speed);
 	}
 }
 
-void Climber::ToggleExtend() {
-	if(*enabled) {
-		switch(pneumatics->GetClimbExtend()) {
-			case DoubleSolenoid::kForward:
-				pneumatics->SetClimbExtend(DoubleSolenoid::kReverse);
-				break;
-			case DoubleSolenoid::kReverse:
-				pneumatics->SetClimbExtend(DoubleSolenoid::kForward);
-				break;
-			default:
-				break;
-		}
+void Climber::Forward() {
+	switch(*state) {
+		case OFF:
+		case DOWN:
+			SetArm(true);
+			*state = UP;
+			break;
+		case UP:
+			SetExtend(true);
+			*state = EXTEND;
+			break;
+		case EXTEND:
+			SetExtend(false);
+			*state = RETRACT;
+			break;
+		case RETRACT:
+			SetArm(false);
+			*state = DOWN;
+			break;
+		case ILLEGAL:
+		default:
+			cout << "Climber in illegal state!";
+			break;
+	}
+}
+
+void Climber::Reverse() {
+	switch(*state) {
+		case OFF:
+		case DOWN:
+			SetArm(true);
+			*state = UP;
+			break;
+		case UP:
+			SetArm(false);
+			*state = DOWN;
+			break;
+		case EXTEND:
+			SetExtend(false);
+			*state = RETRACT;
+			break;
+		case RETRACT:
+			SetExtend(true);
+			*state = EXTEND;
+			break;
+		case ILLEGAL:
+		default:
+			cout << "Climber in illegal state!";
+			break;
 	}
 }
 

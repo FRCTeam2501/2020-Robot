@@ -7,7 +7,8 @@
 #include "Climber/Climber.h"
 #include "Climber/ManualClimber.h"
 #include "Climber/EnableClimber.h"
-#include "Climber/ToggleClimber.h"
+#include "Climber/ForwardClimb.h"
+#include "Climber/ReverseClimb.h"
 #include "Intake/Intake.h"
 #include "Intake/ManualIntake.h"
 #include "Intake/ToggleIntake.h"
@@ -26,7 +27,7 @@ private:
 	static Shooter *shooter;
 	static Joystick *driveStick, *controlStick;
 	static frc2::JoystickButton *toggleDrive,
-		*toggleClimber, *enableClimber,
+		*forwardClimb, *reverseClimb, *enableClimber,
 		*toggleIntake, *reverseIntake,
 		*toggleShooter;
 

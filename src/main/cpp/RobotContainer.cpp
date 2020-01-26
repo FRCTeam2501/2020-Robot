@@ -9,7 +9,7 @@ Intake *RobotContainer::intake;
 Shooter *RobotContainer::shooter;
 Joystick *RobotContainer::driveStick, *RobotContainer::controlStick;
 frc2::JoystickButton *RobotContainer::toggleDrive,
-	*RobotContainer::toggleClimber, *RobotContainer::enableClimber,
+	*RobotContainer::forwardClimb, *RobotContainer::reverseClimb, *RobotContainer::enableClimber,
 	*RobotContainer::toggleIntake, *RobotContainer::reverseIntake,
 	*RobotContainer::toggleShooter;
 
@@ -37,14 +37,16 @@ RobotContainer::RobotContainer() {
 	));
 
 	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
-	toggleClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::LB);
+	forwardClimb = new frc2::JoystickButton(controlStick, CONTROLLER::X::LB);
+	reverseClimb = new frc2::JoystickButton(controlStick, CONTROLLER::X::BACK);
 	enableClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::START);
 	toggleIntake = new frc2::JoystickButton(controlStick, CONTROLLER::X::RB);
 	reverseIntake = new frc2::JoystickButton(controlStick, CONTROLLER::X::X);
 	toggleShooter = new frc2::JoystickButton(controlStick, CONTROLLER::X::A);
 
 	toggleDrive->WhenPressed(new ToggleDrive(drive));
-	toggleClimber->WhenPressed(new ToggleClimber(climber));
+	forwardClimb->WhenPressed(new ForwardClimb(climber));
+	reverseClimb->WhenPressed(new ReverseClimb(climber));
 	enableClimber->WhenPressed(new EnableClimber(climber));
 	toggleIntake->WhenPressed(new ToggleIntake(intake));
 	reverseIntake->WhenHeld(new ReverseIntake(intake));
@@ -62,7 +64,7 @@ RobotContainer::~RobotContainer() {
 	delete controlStick;
 
 	delete toggleDrive;
-	delete toggleClimber;
+	delete forwardClimb;
 	delete enableClimber;
 	delete toggleIntake;
 	delete reverseIntake;
