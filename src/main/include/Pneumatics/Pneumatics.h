@@ -2,32 +2,47 @@
 #include "include.h"
 using namespace frc;
 
+
 class Pneumatics : public frc2::SubsystemBase {
 private:
 	Compressor *compressor;
-	DoubleSolenoid *climbRight, *climbLeft, *intakeRight, *intakeLeft;
+	DoubleSolenoid *climbArm, *climbExtend, *intake, *shooter;
 
 public:
 	Pneumatics();
 	~Pneumatics();
 	void Periodic();
 
-	void SetClimb(DoubleSolenoid::Value value) {
-		climbRight->Set(value);
-		climbLeft->Set(value);
+	void SetClimbArm(DoubleSolenoid::Value value) {
+		climbArm->Set(value);
 	}
 
-	DoubleSolenoid::Value GetClimb() {
-		return climbRight->Get();
+	DoubleSolenoid::Value GetClimbArm() {
+		return climbArm->Get();
+	}
+
+	void SetClimbExtend(DoubleSolenoid::Value value) {
+		climbExtend->Set(value);
+	}
+
+	DoubleSolenoid::Value GetClimbExtend() {
+		return climbExtend->Get();
 	}
 
 	void SetIntake(DoubleSolenoid::Value value) {
-		intakeRight->Set(value);
-		intakeLeft->Set(value);
+		intake->Set(value);
 	}
 
 	DoubleSolenoid::Value GetIntake() {
-		return intakeRight->Get();
+		return intake->Get();
+	}
+
+	void SetShooter(DoubleSolenoid::Value value) {
+		shooter->Set(value);
+	}
+
+	DoubleSolenoid::Value GetShooter() {
+		return shooter->Get();
 	}
 
 	void StartCompressor() {
@@ -36,5 +51,12 @@ public:
 
 	void StopCompressor() {
 		compressor->Stop();
+	}
+
+	void Disable() {
+		climbArm->Set(DoubleSolenoid::kOff);
+		climbExtend->Set(DoubleSolenoid::kOff);
+		intake->Set(DoubleSolenoid::kOff);
+		shooter->Set(DoubleSolenoid::kOff);
 	}
 };

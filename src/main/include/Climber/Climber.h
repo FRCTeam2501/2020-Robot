@@ -3,6 +3,7 @@
 #include "Pneumatics/Pneumatics.h"
 using namespace frc;
 
+
 class Climber : public frc2::SubsystemBase {
 private:
 	Pneumatics *pneumatics;
@@ -16,6 +17,9 @@ public:
 
 	void SetWinch(double speed);
 	void ToggleArm();
+	void ToggleExtend();
+	void SetArm(bool up);
+	void SetExtend(bool extend);
 
 	void ToggleEnable() {
 		*enabled = !*enabled;

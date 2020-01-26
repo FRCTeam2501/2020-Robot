@@ -132,14 +132,14 @@ namespace PCM {				//Pnuematics Control Module Ports
 	//Note: Must have PNUEMATICS defined to be included
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS {
-		CLIMBER_RIGHT = 0,
-		CLIMBER_LEFT,
-		INTAKE_RIGHT,
-		INTAKE_LEFT,
-		EMPTY_4,
-		EMPTY_5,
-		EMPTY_6,
-		EMPTY_7
+		SOL_CLIMBER_ARM_A = 0,
+		SOL_CLIMBER_ARM_B,
+		SOL_CLIMBER_EXTEND_A,
+		SOL_CLIMBER_EXTEND_B,
+		SOL_INTAKE_A,
+		SOL_INTAKE_B,
+		SOL_SHOOTER_A,
+		SOL_SHOOTER_B
 	};
 }
 #endif

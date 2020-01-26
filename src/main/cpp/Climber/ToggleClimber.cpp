@@ -5,5 +5,5 @@ using namespace frc;
 ToggleClimber::ToggleClimber(Climber *climber) : climber(climber) {}
 
 void ToggleClimber::Initialize() {
-	climber->ToggleArm();
+	climber->Toggle();
 }
