@@ -11,6 +11,7 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 
 	left->Follow(*right);
 
+	speed = new double (0.0);
 	state = new uint8_t(OFF);
 	enabled = new bool(false);
 }
@@ -19,15 +20,20 @@ Climber::~Climber() {
 	delete right;
 	delete left;
 
+	delete speed;
 	delete state;
 	delete enabled;
 }
 
-void Climber::Periodic() {}
+void Climber::Periodic() {
+	if(*enabled && *state == RETRACT) {
+		right->Set(*speed);
+	}
+}
 
 void Climber::SetWinch(double speed) {
 	if(*enabled && *state == RETRACT) {
-		right->Set(speed);
+		*Climber::speed = speed;
 	}
 }
 

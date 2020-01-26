@@ -52,11 +52,4 @@ public:
 	void StopCompressor() {
 		compressor->Stop();
 	}
-
-	void Disable() {
-		climbArm->Set(DoubleSolenoid::kOff);
-		climbExtend->Set(DoubleSolenoid::kOff);
-		intake->Set(DoubleSolenoid::kOff);
-		shooter->Set(DoubleSolenoid::kOff);
-	}
 };
