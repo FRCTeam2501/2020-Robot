@@ -17,9 +17,5 @@ const double MaxRPM = 5700;
 public:
     Shooter();
     ~Shooter();
-   
-
-
-
-
+    void flywheleSpeed(double SetPoint);
 };

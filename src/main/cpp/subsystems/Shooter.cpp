@@ -21,9 +21,7 @@ delete spinnyThrower;
 
 }
 
+void Shooter::flywheleSpeed(double SetPoint){
+    spinnyThrower->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
 
-
-
-
-
-
+}
