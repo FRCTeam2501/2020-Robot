@@ -1,6 +1,4 @@
 #pragma once
-
-
 /**
  * Port declarations
  * 
@@ -8,13 +6,12 @@
  * Example: AI:EMPTY0
  */
 
+//Pick one of the following:
 #define MXP_DIO
 //#define MXP_PWM
-	//Pick either DIO or PWM for the MXP ports
 
+//Define if using pneumatics
 #define PNEUMATICS
-	//Uncomment to allow pneumatic ports
-
 
 namespace JOYSTICK	//USB Joystick Ports
 {
@@ -22,7 +19,7 @@ namespace JOYSTICK	//USB Joystick Ports
 	enum JOYSTICK_ID
 	{
 		DRIVER = 0,
-		DRIVER_2,
+		DRIVER_ROTATE,
 		CONTROL
 	};
 }
@@ -31,11 +28,11 @@ namespace PWM		//RoboRIO PWM Ports
 	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT
 	{
-		FRONT_LEFT = 0,
-		FRONT_RIGHT,
-		REAR_LEFT,
-		REAR_RIGHT,
-		EMPTY_4,
+		RIGHT_FRONT = 0,
+		RIGHT_REAR,
+		LEFT_FRONT,
+		LEFT_REAR,
+		LIFTER,
 		EMPTY_5,
 		EMPTY_6,
 		EMPTY_7,
@@ -45,20 +42,11 @@ namespace PWM		//RoboRIO PWM Ports
 }
 namespace CAN		//RoboRIO CAN Devices
 {
-	enum PCM_ID
-	{
-		PCM = 0
-	};
-	enum PDP_ID
-	{
-		PDP = 0
-	};
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES
 	{
-		ELEVATOR_A = 5,
-		ELEVATOR_B,
-		BOOST_MOTOR
+		CAN_PCM = 0,
+		EMPTY_1
 	};
 }
 namespace DIO		//RoboRIO DIO Ports
@@ -66,30 +54,30 @@ namespace DIO		//RoboRIO DIO Ports
 	//Do not add more ports, the RIO only has 10
 	enum DIO_PORTS
 	{
-		E_ENC_A = 0,
-		E_ENC_B,
-		E_LS,
+		LS_BOTTOM = 0,
+		LS_TOP,
+		EMPTY_2,
 		EMPTY_3,
 		EMPTY_4,
-		EMPTY_5,
-		EMPTY_6,
-		EMPTY_7,
-		EMPTY_8,
-		EMPTY_9
+		AUTO_A,
+		AUTO_B,
+		AUTO_C,
+		AUTO_D,
+		AUTO_E
 	};
 }
 namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 {
 	//Do not add more ports, only edit and define MXP_DIO
-	#ifdef MXP_DIO
+	#ifdef MXP_DIO 
 	#ifndef MXP_PWM
 	namespace DIO
 	{	//Do not add more ports, the RIO only has 10 on MXP
 		enum DIO_ON_MXP
 		{
-			EMPTY_0 = 10,
-			EMPTY_1,
-			EMPTY_2,
+			EMPTY0 = 10,
+			EMPTY1,
+			EMPTY2,
 			EMPTY3,
 			EMPTY4,
 			EMPTY5,
@@ -99,8 +87,9 @@ namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 			EMPTY9
 		};
 	}
-	#endif //MXP_PWM
-	#endif //MXP_DIO
+	#endif 
+	#endif
+
 	#ifdef MXP_PWM
 	#ifndef MXP_DIO
 	namespace PWM
@@ -119,8 +108,8 @@ namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 			EMPTY9
 		};
 	}
-	#endif //MXP_DIO
-	#endif //MXP_PWM
+	#endif
+	#endif
 	namespace AI
 	{	//Do not add more ports, the RIO only has 4 on MXP
 		enum ANALOG_INPUT
@@ -157,39 +146,15 @@ namespace RELAY		//RoboRio Relay Ports
 #ifdef PNEUMATICS
 namespace PCM		//Pnuematics Control Module Ports
 {
-	//Note: Must have PNEUMATICS defined to be included
+	//Note: Must have PNUEMATICS defined to be included
+	//Use SOL prefix for solenoids
 	enum PCM_PORTS
 	{
-		MANIP_INTAKE_A = 0,
-		MANIP_INTAKE_B,
-		MANIP_ACTUATOR_A,
-		MANIP_ACTUATOR_B,
-		BOOSTER_A,
-		BOOSTER_B,
-		BOOSTER_C,
-		BOOSTER_D
+		SOL_VERTICALLIFT_A = 0,
+		SOL_VERTICALLIFT_B,
+
+		SOL_CLIMB_A,
+		SOL_CLIMB_B,
 	};
 }
-#endif //PNEUMATICS
-namespace PDP_PORTS
-{
-	enum PORTS
-	{
-		DRIVE_RF = 0,
-		DRIVE_RR,
-		DRIVE_LF,
-		DRIVE_LR,
-		EMPTY_4,
-		EMPTY_5,
-		EMPTY_6,
-		EMPTY_7,
-		EMPTY_8,
-		EMPTY_9,
-		EMPTY_10,
-		EMPTY_11,
-		BOOSTER,
-		ELEVATOR_A,
-		ELEVATOR_B,
-		EMPTY_15
-	};
-}
+#endif

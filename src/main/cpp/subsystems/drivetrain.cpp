@@ -5,10 +5,10 @@ void Drivetrain::Periodic() {}
 
 Drivetrain::Drivetrain() {
     
-    frontLeft = new PWMVictorSPX(PWM::FRONT_LEFT);
-    frontRight = new PWMVictorSPX(PWM::FRONT_RIGHT);
-    rearLeft = new PWMVictorSPX(PWM::REAR_LEFT);
-    rearRight = new PWMVictorSPX(PWM::REAR_RIGHT);
+    frontLeft = new PWMVictorSPX(PWM::LEFT_FRONT);
+    frontRight = new PWMVictorSPX(PWM::RIGHT_FRONT);
+    rearLeft = new PWMVictorSPX(PWM::LEFT_REAR);
+    rearRight = new PWMVictorSPX(PWM::RIGHT_REAR);
 
     left = new SpeedControllerGroup(*frontLeft, *rearLeft); 
     right = new SpeedControllerGroup(*frontRight, *rearRight);
