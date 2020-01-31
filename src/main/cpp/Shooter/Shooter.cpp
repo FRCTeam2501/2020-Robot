@@ -3,7 +3,7 @@
 using namespace rev;
 
 Shooter::Shooter() {
-    flyWheel = new CANSparkMax(CAN::FLY_WHEEL,CANSparkMax::MotorType::kBrushless);
+    flyWheel = new CANSparkMax(CAN::SHOOTER_LEFT,CANSparkMax::MotorType::kBrushless);
 
     flyWheel->GetPIDController().SetP(ShooterConstants::kP);
     flyWheel->GetPIDController().SetI(ShooterConstants::kI);

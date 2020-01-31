@@ -46,8 +46,26 @@ namespace CAN		//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES
 	{
-		CAN_PCM = 0,
-		FLY_WHEEL
+		LEFT_FRONT = 0,
+		LEFT_REAR,
+		RIGHT_FRONT,
+		RIGHT_REAR,
+		INTAKE,
+		HOPPER_LEFT,
+		HOPPER_RIGHT,
+		EMPTY_1,
+		EMPTY_2,
+		EMPTY_3,
+		EMPTY_4,
+		CLIMBER_LEFT,
+		CLIMBER_RIGHT,
+		SHOOTER_LEFT,
+		SHOOTER_RIGHT
+
+	};
+	enum CAN_PCM
+	{
+		CAN_PCM = 0
 	};
 }
 namespace DIO		//RoboRIO DIO Ports
