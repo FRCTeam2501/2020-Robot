@@ -6,9 +6,12 @@
 Pneumatics::Pneumatics() {
 
 compressor = new Compressor(CAN::CAN_PCM);
+
 VerticalLift = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIFT_B);
 
 Climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
+
+Intake = new DoubleSolenoid (PCM::SOL_INTAKE_A, PCM::SOL_INTAKE_B);
 
 
 
@@ -17,6 +20,7 @@ Climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
 
 Pneumatics::~Pneumatics(){
 
+delete Intake;
 delete compressor;
 delete VerticalLift;
 delete Climb;
@@ -26,8 +30,8 @@ delete Climb;
 
 void Pneumatics::InitPneumatics(){
 
-VerticalLift->Set(DoubleSolenoid::kReverse);
-Climb->Set(DoubleSolenoid::kReverse);
+    VerticalLift->Set(DoubleSolenoid::kReverse);
+    Climb->Set(DoubleSolenoid::kReverse);
 
 }
 
@@ -91,5 +95,21 @@ void Pneumatics::ToggleClimb(){
     }
 }
 
+void Pneumatics::ToggleIntake(){
+    switch(Intake->Get()){    
+        case DoubleSolenoid::kForward:
+             Intake->Set(DoubleSolenoid::kForward);     
+            break;
 
+        case DoubleSolenoid::kReverse:
+             Intake->Set(DoubleSolenoid::kReverse);
+            break;
 
+        case DoubleSolenoid::kOff:
+             Intake->Set(DoubleSolenoid::kForward);
+            break;
+
+        default:
+            break;
+    }
+}

@@ -156,6 +156,9 @@ namespace PCM		//Pnuematics Control Module Ports
 
 		SOL_CLIMB_A,
 		SOL_CLIMB_B,
+
+		SOL_INTAKE_A,
+		SOL_INTAKE_B
 	};
 }
 #endif
