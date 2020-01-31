@@ -23,3 +23,7 @@
 #include "Utils/ButtonMap.h"
 #include "Utils/ports.h"
 
+#include "rev/CANSparkMax.h"
+#include "rev/CANPIDController.h"
+#include "rev/CANEncoder.h"
+
