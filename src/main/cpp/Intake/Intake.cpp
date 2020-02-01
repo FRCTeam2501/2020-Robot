@@ -2,7 +2,7 @@
 using namespace frc;
 
 Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-	motor = new PWMVictorSPX(PWM::INTAKE);
+	motor = new WPI_TalonSRX(PWM::INTAKE);
 	inverted = new bool(false);
 }
 

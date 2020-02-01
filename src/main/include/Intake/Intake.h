@@ -7,7 +7,7 @@ using namespace frc;
 class Intake : public frc2::SubsystemBase {
 private:
 	Pneumatics *pneumatics;
-	PWMVictorSPX *motor;
+	WPI_TalonSRX *motor;
 	bool *inverted;
 
 public:
