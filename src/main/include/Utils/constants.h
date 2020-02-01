@@ -9,6 +9,7 @@ namespace DriveConstants {
 
 namespace OIConstants {
     constexpr int kDriverControllerPort = 2;
+    constexpr int kControlControllerPort = 1;
 }
 
 namespace ShooterConstants {

@@ -13,6 +13,15 @@
 #include "Pneumatics/TogglePneu.h"
 #include "Pneumatics/TogglePneu2.h"
 
+#include "Intake/Intake.h"
+#include "Intake/IntakeSpeed.h"
+#include "Intake/ToggleDeployIntake.h"
+
+#include "Shooter/Shooter.h"
+#include "Shooter/Shoot.h"
+
+#include "Climber/Climber.h"
+
 using namespace frc;
 
 class RobotContainer {
@@ -24,8 +33,12 @@ class RobotContainer {
  private:
   
   Drivetrain *drive;
-  Joystick *driveStick;
+  Joystick *driveStick, *controlStick;
   Cameras *cameras;
-  frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2;
+  frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
+                       *ShootTrigger,
+                       *intakeDeployButton, *intakeSet;
   Pneumatics *pneu;
+  Intake *intake;
+  Shooter *shoot;
 };

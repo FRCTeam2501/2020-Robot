@@ -8,7 +8,7 @@ Intake::~Intake() {
     delete intakeWheel;
 }
 void Intake::IntakeSpeed(double IntakeSet){
-
+    intakeWheel->Set(IntakeSet);
 }
 void Intake::ToggleDeploy(){
     pneumatics->ToggleIntake();
