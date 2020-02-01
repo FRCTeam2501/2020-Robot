@@ -7,18 +7,18 @@ using namespace frc;
 class Climber : public frc2::SubsystemBase {
 private:
 	Pneumatics *pneumatics;
-	rev::CANSparkMax *right, *left;\
+	rev::CANSparkMax *right, *left;
 	double *speed;
 	uint8_t *state;
 	bool *enabled;
 
 	enum STATE {
-		DOWN = 0,
+		OFF = 0,
+		DOWN,
 		UP,
 		EXTEND,
 		RETRACT,
-		ILLEGAL,
-		OFF
+		ILLEGAL
 	};
 
 	void SetArm(bool up);

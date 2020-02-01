@@ -7,6 +7,7 @@ Pneumatics *RobotContainer::pneumatics;
 Climber *RobotContainer::climber;
 Intake *RobotContainer::intake;
 Shooter *RobotContainer::shooter;
+Hopper *RobotContainer::hopper;
 Joystick *RobotContainer::driveStick, *RobotContainer::controlStick;
 frc2::JoystickButton *RobotContainer::toggleDrive,
 	*RobotContainer::forwardClimb, *RobotContainer::reverseClimb, *RobotContainer::enableClimber,
@@ -19,6 +20,7 @@ RobotContainer::RobotContainer() {
 	climber = new Climber(pneumatics);
 	intake = new Intake(pneumatics);
 	shooter = new Shooter();
+	hopper = new Hopper(pneumatics);
 	driveStick = new Joystick(JOYSTICK::DRIVER);
 	controlStick = new Joystick(JOYSTICK::CONTROL);
 

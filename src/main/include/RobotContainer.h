@@ -15,6 +15,7 @@
 #include "Intake/ReverseIntake.h"
 #include "Shooter/Shooter.h"
 #include "Shooter/ToggleShooter.h"
+#include "Hopper/Hopper.h"
 using namespace frc;
 
 
@@ -25,6 +26,7 @@ private:
 	static Climber *climber;
 	static Intake *intake;
 	static Shooter *shooter;
+	static Hopper *hopper;
 	static Joystick *driveStick, *controlStick;
 	static frc2::JoystickButton *toggleDrive,
 		*forwardClimb, *reverseClimb, *enableClimber,
