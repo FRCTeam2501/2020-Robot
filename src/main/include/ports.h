@@ -24,11 +24,11 @@ namespace JOYSTICK {		//USB Joystick Ports
 namespace PWM {				//RoboRIO PWM Ports
 	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT {
-		RIGHT_FRONT = 0,
-		RIGHT_REAR,
-		LEFT_FRONT,
-		LEFT_REAR,
-		INTAKE,
+		EMPTY_0 = 0,
+		EMPTY_1,
+		EMPTY_2,
+		EMPTY_3,
+		EMPTY_4,
 		EMPTY_5,
 		EMPTY_6,
 		EMPTY_7,
@@ -39,11 +39,27 @@ namespace PWM {				//RoboRIO PWM Ports
 namespace CAN {				//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES {
-		PCM = 0,
-		PDP = 0,
-		CLIMBER_RIGHT,
+		LEFT_FRONT = 0,
+		LEFT_REAR,
+		RIGHT_FRONT,
+		RIGHT_REAR,
+		INTAKE,
+		HOPPER_LEFT,
+		HOPPER_RIGHT,
+		EMPTY_7,
+		EMPTY_8,
+		EMPTY_9,
+		EMPTY_10,
 		CLIMBER_LEFT,
-		SHOOTER
+		CLIMBER_RIGHT,
+		SHOOTER_LEFT,
+		SHOOTER_RIGHT
+	};
+	enum CAN_PCM {
+		CAN_PCM = 0
+	};
+	enum CAN_PDP {
+		CAN_PDP = 0
 	};
 }
 namespace DIO {				//RoboRIO DIO Ports
@@ -61,11 +77,12 @@ namespace DIO {				//RoboRIO DIO Ports
 		EMPTY_9
 	};
 }
-namespace MXP { 			//RoboRIO's MyRIO eXpansion Ports
+namespace MXP {				//RoboRIO's MyRIO eXpansion Ports
 	//Do not add more ports, only edit and define MXP_DIO
 	#ifdef MXP_DIO 
 	#ifndef MXP_PWM
-	namespace DIO {			//Do not add more ports, the RIO only has 10 on MXP
+	namespace DIO {
+		//Do not add more ports, the RIO only has 10 on MXP
 		enum DIO_ON_MXP {
 			EMPTY_0 = 10,
 			EMPTY_1,
@@ -85,7 +102,8 @@ namespace MXP { 			//RoboRIO's MyRIO eXpansion Ports
 	#ifdef MXP_PWM
 	#ifndef MXP_DIO
 	namespace PWM {
-		enum PWM_ON_MXP {	//Do not add more ports, the RIO only has 10 on MXP
+		enum PWM_ON_MXP {
+			//Do not add more ports, the RIO only has 10 on MXP
 			EMPTY_0 = 10,
 			EMPTY_1,
 			EMPTY_2,
@@ -100,7 +118,8 @@ namespace MXP { 			//RoboRIO's MyRIO eXpansion Ports
 	}
 	#endif
 	#endif
-	namespace AI {			//Do not add more ports, the RIO only has 4 on MXP
+	namespace AI {
+		//Do not add more ports, the RIO only has 4 on MXP
 		enum ANALOG_INPUT {
 			EMPTY_0 = 0,
 			EMPTY_1,
@@ -132,14 +151,12 @@ namespace PCM {				//Pnuematics Control Module Ports
 	//Note: Must have PNUEMATICS defined to be included
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS {
-		SOL_CLIMBER_ARM_A = 0,
-		SOL_CLIMBER_ARM_B,
-		SOL_CLIMBER_EXTEND_A,
-		SOL_CLIMBER_EXTEND_B,
-		SOL_INTAKE_A,
-		SOL_INTAKE_B,
-		SOL_SHOOTER_A,
-		SOL_SHOOTER_B
+		VERTICALLIFT_A = 0,
+		VERTICALLIFT_B,
+		CLIMB_A,
+		CLIMB_B,
+		INTAKE_A,
+		INTAKE_B
 	};
 }
 #endif
