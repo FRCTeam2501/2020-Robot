@@ -56,10 +56,10 @@ namespace CAN {				//RoboRIO CAN Devices
 		SHOOTER_RIGHT
 	};
 	enum CAN_PCM {
-		CAN_PCM = 0
+		PCM = 0
 	};
 	enum CAN_PDP {
-		CAN_PDP = 0
+		PDP = 0
 	};
 }
 namespace DIO {				//RoboRIO DIO Ports
@@ -151,12 +151,14 @@ namespace PCM {				//Pnuematics Control Module Ports
 	//Note: Must have PNUEMATICS defined to be included
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS {
-		VERTICALLIFT_A = 0,
-		VERTICALLIFT_B,
-		CLIMB_A,
-		CLIMB_B,
+		CLIMBER_EXTEND_A = 0,
+		CLIMBER_EXTEND_B,
+		CLIMBER_ARM_A,
+		CLIMBER_ARM_B,
 		INTAKE_A,
-		INTAKE_B
+		INTAKE_B,
+		SHOOTER_A,
+		SHOOTER_B
 	};
 }
 #endif

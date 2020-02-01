@@ -3,10 +3,10 @@ using namespace frc;
 
 
 Drivetrain::Drivetrain() {
-	leftFront = new PWMVictorSPX(PWM::LEFT_FRONT);
-	leftRear = new PWMVictorSPX(PWM::LEFT_REAR);
-	rightFront = new PWMVictorSPX(PWM::RIGHT_FRONT);
-	rightRear = new PWMVictorSPX(PWM::RIGHT_REAR);
+	leftFront = new rev::CANSparkMax(CAN::LEFT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+	leftRear = new rev::CANSparkMax(CAN::LEFT_REAR, rev::CANSparkMax::MotorType::kBrushless);
+	rightFront = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+	rightRear = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
 	left = new SpeedControllerGroup(*leftFront, *leftRear);
 	right = new SpeedControllerGroup(*rightFront, *rightRear);
@@ -14,6 +14,7 @@ Drivetrain::Drivetrain() {
 	drive = new DifferentialDrive(*left, *right);
 
 	inverted = new bool(false);
+	cout << "Drivetrain Subsystem Booted!\n";
 }
 
 Drivetrain::~Drivetrain() {

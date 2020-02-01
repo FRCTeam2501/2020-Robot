@@ -14,6 +14,7 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	speed = new double (0.0);
 	state = new uint8_t(OFF);
 	enabled = new bool(false);
+	cout << "Climber Subsystem Booted!\n";
 }
 
 Climber::~Climber() {

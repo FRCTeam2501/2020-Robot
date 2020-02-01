@@ -5,7 +5,7 @@ using namespace frc;
 
 class Shooter : public frc2::SubsystemBase {
 private:
-	rev::CANSparkMax *shooter;
+	rev::CANSparkMax *left, *right;
 	double *speed;
 	bool *on;
 	bool *changed;
@@ -25,7 +25,7 @@ public:
 	}
 
 	void Toggle() {
-		*on != *on;
+		*on = !*on;
 		if(*on) {
 			Set(CONSTANTS::SHOOTER::ON);
 		}

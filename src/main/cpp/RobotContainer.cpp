@@ -53,6 +53,8 @@ RobotContainer::RobotContainer() {
 	toggleIntake->WhenPressed(new ToggleIntake(intake));
 	reverseIntake->WhenHeld(new ReverseIntake(intake));
 	toggleShooter->WhenPressed(new ToggleShooter(shooter));
+
+	cout << "RobotContainer Booted!\n";
 }
 
 RobotContainer::~RobotContainer() {

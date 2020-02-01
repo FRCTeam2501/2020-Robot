@@ -2,8 +2,9 @@
 using namespace frc;
 
 Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-	motor = new WPI_TalonSRX(PWM::INTAKE);
+	motor = new WPI_TalonSRX(CAN::INTAKE);
 	inverted = new bool(false);
+	cout << "Intake Subsystem Booted!\n";
 }
 
 Intake::~Intake() {

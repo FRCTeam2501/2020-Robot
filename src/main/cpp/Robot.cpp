@@ -4,6 +4,7 @@ using namespace frc;
 
 Robot::Robot() {
 	container = new RobotContainer();
+	cout << "Robot Booted!\n";
 }
 
 Robot::~Robot() {
