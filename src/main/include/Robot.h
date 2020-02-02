@@ -4,13 +4,13 @@
 using namespace frc;
 
 
-class Robot : public TimedRobot {
+class TylerRobot : public TimedRobot {
 private:
 	RobotContainer *container;
 
 public:
-	Robot();
-	~Robot();
+	TylerRobot();
+	~TylerRobot();
 
 	void RobotInit() override;
 	void RobotPeriodic() override;

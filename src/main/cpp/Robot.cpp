@@ -2,38 +2,38 @@
 using namespace frc;
 
 
-Robot::Robot() {
+TylerRobot::TylerRobot() {
 	container = new RobotContainer();
 	cout << "Robot Booted!\n";
 }
 
-Robot::~Robot() {
+TylerRobot::~TylerRobot() {
 	delete container;
 }
 
-void Robot::RobotInit() {}
+void TylerRobot::RobotInit() {}
 
-void Robot::RobotPeriodic() {
+void TylerRobot::RobotPeriodic() {
 	frc2::CommandScheduler::GetInstance().Run();
 }
 
-void Robot::DisabledInit() {}
+void TylerRobot::DisabledInit() {}
 
-void Robot::DisabledPeriodic() {}
+void TylerRobot::DisabledPeriodic() {}
 
-void Robot::AutonomousInit() {}
+void TylerRobot::AutonomousInit() {}
 
-void Robot::AutonomousPeriodic() {}
+void TylerRobot::AutonomousPeriodic() {}
 
-void Robot::TeleopInit() {}
+void TylerRobot::TeleopInit() {}
 
-void Robot::TeleopPeriodic() {}
+void TylerRobot::TeleopPeriodic() {}
 
-void Robot::TestPeriodic() {}
+void TylerRobot::TestPeriodic() {}
 
 
 #ifndef RUNNING_FRC_TESTS
 int main() {
-	return StartRobot<Robot>();
+	return StartRobot<TylerRobot>();
 }
 #endif
