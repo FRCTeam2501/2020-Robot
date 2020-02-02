@@ -8,10 +8,10 @@ Drivetrain::Drivetrain() {
 	rightFront = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
 	rightRear = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
-	left = new SpeedControllerGroup(*leftFront, *leftRear);
-	right = new SpeedControllerGroup(*rightFront, *rightRear);
+	leftRear->Follow(*leftFront);
+	rightRear->Follow(*rightFront);
 
-	drive = new DifferentialDrive(*left, *right);
+	drive = new DifferentialDrive(*leftFront, *rightFront);
 
 	inverted = new bool(false);
 	cout << "Drivetrain Subsystem Booted!\n";
@@ -22,9 +22,6 @@ Drivetrain::~Drivetrain() {
 	delete leftRear;
 	delete rightFront;
 	delete rightRear;
-
-	delete left;
-	delete right;
 
 	delete drive;
 

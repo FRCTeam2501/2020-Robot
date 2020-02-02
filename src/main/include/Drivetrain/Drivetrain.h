@@ -6,7 +6,6 @@ using namespace frc;
 class Drivetrain : public frc2::SubsystemBase {
 private:
 	rev::CANSparkMax *leftFront, *leftRear, *rightFront, *rightRear;
-	SpeedControllerGroup *left, *right;
 	DifferentialDrive *drive;
 	bool *inverted;
 
