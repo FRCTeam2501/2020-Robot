@@ -1,12 +1,8 @@
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/TimedRobot.h>
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
-#include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Encoder.h>
-#include <frc/PWMVictorSPX.h>
-#include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/Compressor.h>
 #include <frc/DoubleSolenoid.h>
@@ -23,8 +19,8 @@
 #include "ctre/Phoenix.h"
 #include "rev/CANSparkMax.h"
 
-#include "constants.h"
-#include "ports.h"
-#include "buttonMap.h"
+#include "Utils/constants.h"
+#include "Utils/ports.h"
+#include "Utils/buttonMap.h"
 
 #define cout wpi::outs()
