@@ -42,6 +42,5 @@ void Shooter::Periodic() {
 	}
 
 	SmartDashboard::PutNumber("Shooter RPMs", left->GetEncoder().GetVelocity());
-	SmartDashboard::PutNumber("Shooter %", (left->Get() * 100));
-
+	//SmartDashboard::PutNumber("Shooter %", (left->Get() * 100));
 }

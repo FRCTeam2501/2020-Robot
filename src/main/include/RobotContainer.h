@@ -21,21 +21,23 @@ using namespace frc;
 
 class RobotContainer {
 private:
-	static Drivetrain *drive;
-	static Pneumatics *pneumatics;
-	static Climber *climber;
-	static Intake *intake;
+//	static Drivetrain *drive;
+//	static Pneumatics *pneumatics;
+//	static Climber *climber;
+//	static Intake *intake;
 	static Shooter *shooter;
-	static Hopper *hopper;
+//	static Hopper *hopper;
 	static Joystick *driveStick, *controlStick;
-	static frc2::JoystickButton *toggleDrive,
-		*forwardClimb, *reverseClimb, *enableClimber,
-		*toggleIntake, *reverseIntake,
+	/*static*/ frc2::JoystickButton //*toggleDrive,
+//		*forwardClimb, *reverseClimb, *enableClimber,
+//		*toggleIntake, *reverseIntake,
 		*toggleShooter;
 
 public:
 	RobotContainer();
 	~RobotContainer();
+
+	void Periodic();
 
 	static double GetDriveYSpeed() {
 		return -1.0 * driveStick->GetRawAxis(1);

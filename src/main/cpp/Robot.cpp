@@ -14,6 +14,7 @@ TylerRobot::~TylerRobot() {
 void TylerRobot::RobotInit() {}
 
 void TylerRobot::RobotPeriodic() {
+	container->Periodic();
 	frc2::CommandScheduler::GetInstance().Run();
 }
 
