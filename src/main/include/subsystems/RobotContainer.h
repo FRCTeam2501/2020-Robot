@@ -13,8 +13,11 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "Drivetrain/Drivetrain.h"
 #include "Drivetrain/ManualDrive.h"
-using namespace frc;
+#include "subsystems/Cameras.h"
+#include "subsystems/Pneumatics.h"
 
+using namespace frc2;
+using namespace JOYSTICK;
 
 class RobotContainer {
  public:
@@ -26,5 +29,6 @@ private:
   
   static Drivetrain *drive;
   static Joystick *driveStick;
+  Cameras *cameras;
   
 };

@@ -7,7 +7,7 @@
 
 #include "subsystems/RobotContainer.h"
 using namespace frc; 
-
+using namespace JOYSTICK;
 Drivetrain *RobotContainer::drive;
 Joystick *RobotContainer::driveStick;
 
@@ -21,8 +21,10 @@ drive->SetDefaultCommand(ManualDrive(
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
 		  [this] { return driveStick->GetRawAxis(0); }
 	));
+cameras = new Cameras;
 
 
+ 
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

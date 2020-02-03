@@ -46,7 +46,8 @@ namespace CAN		//RoboRIO CAN Devices
 	enum CAN_DEVICES
 	{
 		CAN_PCM = 0,
-		SPINNYTHROWER,
+		SPINNYTHROWERLEFT,
+		SPINNYTHROWERRIGHT,
 		EMPTY_2
 	};
 }
