@@ -42,8 +42,9 @@ Shooter::~Shooter() {
 void Shooter::Periodic() {
 	if(*changed) {
 		left->GetPIDController().SetReference(*speed, rev::ControlType::kVelocity);
+		SmartDashboard::PutNumber("Shooter Target", *speed);
 		*changed = false;
 	}
 
-	SmartDashboard::PutNumber("Shooter RPMs", left->GetEncoder().GetVelocity());
+	SmartDashboard::PutNumber("Shooter RPM", left->GetEncoder().GetVelocity());
 }

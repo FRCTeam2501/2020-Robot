@@ -3,11 +3,6 @@
 
 
 namespace CONSTANTS {
-	//Cycles for the code to run per second
-	const int CYCLES = 100;
-	//Period of a cycle of the robot code
-	const double PERIOD = 1.0 / CYCLES;
-
 	namespace SHOOTER {
 		const double P = 6e-5, I = 1e-6, D = 0,
 					IZ = 0, FF = 0.000015,
@@ -15,5 +10,9 @@ namespace CONSTANTS {
 					ON = 5000, OFF = 0, ADJUST = 50,
 					CURRENT_LIMIT = 60.0,
 					PPR = 42;			//Pulses per revolution
+	}
+
+	namespace HOPPER {
+		const double SPEED = 0.5;
 	}
 }
