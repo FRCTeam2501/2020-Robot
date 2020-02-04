@@ -18,7 +18,6 @@ public:
 	void Set(double rpm) {
 		*speed = rpm;
 		*changed = true;
-		cout << "Shooter::Set(" << rpm << ")\n";
 	}
 
 	double Get() {
@@ -33,6 +32,15 @@ public:
 		else {
 			Set(CONSTANTS::SHOOTER::OFF);
 		}
-		cout << "Ran Shooter::Toggle()\n";
+	}
+
+	void Up() {
+		*speed += CONSTANTS::SHOOTER::ADJUST;
+		*changed = true;
+	}
+
+	void Down() {
+		*speed -= CONSTANTS::SHOOTER::ADJUST;
+		*changed = true;
 	}
 };

@@ -9,10 +9,10 @@ using namespace frc;
 Shooter *RobotContainer::shooter;
 //Hopper *RobotContainer::hopper;
 Joystick *RobotContainer::driveStick, *RobotContainer::controlStick;
-//frc2::JoystickButton //*RobotContainer::toggleDrive,
+frc2::JoystickButton //*RobotContainer::toggleDrive,
 //	*RobotContainer::forwardClimb, *RobotContainer::reverseClimb, *RobotContainer::enableClimber,
 //	*RobotContainer::toggleIntake, *RobotContainer::reverseIntake,
-//	*RobotContainer::toggleShooter;
+	*RobotContainer::toggleShooter, *RobotContainer::shooterUp, *RobotContainer::shooterDown;
 
 RobotContainer::RobotContainer() {
 //	drive = new Drivetrain();
@@ -52,14 +52,22 @@ RobotContainer::RobotContainer() {
 //	toggleIntake->WhenPressed(new ToggleIntake(intake));
 //	reverseIntake->WhenHeld(new ReverseIntake(intake));
 
-	toggleShooter = new frc2::JoystickButton(controlStick, CONTROLLER::X::A);
-	toggleShooter->WhenPressed(new frc2::InstantCommand(
+	toggleShooter = new frc2::JoystickButton(controlStick, CONTROLLER::X::B);
+	toggleShooter->WhenPressed(new ToggleShooter(shooter));
+	shooterUp = new frc2::JoystickButton(controlStick, CONTROLLER::X::Y);
+	shooterUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			shooter->Toggle();
-			cout << "Ran\n";
+			shooter->Up();
 		},
 		{ shooter }
-	), false);
+	));
+	shooterDown = new frc2::JoystickButton(controlStick, CONTROLLER::X::A);
+	shooterDown->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shooter->Down();
+		},
+		{ shooter }
+	));
 
 	cout << "RobotContainer Booted!\n";
 }
@@ -82,6 +90,4 @@ RobotContainer::~RobotContainer() {
 //	delete toggleShooter;
 }
 
-void RobotContainer::Periodic() {
-	SmartDashboard::PutBoolean("A", controlStick->GetRawButton(CONTROLLER::X::A));
-}
+void RobotContainer::Periodic() {}

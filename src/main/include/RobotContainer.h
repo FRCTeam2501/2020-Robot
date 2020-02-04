@@ -28,10 +28,10 @@ private:
 	static Shooter *shooter;
 //	static Hopper *hopper;
 	static Joystick *driveStick, *controlStick;
-	/*static*/ frc2::JoystickButton //*toggleDrive,
+	static frc2::JoystickButton //*toggleDrive,
 //		*forwardClimb, *reverseClimb, *enableClimber,
 //		*toggleIntake, *reverseIntake,
-		*toggleShooter;
+		*toggleShooter, *shooterUp, *shooterDown;
 
 public:
 	RobotContainer();
