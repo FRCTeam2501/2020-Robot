@@ -1,45 +1,51 @@
 #include "RobotContainer/RobotContainer.h"
 
 RobotContainer::RobotContainer()  {
-  	drive = new Drivetrain();
-	  driveStick = new Joystick(OIConstants::kDriverControllerPort);
-	  controlStick = new Joystick(OIConstants::kControlControllerPort);
+  	//drive = new Drivetrain();
+	driveStick = new Joystick(OIConstants::kDriverControllerPort);
+	controlStick = new Joystick(OIConstants::kControlControllerPort);
 
-  	drive->SetDefaultCommand(ManualDrive(
-		  drive,
-		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
-		  [this] { return driveStick->GetRawAxis(0); }
-	));
+//	pneu = new Pneumatics();
+	shoot = new Shooter();
+	//intake = new Intake(pneu);
 
-	intake->SetDefaultCommand(IntakeSpeed(
-		  intake,
-		  [this] {return controlStick->GetRawAxis(3);}
-	));
+  	//drive->SetDefaultCommand(ManualDrive(
+	//	  drive,
+//		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
+//		  [this] { return driveStick->GetRawAxis(0); }
+//	));
 
-	cameras = new Cameras();
+	//intake->SetDefaultCommand(IntakeSpeed(
+//		  intake,
+//		  [this] {return controlStick->GetRawAxis(3);}
+//	));
+
+	//cameras = new Cameras();
+	wpi::outs() << "boots";
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
-	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_8);
+//	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_8);
 
-	Pneumatics1->WhenPressed(new ToggleVert(pneu));
+//	Pneumatics1->WhenPressed(new ToggleVert(pneu));
 
-	Pneumatics2 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
+//	Pneumatics2 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
 
-	Pneumatics2->WhenPressed(new ToggleClimb(pneu));
+//	Pneumatics2->WhenPressed(new ToggleClimb(pneu));
 
-	ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	//ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 
-	ShootTrigger->WhenHeld(new Shoot(shoot));
+	//ShootTrigger->WhenPressed(new Shoot(shoot));
 
-	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
+//	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
 
-	intakeDeployButton->WhenPressed(new ToggleDeployIntake(intake));
+//	intakeDeployButton->WhenPressed(new ToggleDeployIntake(intake));
 
 
 
+	wpi::outs() << "2";
 
 
 
@@ -49,7 +55,20 @@ RobotContainer::RobotContainer()  {
 RobotContainer::~RobotContainer() {
 	delete drive;
 	delete driveStick;
-	delete cameras;
-	delete switchDirection;
-	delete intake;
+	//delete cameras;
+	//delete switchDirection;
+	//delete intake;
+}
+
+
+void RobotContainer::Periodic() {
+	if(driveStick->GetTrigger()) {
+		if(!state) {
+			shoot->ToggleShoot();
+			state = true;
+		}
+	}
+	else if(state) {
+		state = false;
+	}
 }

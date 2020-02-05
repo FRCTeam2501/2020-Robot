@@ -1,6 +1,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include "frc/WPILib.h"
 
 #include "Utils/include.h"
 #include "Drivetrain/Drivetrain.h"
@@ -29,12 +30,14 @@ class RobotContainer {
 
   RobotContainer();
   ~RobotContainer();
+
+  void Periodic();
   
  private:
-  
+  bool state = false;
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
-  Cameras *cameras;
+  //Cameras *cameras;
   frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
                        *ShootTrigger,
                        *intakeDeployButton, *intakeSet;

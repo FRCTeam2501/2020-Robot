@@ -10,11 +10,15 @@ using namespace rev;
 class Shooter : public frc2::SubsystemBase {
 
  private:
-  CANSparkMax *flyWheel;
-
+  units::time::second_t last = frc2::GetTime();
+  CANSparkMax *flyWheel, *flyWheel2;
+  bool toggleShoot = false;
  public:
   Shooter();
   ~Shooter();
 
   void FlyWheelSet(double SetPoint);
+  void ToggleShoot();
+
+  void Periodic() override;
 };

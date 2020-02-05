@@ -2,11 +2,13 @@
 
 Shoot::Shoot(Shooter* subsystem)
 : shoot(subsystem) {
-    AddRequirements(subsystem);
+    AddRequirements(shoot);
+    wpi::outs() << "made\n";
 }
 
 void Shoot::Initialize() {
-    shoot->FlyWheelSet(ShooterConstants::ShootConst);
+    shoot->ToggleShoot();
+    wpi::outs() << "shoot\n";
 }
 
 
