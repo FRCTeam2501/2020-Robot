@@ -15,6 +15,7 @@ public:
 	void Periodic() override;
 
 	void ArcadeDrive(double y, double rz);
+	void Stop();
 
 	void ToggleInverted() {
 		*inverted = !*inverted;

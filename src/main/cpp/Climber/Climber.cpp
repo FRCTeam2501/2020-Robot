@@ -27,15 +27,16 @@ Climber::~Climber() {
 }
 
 void Climber::Periodic() {
-	if(*enabled && *state == RETRACT) {
+	//if(*enabled && *state == RETRACT) {
 		right->Set(*speed);
-	}
+		SmartDashboard::PutNumber("Speed", *speed);
+	//}
 }
 
 void Climber::SetWinch(double speed) {
-	if(*enabled && *state == RETRACT) {
+	//if(*enabled && *state == RETRACT) {
 		*Climber::speed = speed;
-	}
+	//}
 }
 
 void Climber::Forward() {

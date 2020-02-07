@@ -27,20 +27,20 @@ public:
 	void Toggle() {
 		*on = !*on;
 		if(*on) {
-			Set(CONSTANTS::SHOOTER::ON);
+			Set(CONSTANTS::SHOOTER::ON_SPEED);
 		}
 		else {
-			Set(CONSTANTS::SHOOTER::OFF);
+			Set(CONSTANTS::SHOOTER::OFF_SPEED);
 		}
 	}
 
 	void Up() {
-		*speed += CONSTANTS::SHOOTER::ADJUST;
+		*speed += CONSTANTS::SHOOTER::ADJUST_SPEED;
 		*changed = true;
 	}
 
 	void Down() {
-		*speed -= CONSTANTS::SHOOTER::ADJUST;
+		*speed -= CONSTANTS::SHOOTER::ADJUST_SPEED;
 		*changed = true;
 	}
 };

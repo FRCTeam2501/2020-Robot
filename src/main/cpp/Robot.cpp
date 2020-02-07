@@ -4,6 +4,8 @@ using namespace frc;
 
 TylerRobot::TylerRobot() {
 	container = new RobotContainer();
+	autoCommand = nullptr;
+
 	cout << "Robot Booted!\n";
 }
 
@@ -22,11 +24,22 @@ void TylerRobot::DisabledInit() {}
 
 void TylerRobot::DisabledPeriodic() {}
 
-void TylerRobot::AutonomousInit() {}
+void TylerRobot::AutonomousInit() {
+	autoCommand = container->GetAutoCommand();
+
+	if(autoCommand != nullptr) {
+		autoCommand->Schedule();
+	}
+}
 
 void TylerRobot::AutonomousPeriodic() {}
 
-void TylerRobot::TeleopInit() {}
+void TylerRobot::TeleopInit() {
+	if(autoCommand != nullptr) {
+		autoCommand->Cancel();
+		autoCommand = nullptr;
+	}
+}
 
 void TylerRobot::TeleopPeriodic() {}
 

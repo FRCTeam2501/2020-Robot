@@ -25,8 +25,10 @@ Shooter::Shooter() {
 	//left->GetPIDController().SetFeedbackDevice(left->GetAlternateEncoder(rev::CANEncoder::AlternateEncoderType::kQuadrature, 2048));
 	
 	//Set left inverted, and set right to follow it inverted of that
-	left->SetInverted(true);
+	//left->SetInverted(true);
+	left->SetInverted(false);
 	right->Follow(*left, true);
+	//right->Follow(*left, false);
 
 	cout << "Shooter Subsystem Booted!\n";
 }

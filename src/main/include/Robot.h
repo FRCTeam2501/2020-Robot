@@ -7,6 +7,7 @@ using namespace frc;
 class TylerRobot : public TimedRobot {
 private:
 	RobotContainer *container;
+	frc2::Command *autoCommand;
 
 public:
 	TylerRobot();

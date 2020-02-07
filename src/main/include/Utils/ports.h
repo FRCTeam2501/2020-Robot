@@ -84,11 +84,11 @@ namespace MXP {				//RoboRIO's MyRIO eXpansion Ports
 	namespace DIO {
 		//Do not add more ports, the RIO only has 10 on MXP
 		enum DIO_ON_MXP {
-			EMPTY_0 = 10,
-			EMPTY_1,
-			EMPTY_2,
-			EMPTY_3,
-			EMPTY_4,
+			AUTO_0 = 10,
+			AUTO_1,
+			AUTO_2,
+			AUTO_3,
+			AUTO_4,
 			EMPTY_5,
 			EMPTY_6,
 			EMPTY_7,

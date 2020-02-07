@@ -36,3 +36,7 @@ void Drivetrain::ArcadeDrive(double y, double rz) {
 
 	drive->ArcadeDrive(y, rz);
 }
+
+void Drivetrain::Stop() {
+	ArcadeDrive(0.0, 0.0);
+}
