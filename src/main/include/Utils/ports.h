@@ -45,10 +45,26 @@ namespace CAN		//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES
 	{
-		CAN_PCM = 0,
-		SPINNYTHROWERLEFT,
-		SPINNYTHROWERRIGHT,
-		EMPTY_2
+		LEFT_FRONT = 0,
+		LEFT_REAR,
+		RIGHT_FRONT,
+		RIGHT_REAR,
+		INTAKE,
+		HOPPER_LEFT,
+		HOPPER_RIGHT,
+		EMPTY_1,
+		EMPTY_2,
+		EMPTY_3,
+		EMPTY_4,
+		CLIMBER_LEFT,
+		CLIMBER_RIGHT,
+		SHOOTER_LEFT,
+		SHOOTER_RIGHT
+
+	};
+	enum CAN_PCM
+	{
+		CAN_PCM = 0
 	};
 }
 namespace DIO		//RoboRIO DIO Ports
@@ -152,14 +168,14 @@ namespace PCM		//Pnuematics Control Module Ports
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS
 	{
-		SOL_VERTICALIFYER_A = 0,
-		SOL_verticalifyer_B,
-		//verticalifyer2_A,
-		//verticalifyer2_B,
-		SOL_UPPYWUPPY_A,
-		SOL_UPPYWUPPY_B,
-		//uppyWuppy2_A,
-		//uppyWuppy2_B
+		SOL_VERTICALLIFT_A = 0,
+		SOL_VERTICALLIFT_B,
+
+		SOL_CLIMB_A,
+		SOL_CLIMB_B,
+
+		SOL_INTAKE_A,
+		SOL_INTAKE_B
 	};
 }
 #endif

@@ -36,7 +36,6 @@ Drivetrain::~Drivetrain() {
 
 void Drivetrain::Periodic() {}
 
-
 void Drivetrain::ArcadeDrive(double x, double y){
 
 drive->ArcadeDrive(x, y);

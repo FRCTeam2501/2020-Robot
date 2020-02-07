@@ -11,7 +11,7 @@ class Pneumatics : public frc2::SubsystemBase
 private:
     
     Compressor *compressor;
-    DoubleSolenoid *verticalifyer, *uppyWuppy;
+    DoubleSolenoid *verticalifyer, *uppyWuppy, *intake;
 
 public:
     Pneumatics();
@@ -22,6 +22,8 @@ public:
     void verticalifyerRetract();
     void uppyWuppyExtend();
     void uppyWuppyRetract();
+    void intakeExtend();
+    void intakeRetract();
 };
 
 
