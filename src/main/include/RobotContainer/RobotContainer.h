@@ -37,7 +37,7 @@ class RobotContainer {
   bool state = false;
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
-  //Cameras *cameras;
+  Cameras *cameras;
   frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
                        *ShootTrigger,
                        *intakeDeployButton, *intakeSet;
