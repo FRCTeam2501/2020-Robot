@@ -4,7 +4,7 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "utils/include.h"
-#include "Drivetrain/Drivetrain.h"
+#include "subsystems/Drivetrain.h"
 
 using namespace frc;
 
@@ -13,11 +13,11 @@ class ManualDrive
 public: 
                 ManualDrive(Drivetrain *subsystem, std::function<double()>forward,
                                 std::function<double()>rotation); 
-                    void Exucute() override;
+                    void Execute() override;
 
                     private: 
                         Drivetrain *drive; 
-                        std::fuction<double()> forward;
-                            std::function<double()>rotation:
+                        std::function<double()> forward;
+                            std::function<double()>rotation;
 
     };

@@ -33,7 +33,7 @@ namespace PWM		//RoboRIO PWM Ports
 		LEFT_FRONT,
 		LEFT_REAR,
 		LIFTER,
-		EMPTY_5,
+		motor,
 		EMPTY_6,
 		EMPTY_7,
 		EMPTY_8,
