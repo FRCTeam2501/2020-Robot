@@ -15,8 +15,10 @@
 #include "Drivetrain/ManualDrive.h"
 #include "subsystems/Cameras.h"
 #include "subsystems/Pneumatics.h"
+#include "subsystems/Shooter.h"
+#include "frc/WPILib.h"
 
-using namespace frc2;
+using namespace frc;
 using namespace JOYSTICK;
 
 class RobotContainer {
@@ -27,8 +29,9 @@ class RobotContainer {
 
 private:
   
-  static Drivetrain *drive;
-  static Joystick *driveStick;
+  Shooter *shooter;
+   Drivetrain *drive;
+   Joystick *driveStick;
   Cameras *cameras;
-  
+  frc2::JoystickButton *trigger;
 };

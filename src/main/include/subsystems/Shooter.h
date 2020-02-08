@@ -20,9 +20,9 @@ public:
     Shooter();
     ~Shooter();
     void flywheleSpeed(double SetPoint);
-    toggle();
-    moreSpeed();
-    lessSpeed();
+    void toggle();
+    void moreSpeed();
+    void lessSpeed();
 
 
 };

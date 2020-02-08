@@ -27,7 +27,7 @@ namespace CONTROLLER
         R_Y = 3;
 }
 namespace JOYSTICK
-{
+{ 
     //Standard Logitech joystick button and axis numbers
     const int X = 0,
         Y = 1,

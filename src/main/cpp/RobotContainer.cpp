@@ -7,15 +7,14 @@
 
 #include "subsystems/RobotContainer.h"
 using namespace frc; 
-using namespace JOYSTICK;
-Drivetrain *RobotContainer::drive;
-Joystick *RobotContainer::driveStick;
+
+
 
 RobotContainer::RobotContainer(){
 
   drive = new Drivetrain();
   driveStick = new Joystick(JOYSTICK::DRIVER);
-
+	shooter = new Shooter();
 drive->SetDefaultCommand(ManualDrive(
 		  drive,
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
@@ -23,8 +22,17 @@ drive->SetDefaultCommand(ManualDrive(
 	));
 cameras = new Cameras;
 
+trigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	trigger->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shooter->toggle();
+			
+		},
+		{ shooter }
+	), false);
 
- 
+  
+
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

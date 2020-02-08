@@ -27,41 +27,41 @@ void Shooter::flywheleSpeed(double SetPoint){
   
 }
 
-Shooter::toggle(){
+void Shooter::toggle(){
 
 if (Toggle = 1){
-    return Toggle = 0;
+     Toggle = 0;
 }else {
     if(Toggle = 0){
-    return Toggle = 1;
+     Toggle = 1;
     }
 }
 
-if Toggle(){
+if (Toggle = true){
 
 double rpm = 3900; 
 
-void set(double rpm, rev::ControlType::kVelocity);
-return Toggle = false;
+ set(double rpm, rev::ControlType::kVelocity);
+ Toggle = false;
 } else {
    double rpm = 0;
-    void set(double rpm, rev::ControlType::kVelocity);
+     set(double rpm, rev::ControlType::kVelocity);
 }
 
 
 }
 
- Shooter::moreSpeed(){
-    if (double rpm < 5650){
-       double rpm + adjustSpeed;
-        void set(double rpm, rev::ControlType::kVelocity);
+ void Shooter::moreSpeed(){
+    if (double rpm <= 5650){
+        double rpm + adjustSpeed;
+        set(double rpm, rev::ControlType::kVelocity);
     }
  }
 
- Shooter::lessSpeed(){
-if (double rpm > -5650){
- double rpm + adjustSpeed;
-void set(double rpm, rev::ControlType::kVelocity);
+ void Shooter::lessSpeed(){
+    if (double rpm >= -5650){
+        double rpm - adjustSpeed;
+        set(double rpm, rev::ControlType::kVelocity);
  }
  }
 

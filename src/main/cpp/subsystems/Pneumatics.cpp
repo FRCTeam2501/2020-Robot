@@ -8,8 +8,8 @@ Pneumatics::Pneumatics() {
 
 compressor = new Compressor(CAN::CAN_PCM);
 
-verticalifyer = new DoubleSolenoid (PCM::SOL_VERTICALIFYER_A, PCM::SOL_verticalifyer_B);
-uppyWuppy = new DoubleSolenoid (PCM::SOL_UPPYWUPPY_A, PCM::SOL_UPPYWUPPY_B);
+verticalifyer = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIFT_B);
+uppyWuppy = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
 intake = new DoubleSolenoid (PCM::SOL_INTAKE_A, PCM::SOL_INTAKE_B);
 
 }
