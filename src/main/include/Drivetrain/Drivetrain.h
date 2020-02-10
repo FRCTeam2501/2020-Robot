@@ -18,7 +18,6 @@ public:
 
 private:
 	DifferentialDrive *drive;
-	PWMVictorSPX *frontLeft, *rearLeft, *frontRight, *rearRight;
-	SpeedControllerGroup *left, *right;
+	rev::CANSparkMax *frontLeft, *rearLeft, *frontRight, *rearRight;
 	bool direction = false;
 };

@@ -5,15 +5,15 @@ void Drivetrain::Periodic(){}
 
 Drivetrain::Drivetrain() {
 
-    frontLeft = new PWMVictorSPX(DriveConstants::kLeftMotor1Port);
-    frontRight = new PWMVictorSPX(DriveConstants::kRightMotor1Port);
-    rearLeft = new PWMVictorSPX(DriveConstants::kLeftMotor2Port);
-    rearRight = new PWMVictorSPX(DriveConstants::kRightMotor2Port);
+    frontLeft = new rev::CANSparkMax(CAN::LEFT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+    frontRight = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+    rearLeft = new rev::CANSparkMax(CAN::LEFT_REAR, rev::CANSparkMax::MotorType::kBrushless);
+    rearRight = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
-    left = new SpeedControllerGroup(*frontLeft, *rearLeft);
-    right = new SpeedControllerGroup(*frontRight, *rearRight);
+    rearLeft->Follow(*frontLeft);
+    rearRight->Follow(*frontRight);
 
-    drive = new DifferentialDrive(*left, *right);
+    drive = new DifferentialDrive(*frontLeft, *frontRight);
 }
 void Drivetrain::Switch(){
     direction!=direction;
@@ -25,9 +25,6 @@ Drivetrain::~Drivetrain() {
     delete frontRight;
     delete rearLeft;
     delete rearRight;
-
-    delete left;
-    delete right;
 
     delete drive;
 }

@@ -1,4 +1,4 @@
-#include "Intake/ToggleDeployIntake.h"
+ #include "Intake/ToggleDeployIntake.h"
 
 ToggleDeployIntake::ToggleDeployIntake(Intake* subsystem)
 : intake(subsystem) {
