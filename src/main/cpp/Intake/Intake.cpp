@@ -1,9 +1,9 @@
 #include "Intake/Intake.h"
-using namespace frc;
 
 Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-	motor = new WPI_TalonSRX(CAN::INTAKE);
+	motor = new WPI_TalonSRX(CAN::INTAKE_LEFT);
 	inverted = new bool(false);
+
 	cout << "Intake Subsystem Booted!\n";
 }
 
@@ -22,11 +22,11 @@ void Intake::Set(double speed) {
 
 void Intake::Toggle() {
 	switch(pneumatics->GetIntake()) {
-		case DoubleSolenoid::kForward:
-			pneumatics->SetIntake(DoubleSolenoid::kReverse);
+		case frc::DoubleSolenoid::kForward:
+			pneumatics->SetIntake(frc::DoubleSolenoid::kReverse);
 			break;
-		case DoubleSolenoid::kReverse:
-			pneumatics->SetIntake(DoubleSolenoid::kForward);
+		case frc::DoubleSolenoid::kReverse:
+			pneumatics->SetIntake(frc::DoubleSolenoid::kForward);
 			break;
 		default:
 			break;

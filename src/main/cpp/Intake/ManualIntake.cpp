@@ -1,5 +1,4 @@
 #include "Intake/ManualIntake.h"
-using namespace frc;
 
 
 ManualIntake::ManualIntake(Intake* intake,

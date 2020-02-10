@@ -1,5 +1,4 @@
 #include "Climber/ManualClimber.h"
-using namespace frc;
 
 
 ManualClimber::ManualClimber(Climber* climber,

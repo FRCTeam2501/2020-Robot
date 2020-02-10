@@ -43,13 +43,14 @@ namespace CAN {				//RoboRIO CAN Devices
 		LEFT_REAR,
 		RIGHT_FRONT,
 		RIGHT_REAR,
-		INTAKE,
+		INTAKE_LEFT,
+		INTAKE_RIGHT,
 		HOPPER_LEFT,
 		HOPPER_RIGHT,
-		EMPTY_7,
 		EMPTY_8,
 		EMPTY_9,
 		EMPTY_10,
+		EMPTY_11,
 		CLIMBER_LEFT,
 		CLIMBER_RIGHT,
 		SHOOTER_LEFT,
@@ -65,7 +66,7 @@ namespace CAN {				//RoboRIO CAN Devices
 namespace DIO {				//RoboRIO DIO Ports
 	//Do not add more ports, the RIO only has 10
 	enum DIO_PORTS {
-		EMPTY_0 = 0,
+		LASERSHARK = 0,
 		EMPTY_1,
 		EMPTY_2,
 		EMPTY_3,

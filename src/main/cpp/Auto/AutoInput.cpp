@@ -1,11 +1,11 @@
 #include "Auto/AutoInput.h"
 
 AutoInput::AutoInput() {
-	switch0 = new DigitalInput(MXP::DIO::AUTO_0);
-	switch1 = new DigitalInput(MXP::DIO::AUTO_1);
-	switch2 = new DigitalInput(MXP::DIO::AUTO_2);
-	switch3 = new DigitalInput(MXP::DIO::AUTO_3);
-	switch4 = new DigitalInput(MXP::DIO::AUTO_4);
+	switch0 = new frc::DigitalInput(MXP::DIO::AUTO_0);
+	switch1 = new frc::DigitalInput(MXP::DIO::AUTO_1);
+	switch2 = new frc::DigitalInput(MXP::DIO::AUTO_2);
+	switch3 = new frc::DigitalInput(MXP::DIO::AUTO_3);
+	switch4 = new frc::DigitalInput(MXP::DIO::AUTO_4);
 }
 
 AutoInput::~AutoInput() {

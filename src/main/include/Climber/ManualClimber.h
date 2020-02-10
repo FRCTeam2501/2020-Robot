@@ -1,7 +1,6 @@
 #pragma once
 #include "include.h"
 #include "Climber/Climber.h"
-using namespace frc;
 
 
 class ManualClimber

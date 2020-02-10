@@ -1,7 +1,6 @@
 #pragma once
 #include "include.h"
 #include "Pneumatics/Pneumatics.h"
-using namespace frc;
 
 
 class Climber : public frc2::SubsystemBase {
@@ -10,15 +9,14 @@ private:
 	rev::CANSparkMax *right, *left;
 	double *speed;
 	uint8_t *state;
-	bool *enabled;
+	bool *enabled, *changed;
 
 	enum STATE {
 		OFF = 0,
 		DOWN,
 		UP,
 		EXTEND,
-		RETRACT,
-		ILLEGAL
+		RETRACT
 	};
 
 	void SetArm(bool up);

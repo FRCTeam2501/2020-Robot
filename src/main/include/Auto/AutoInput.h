@@ -1,10 +1,9 @@
 #pragma once
 #include "include.h"
-using namespace frc;
 
-class AutoInput : public ErrorBase {
+class AutoInput : public frc::ErrorBase {
 private:
-	DigitalInput *switch0, *switch1, *switch2, *switch3, *switch4;
+	frc::DigitalInput *switch0, *switch1, *switch2, *switch3, *switch4;
 
 public:
 	AutoInput();

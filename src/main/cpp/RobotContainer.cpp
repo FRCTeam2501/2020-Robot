@@ -1,25 +1,23 @@
 #include "RobotContainer.h"
-using namespace frc;
 
 
 void RobotContainer::BootSubsystems() {
-	driveStick = new Joystick(JOYSTICK::DRIVER);
-	controlStick = new Joystick(JOYSTICK::CONTROL);
+	driveStick = new frc::Joystick(JOYSTICK::DRIVER);
+	controlStick = new frc::Joystick(JOYSTICK::CONTROL);
 
-	//drive = new Drivetrain();
+	drive = new Drivetrain();
 	pneumatics = new Pneumatics();
 	climber = new Climber(pneumatics);
-	//intake = new Intake(pneumatics);
-	//hopper = new Hopper(pneumatics);
-	//shooter = new Shooter();
+	intake = new Intake(pneumatics);
+	hopper = new Hopper(pneumatics);
+	shooter = new Shooter();
 
 	autoInput = new AutoInput();
 
-	cout << "Subsystems booted!\n";
+	cout << "Subsystems Booted!\n";
 }
 
 void RobotContainer::BootDefaultCommands() {
-	/*
 	drive->SetDefaultCommand(ManualDrive(
 		drive,
 		[this] {
@@ -29,14 +27,14 @@ void RobotContainer::BootDefaultCommands() {
 			return driveStick->GetRawAxis(JOYSTICK::X);
 		}
 	));
-	*/
+/*
 	climber->SetDefaultCommand(ManualClimber(
 		climber,
 		[this] {
-			return controlStick->GetRawAxis(CONTROLLER::X::L_TRIGGER);
+			return controlStick->GetRawAxis(JOYSTICK::Z);
 		}
 	));
-	/*
+
 	intake->SetDefaultCommand(ManualIntake(
 		intake,
 		[this] {
@@ -44,49 +42,48 @@ void RobotContainer::BootDefaultCommands() {
 		}
 	));
 */
-	cout << "Default commands booted!\n";
+	cout << "Default Commands Booted!\n";
 }
 
 void RobotContainer::BootInstantCommands() {
-/*
-	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	toggleDrive->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			drive->ToggleInverted();
 		},
 		{ drive }
 	));
-*/
-	forwardClimb = new frc2::JoystickButton(controlStick, CONTROLLER::X::LB);
+
+	forwardClimb = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
 	forwardClimb->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->Forward();
 		},
 		{ climber }
 	));
-	reverseClimb = new frc2::JoystickButton(controlStick, CONTROLLER::X::BACK);
+	reverseClimb = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
 	reverseClimb->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->Reverse();
 		},
 		{ climber }
 	));
-	enableClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::START);
+	enableClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::START);	//	TODO
 	enableClimber->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->ToggleEnable();
 		},
 		{ climber }
 	));
-/*
-	toggleIntake = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
+
+	toggleIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 	toggleIntake->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->Toggle();
 		},
 		{ intake }
 	));
-	reverseIntake = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_3);
+	reverseIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);	//	TODO
 	reverseIntake->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->ToggleInverted();
@@ -94,37 +91,47 @@ void RobotContainer::BootInstantCommands() {
 		{ intake }
 	));
 
-	runHopper = new frc2::JoystickButton(controlStick, CONTROLLER::X::RB);
+	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);	//	TODO
 	runHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			hopper->Set(CONSTANTS::HOPPER::ON_SPEED);
+			hopper->Set(CONSTANTS::HOPPER::ON);
 		},
 		{ hopper }
 	));
 
-	toggleShooter = new frc2::JoystickButton(controlStick, CONTROLLER::X::B);
+	toggleShooter = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
 	toggleShooter->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Toggle();
 		},
 		{ shooter }
 	));
-	shooterUp = new frc2::JoystickButton(controlStick, CONTROLLER::X::Y);
+	shooterUp = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_5);
 	shooterUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Up();
 		},
 		{ shooter }
 	));
-	shooterDown = new frc2::JoystickButton(controlStick, CONTROLLER::X::A);
+	shooterDown = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_3);
 	shooterDown->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Down();
 		},
 		{ shooter }
 	));
+
+	cout << "Instant Commands Booted!\n";
+/*
+	TODO:
+	*	driveStick Trigger: Run intake at speed while held, use a start & end instant command
+	*	driveStick Z Axis: Change intake speed (exact curve & method TBD)
+	*	controlStick Thumb: Run hopper and retract pins on start, stop hopper and extend pins on end
+	*	controlStick 6: Run climber forward at speed while held
+	*	controlStick 4: Run climber reverse at speed while held
+	*	Climber toggle: Toggle which winch is being run at a time
+	*	Climber speed:	Vary climber winch speed
 */
-	cout << "Instant commands booted!\n";
 }
 
 void RobotContainer::BootAutoCommands() {
@@ -140,6 +147,7 @@ void RobotContainer::BootAutoCommands() {
 		),
 		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
 	);
+
 	simpleShootAuto = new frc2::SequentialCommandGroup(
 		frc2::InstantCommand(
 			[this] {
@@ -150,7 +158,7 @@ void RobotContainer::BootAutoCommands() {
 		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
 		frc2::InstantCommand(
 			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::ON);
 			},
 			{ hopper }
 		),
@@ -158,11 +166,12 @@ void RobotContainer::BootAutoCommands() {
 		frc2::InstantCommand(
 			[this] {
 				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::OFF);
 			},
 			{ shooter, hopper }
 		)
 	);
+
 	simpleShootDriveAuto = new frc2::SequentialCommandGroup(
 		frc2::InstantCommand(
 			[this] {
@@ -173,7 +182,7 @@ void RobotContainer::BootAutoCommands() {
 		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
 		frc2::InstantCommand(
 			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::ON);
 			},
 			{ hopper }
 		),
@@ -181,7 +190,7 @@ void RobotContainer::BootAutoCommands() {
 		frc2::InstantCommand(
 			[this] {
 				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::OFF);
 			},
 			{ shooter, hopper }
 		),
@@ -198,6 +207,7 @@ void RobotContainer::BootAutoCommands() {
 			frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
 		)
 	);
+
 	simpleDriveShootAuto = new frc2::SequentialCommandGroup(
 		frc2::ParallelRaceGroup(
 			frc2::StartEndCommand(
@@ -220,7 +230,7 @@ void RobotContainer::BootAutoCommands() {
 		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
 		frc2::InstantCommand(
 			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::ON);
 			},
 			{ hopper }
 		),
@@ -228,7 +238,7 @@ void RobotContainer::BootAutoCommands() {
 		frc2::InstantCommand(
 			[this] {
 				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF_SPEED);
+				hopper->Set(CONSTANTS::HOPPER::OFF);
 			},
 			{ shooter, hopper }
 		)
@@ -236,16 +246,16 @@ void RobotContainer::BootAutoCommands() {
 
 	autoCommand = nullptr;
 
-	cout << "Auto commands booted!\n";
+	cout << "Auto Commands Booted!\n";
 }
 
 RobotContainer::RobotContainer() {
 	BootSubsystems();
 	BootDefaultCommands();
 	BootInstantCommands();
-	//BootAutoCommands();
+	BootAutoCommands();
 
-	cout << "RobotContainer booted!\n";
+	cout << "RobotContainer Booted!\n";
 }
 
 void RobotContainer::DeleteSubsystems() {
@@ -261,7 +271,7 @@ void RobotContainer::DeleteSubsystems() {
 
 	delete autoInput;
 
-	cout << "Subsystems deleted!\n";
+	cout << "Subsystems Deleted!\n";
 }
 
 void RobotContainer::DeleteInstantCommands() {
@@ -280,7 +290,7 @@ void RobotContainer::DeleteInstantCommands() {
 	delete shooterUp;
 	delete shooterDown;
 	
-	cout << "Instant commands deleted!\n";
+	cout << "Instant Commands Deleted!\n";
 }
 
 void RobotContainer::DeleteAutoCommands() {
@@ -289,7 +299,7 @@ void RobotContainer::DeleteAutoCommands() {
 	delete simpleDriveShootAuto;
 	delete simpleShootDriveAuto;
 
-	cout << "Auto commands deleted!\n";
+	cout << "Auto Commands Deleted!\n";
 }
 
 RobotContainer::~RobotContainer() {
@@ -297,7 +307,7 @@ RobotContainer::~RobotContainer() {
 	DeleteInstantCommands();
 	DeleteAutoCommands();
 
-	cout << "RobotContainer deleted!\n";
+	cout << "RobotContainer Deleted!\n";
 }
 
 void RobotContainer::Periodic() {}

@@ -1,7 +1,6 @@
 #pragma once
 #include "include.h"
 #include "Drivetrain/Drivetrain.h"
-using namespace frc;
 
 
 class ManualDrive

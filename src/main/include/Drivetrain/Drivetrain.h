@@ -1,12 +1,11 @@
 #pragma once
 #include "include.h"
-using namespace frc;
 
 
 class Drivetrain : public frc2::SubsystemBase {
 private:
 	rev::CANSparkMax *leftFront, *leftRear, *rightFront, *rightRear;
-	DifferentialDrive *drive;
+	frc::DifferentialDrive *drive;
 	bool *inverted;
 
 public:

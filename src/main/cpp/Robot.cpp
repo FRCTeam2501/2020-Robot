@@ -1,5 +1,4 @@
 #include "Robot.h"
-using namespace frc;
 
 
 TylerRobot::TylerRobot() {
@@ -48,6 +47,6 @@ void TylerRobot::TestPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
 int main() {
-	return StartRobot<TylerRobot>();
+	return frc::StartRobot<TylerRobot>();
 }
 #endif

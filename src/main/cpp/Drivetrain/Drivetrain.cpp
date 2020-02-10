@@ -1,5 +1,4 @@
 #include "Drivetrain/Drivetrain.h"
-using namespace frc;
 
 
 Drivetrain::Drivetrain() {
@@ -8,10 +7,23 @@ Drivetrain::Drivetrain() {
 	rightFront = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
 	rightRear = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
+	leftFront->RestoreFactoryDefaults();
+	leftFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	leftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+	rightFront->RestoreFactoryDefaults();
+	rightFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	rightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+	leftRear->RestoreFactoryDefaults();
+	leftRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	leftRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+	rightRear->RestoreFactoryDefaults();
+	rightRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	rightRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+
 	leftRear->Follow(*leftFront);
 	rightRear->Follow(*rightFront);
 
-	drive = new DifferentialDrive(*leftFront, *rightFront);
+	drive = new frc::DifferentialDrive(*leftFront, *rightFront);
 
 	inverted = new bool(false);
 	cout << "Drivetrain Subsystem Booted!\n";

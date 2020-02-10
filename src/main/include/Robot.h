@@ -1,10 +1,9 @@
 #pragma once
 #include "include.h"
 #include "RobotContainer.h"
-using namespace frc;
 
 
-class TylerRobot : public TimedRobot {
+class TylerRobot : public frc::TimedRobot {
 private:
 	RobotContainer *container;
 	frc2::Command *autoCommand;

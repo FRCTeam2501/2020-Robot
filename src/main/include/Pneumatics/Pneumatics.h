@@ -1,59 +1,54 @@
 #pragma once
 #include "include.h"
-using namespace frc;
 
 
-class Pneumatics : public frc2::SubsystemBase {
+class Pneumatics : public frc::ErrorBase {
 private:
-	Compressor *compressor;
-	//DoubleSolenoid *climbArm, *climbExtend, *intake, *shooter;
+	frc::Compressor *compressor;
+	frc::DoubleSolenoid *climbArm, *climbExtend, *intake, *hopper;
 
 public:
 	Pneumatics();
 	~Pneumatics();
 	void Periodic();
 
-	void SetClimbArm(DoubleSolenoid::Value value) {
-		//climbArm->Set(value);
+	void SetClimbArm(frc::DoubleSolenoid::Value value) {
+		climbArm->Set(value);
 	}
 
-	DoubleSolenoid::Value GetClimbArm() {
-		//return climbArm->Get();
-		return DoubleSolenoid::kOff;
+	frc::DoubleSolenoid::Value GetClimbArm() {
+		return climbArm->Get();
 	}
 
-	void SetClimbExtend(DoubleSolenoid::Value value) {
-		//climbExtend->Set(value);
+	void SetClimbExtend(frc::DoubleSolenoid::Value value) {
+		climbExtend->Set(value);
 	}
 
-	DoubleSolenoid::Value GetClimbExtend() {
-		//return climbExtend->Get();
-		return DoubleSolenoid::kOff;
+	frc::DoubleSolenoid::Value GetClimbExtend() {
+		return climbExtend->Get();
 	}
 
-	void SetIntake(DoubleSolenoid::Value value) {
-		//intake->Set(value);
+	void SetIntake(frc::DoubleSolenoid::Value value) {
+		intake->Set(value);
 	}
 
-	DoubleSolenoid::Value GetIntake() {
-		//return intake->Get();
-		return DoubleSolenoid::kOff;
+	frc::DoubleSolenoid::Value GetIntake() {
+		return intake->Get();
 	}
 
-	void SetShooter(DoubleSolenoid::Value value) {
-		//shooter->Set(value);
+	void SetHopper(frc::DoubleSolenoid::Value value) {
+		hopper->Set(value);
 	}
 
-	DoubleSolenoid::Value GetShooter() {
-		//return shooter->Get();
-		return DoubleSolenoid::kOff;
+	frc::DoubleSolenoid::Value GetHopper() {
+		return hopper->Get();
 	}
 
 	void StartCompressor() {
-		//compressor->Start();
+		compressor->Start();
 	}
 
 	void StopCompressor() {
-		//compressor->Stop();
+		compressor->Stop();
 	}
 };

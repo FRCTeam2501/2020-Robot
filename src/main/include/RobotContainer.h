@@ -10,10 +10,9 @@
 #include "Shooter/Shooter.h"
 #include "Hopper/Hopper.h"
 #include "Auto/AutoInput.h"
-using namespace frc;
 
 
-class RobotContainer : public ErrorBase {
+class RobotContainer : public frc::ErrorBase {
 private:
 	Drivetrain *drive;
 	Pneumatics *pneumatics;
@@ -22,8 +21,7 @@ private:
 	Hopper *hopper;
 	Shooter *shooter;
 	AutoInput *autoInput;
-	DigitalInput *auto0;
-	Joystick *driveStick, *controlStick;
+	frc::Joystick *driveStick, *controlStick;
 	frc2::JoystickButton *toggleDrive,
 		*forwardClimb, *reverseClimb, *enableClimber,
 		*toggleIntake, *reverseIntake,

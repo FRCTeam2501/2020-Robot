@@ -1,7 +1,6 @@
 #pragma once
 #include "include.h"
 #include "Pneumatics/Pneumatics.h"
-using namespace frc;
 
 
 class Hopper : public frc2::SubsystemBase {
@@ -14,4 +13,17 @@ public:
 	~Hopper();
 
 	void Set(double speed);
+
+	void TogglePin() {
+		switch(pneumatics->GetHopper()) {
+			case frc::DoubleSolenoid::kReverse:
+				pneumatics->SetHopper(frc::DoubleSolenoid::kForward);
+				break;
+			case frc::DoubleSolenoid::kForward:
+			case frc::DoubleSolenoid::kOff:
+			default:
+				pneumatics->SetHopper(frc::DoubleSolenoid::kReverse);
+				break;
+		}
+	}
 };

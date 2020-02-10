@@ -1,7 +1,6 @@
 #pragma once
 #include "include.h"
 #include "Intake/Intake.h"
-using namespace frc;
 
 
 class ManualIntake

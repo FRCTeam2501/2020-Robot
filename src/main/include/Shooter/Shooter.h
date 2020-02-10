@@ -1,27 +1,32 @@
 #pragma once
 #include "include.h"
-using namespace frc;
 
 
 class Shooter : public frc2::SubsystemBase {
 private:
 	rev::CANSparkMax *left, *right;
-	double *speed;
+	libcu::Lasershark *lidar;
+	units::angular_velocity::revolutions_per_minute_t *speed;
 	bool *on;
 	bool *changed;
+
 
 public:
 	Shooter();
 	~Shooter();
 	void Periodic() override;
 
-	void Set(double rpm) {
+	void Set(units::angular_velocity::revolutions_per_minute_t rpm) {
 		*speed = rpm;
 		*changed = true;
 	}
 
-	double Get() {
+	units::angular_velocity::revolutions_per_minute_t GetSpeed() {
 		return *speed;
+	}
+
+	units::length::foot_t GetDistance() {
+		return lidar->GetDistance();
 	}
 
 	void Toggle() {

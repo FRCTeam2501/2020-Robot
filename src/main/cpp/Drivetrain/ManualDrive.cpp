@@ -1,5 +1,4 @@
 #include "Drivetrain/ManualDrive.h"
-using namespace frc;
 
 
 ManualDrive::ManualDrive(Drivetrain* drive,
