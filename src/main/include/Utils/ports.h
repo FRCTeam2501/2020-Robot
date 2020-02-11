@@ -21,6 +21,13 @@ namespace JOYSTICK {		//USB Joystick Ports
 		DRIVER_2
 	};
 }
+namespace CAMERA {			//USB Camera Ports
+	//Can have a dynamic number of devices
+	enum DEVICE_ID {
+		FRONT = 0,
+		TOP
+	};
+}
 namespace PWM {				//RoboRIO PWM Ports
 	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT {
@@ -150,7 +157,6 @@ namespace RELAY {			//RoboRio Relay Ports
 #ifdef PNEUMATICS
 namespace PCM {				//Pnuematics Control Module Ports
 	//Note: Must have PNUEMATICS defined to be included
-	//Use SOL prefix for solenoids
 	enum PCM_PORTS {
 		CLIMBER_EXTEND_A = 0,
 		CLIMBER_EXTEND_B,

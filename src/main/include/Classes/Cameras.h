@@ -1,0 +1,21 @@
+#pragma once
+#include "include.h"
+
+class Cameras : public frc::ErrorBase {
+private:
+	cs::UsbCamera *front, *top;
+	cs::MjpegServer stream;
+	uint8_t *state;
+
+	enum STATE {
+		OFF = 0,
+		FRONT,
+		TOP
+	};
+
+public:
+	Cameras();
+	~Cameras();
+
+	void Toggle();
+};
