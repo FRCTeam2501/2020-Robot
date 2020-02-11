@@ -1,4 +1,4 @@
-#include "Auto/AutoInput.h"
+#include "Classes/AutoInput.h"
 
 AutoInput::AutoInput() {
 	switch0 = new frc::DigitalInput(MXP::DIO::AUTO_0);
@@ -6,6 +6,8 @@ AutoInput::AutoInput() {
 	switch2 = new frc::DigitalInput(MXP::DIO::AUTO_2);
 	switch3 = new frc::DigitalInput(MXP::DIO::AUTO_3);
 	switch4 = new frc::DigitalInput(MXP::DIO::AUTO_4);
+
+	cout << "AutoInput Booted!\n";
 }
 
 AutoInput::~AutoInput() {
