@@ -4,6 +4,9 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
+Robot::~Robot(){}
+Robot::Robot(){}
+
 void Robot::RobotInit() {}
 
 void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }

@@ -5,6 +5,8 @@
 #include <time.h>
 #include "ports.h"
 #include "constants.h"
-#include "buttonmap.h"
+//include "buttonmap.h"
 #include "Drivetrain/Drivetrain.h"
-#define cout wpi::outs()
+#define cout wpi::outs() 
+//#include "ctre/Pheonix.h"
+#include "rev/CANSparkMax.h"
