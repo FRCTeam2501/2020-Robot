@@ -16,11 +16,17 @@ namespace CONSTANTS {
 	}
 	namespace INTAKE {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 30.0_A;
+					CONTINUOUS_LIMIT = 20.0_A,
+					PEAK_LIMIT = 35.0_A;
+		constexpr units::millisecond_t
+					PEAK_TIME = 1000_ms;
 	}
 	namespace HOPPER {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 30.0_A;
+					CONTINUOUS_LIMIT = 20.0_A,
+					PEAK_LIMIT = 35.0_A;
+		constexpr units::millisecond_t
+					PEAK_TIME = 1000_ms;
 		constexpr double ON = 0.5, OFF = 0;
 	}
 	namespace SHOOTER {
@@ -32,9 +38,9 @@ namespace CONSTANTS {
 		constexpr units::current::ampere_t
 					CURRENT_LIMIT = 40.0_A;
 		constexpr units::angular_velocity::revolutions_per_minute_t
-					ON_SPEED = units::angular_velocity::revolutions_per_minute_t(3900),
-					OFF_SPEED = units::angular_velocity::revolutions_per_minute_t(0),
-					ADJUST_SPEED = units::angular_velocity::revolutions_per_minute_t(50);
+					ON_SPEED = 3900_rpm,
+					OFF_SPEED = 0_rpm,
+					ADJUST_SPEED = 50_rpm;
 	}
 /*
 	namespace SHOOTER_SATURDAY {
@@ -79,5 +85,11 @@ namespace CONSTANTS {
 		namespace OFF_1 {
 			constexpr uint8_t MODE = 0b11111;
 		}
+	}
+	namespace CAMERA {
+		constexpr uint32_t
+			WIDTH = 320,
+			HEIGHT = 240,
+			FPS = 30;
 	}
 }

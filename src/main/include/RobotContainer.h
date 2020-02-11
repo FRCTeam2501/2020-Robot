@@ -1,5 +1,6 @@
 #pragma once
 #include "include.h"
+
 #include "Drivetrain/Drivetrain.h"
 #include "Drivetrain/ManualDrive.h"
 #include "Pneumatics/Pneumatics.h"
@@ -9,7 +10,9 @@
 #include "Intake/ManualIntake.h"
 #include "Shooter/Shooter.h"
 #include "Hopper/Hopper.h"
-#include "Auto/AutoInput.h"
+
+#include "Classes/AutoInput.h"
+#include "Classes/Cameras.h"
 
 
 class RobotContainer : public frc::ErrorBase {
@@ -20,13 +23,16 @@ private:
 	Intake *intake;
 	Hopper *hopper;
 	Shooter *shooter;
+
 	AutoInput *autoInput;
+	Cameras *cameras;
+
 	frc::Joystick *driveStick, *controlStick;
 	frc2::JoystickButton *toggleDrive,
-		*forwardClimb, *reverseClimb, *enableClimber,
-		*toggleIntake, *reverseIntake,
-		*toggleShooter, *shooterUp, *shooterDown,
-		*runHopper;
+		*forwardClimbState, *reverseClimbState, *forwardClimbWinch, *reverseClimbWinch,
+		*toggleIntakeDeploy, *toggleIntakeRunning, *reverseIntake,
+		*runHopper,
+		*toggleShooter, *shooterUp, *shooterDown;
 
 	frc2::Command *autoCommand,
 		*simpleDriveAuto, *simpleShootAuto, *simpleDriveShootAuto, *simpleShootDriveAuto;

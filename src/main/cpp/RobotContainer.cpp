@@ -13,6 +13,7 @@ void RobotContainer::BootSubsystems() {
 	shooter = new Shooter();
 
 	autoInput = new AutoInput();
+	cameras = new Cameras();
 
 	cout << "Subsystems Booted!\n";
 }
@@ -27,21 +28,21 @@ void RobotContainer::BootDefaultCommands() {
 			return driveStick->GetRawAxis(JOYSTICK::X);
 		}
 	));
-/*
+
 	climber->SetDefaultCommand(ManualClimber(
 		climber,
 		[this] {
-			return controlStick->GetRawAxis(JOYSTICK::Z);
+			return (controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2;
 		}
 	));
 
 	intake->SetDefaultCommand(ManualIntake(
 		intake,
 		[this] {
-			return (controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2;
+			return (driveStick->GetRawAxis(JOYSTICK::Z) + 1) / 2;
 		}
 	));
-*/
+
 	cout << "Default Commands Booted!\n";
 }
 
@@ -54,36 +55,59 @@ void RobotContainer::BootInstantCommands() {
 		{ drive }
 	));
 
-	forwardClimb = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
-	forwardClimb->WhenPressed(new frc2::InstantCommand(
+	forwardClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
+	forwardClimbState->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			climber->Forward();
+			climber->ForwardArmState();
 		},
 		{ climber }
 	));
-	reverseClimb = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
-	reverseClimb->WhenPressed(new frc2::InstantCommand(
+	reverseClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
+	reverseClimbState->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			climber->Reverse();
+			climber->ReverseArmState();
 		},
 		{ climber }
 	));
-	enableClimber = new frc2::JoystickButton(controlStick, CONTROLLER::X::START);	//	TODO
-	enableClimber->WhenPressed(new frc2::InstantCommand(
+	forwardClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
+	forwardClimbWinch->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			climber->ToggleEnable();
+			climber->ToggleRunning(false);
+		},
+		[this] {
+			climber->ToggleRunning(false);
+		},
+		{ climber }
+	));
+	reverseClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
+	reverseClimbWinch->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this] {
+			climber->ToggleRunning(true);
+		},
+		[this] {
+			climber->ToggleRunning(true);
 		},
 		{ climber }
 	));
 
-	toggleIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
-	toggleIntake->WhenPressed(new frc2::InstantCommand(
+	toggleIntakeRunning = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	toggleIntakeRunning->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			intake->Toggle();
+			intake->ToggleRunning();
+		},
+		[this] {
+			intake->ToggleRunning();
 		},
 		{ intake }
 	));
-	reverseIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);	//	TODO
+	toggleIntakeDeploy = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
+	toggleIntakeDeploy->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			intake->ToggleDeploy();
+		},
+		{ intake }
+	));
+	reverseIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_4);
 	reverseIntake->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->ToggleInverted();
@@ -91,10 +115,15 @@ void RobotContainer::BootInstantCommands() {
 		{ intake }
 	));
 
-	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);	//	TODO
-	runHopper->WhenPressed(new frc2::InstantCommand(
+	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
+	runHopper->WhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->Set(CONSTANTS::HOPPER::ON);
+			hopper->TogglePin();
+		},
+		[this] {
+			hopper->Set(CONSTANTS::HOPPER::OFF);
+			hopper->TogglePin();
 		},
 		{ hopper }
 	));
@@ -124,11 +153,7 @@ void RobotContainer::BootInstantCommands() {
 	cout << "Instant Commands Booted!\n";
 /*
 	TODO:
-	*	driveStick Trigger: Run intake at speed while held, use a start & end instant command
-	*	driveStick Z Axis: Change intake speed (exact curve & method TBD)
 	*	controlStick Thumb: Run hopper and retract pins on start, stop hopper and extend pins on end
-	*	controlStick 6: Run climber forward at speed while held
-	*	controlStick 4: Run climber reverse at speed while held
 	*	Climber toggle: Toggle which winch is being run at a time
 	*	Climber speed:	Vary climber winch speed
 */
@@ -277,11 +302,11 @@ void RobotContainer::DeleteSubsystems() {
 void RobotContainer::DeleteInstantCommands() {
 	delete toggleDrive;
 
-	delete forwardClimb;
-	delete reverseClimb;
-	delete enableClimber;
+	delete forwardClimbState;
+	delete reverseClimbState;
 
-	delete toggleIntake;
+	delete toggleIntakeDeploy;
+	delete toggleIntakeRunning;
 	delete reverseIntake;
 
 	delete runHopper;

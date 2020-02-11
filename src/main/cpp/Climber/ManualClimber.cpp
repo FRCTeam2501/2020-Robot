@@ -8,5 +8,5 @@ ManualClimber::ManualClimber(Climber* climber,
 }
 
 void ManualClimber::Execute() {
-	climber->SetWinch(speed());
+	climber->SetWinchSpeed(speed());
 }

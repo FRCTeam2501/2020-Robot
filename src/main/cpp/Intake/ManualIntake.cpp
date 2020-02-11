@@ -8,5 +8,5 @@ ManualIntake::ManualIntake(Intake* intake,
 }
 
 void ManualIntake::Execute() {
-	intake->Set(speed());
+	intake->SetSpeed(speed());
 }
