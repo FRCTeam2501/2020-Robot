@@ -33,5 +33,5 @@ private:
    Drivetrain *drive;
    Joystick *driveStick;
   Cameras *cameras;
-  frc2::JoystickButton *trigger;
+  frc2::JoystickButton *trigger, *BUTTON_11, *BUTTON_12;
 };

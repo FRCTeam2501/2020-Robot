@@ -20,23 +20,41 @@ drive->SetDefaultCommand(ManualDrive(
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
 		  [this] { return driveStick->GetRawAxis(0); }
 	));
-cameras = new Cameras;
+shooter = new Shooter;
 
 trigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 	trigger->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->toggle();
-			
 		},
 		{ shooter }
 	), false);
 
+BUTTON_11 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
+	BUTTON_11->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shooter->lessSpeed();
+		},
+		{ shooter }
+	), false);
   
+  BUTTON_12 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
+	BUTTON_12->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shooter->moreSpeed();
+		},
+		{ shooter }
+	), false);
 
 }
 RobotContainer::~RobotContainer(){
 	delete drive;
 	delete driveStick;
+	delete shooter;
+	delete trigger;
+	delete BUTTON_11;
+	delete BUTTON_12;
+
 }
 
 
