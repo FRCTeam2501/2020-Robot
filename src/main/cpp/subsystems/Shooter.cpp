@@ -24,7 +24,7 @@ delete spinnyThrowerRight;
 
 void Shooter::flywheleSpeed(double SetPoint){
     spinnyThrowerLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
-  
+
 }
 
 void Shooter::toggle(){
@@ -39,29 +39,29 @@ if (Toggle = 1){
 
 if (Toggle = true){
 
-double rpm = 3900; 
+rpm = 3900; 
 
- set(double rpm, rev::ControlType::kVelocity);
+ spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
  Toggle = false;
 } else {
    double rpm = 0;
-     set(double rpm, rev::ControlType::kVelocity);
+     spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
 }
 
 
 }
 
  void Shooter::moreSpeed(){
-    if (double rpm <= 5650){
-        double rpm + adjustSpeed;
-        set(double rpm, rev::ControlType::kVelocity);
+    if (rpm <= 5650){
+         rpm + adjustSpeed;
+        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
     }
  }
 
  void Shooter::lessSpeed(){
-    if (double rpm >= -5650){
-        double rpm - adjustSpeed;
-        set(double rpm, rev::ControlType::kVelocity);
+    if (rpm >= -5650){
+         rpm - adjustSpeed;
+        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
  }
  }
 
