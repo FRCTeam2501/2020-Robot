@@ -2,6 +2,7 @@
 #include "include.h"
 
 #include "Subsystems/Drivetrain.h"
+#include "Subsystems/Pneumatics.h"
 #include "Subsystems/Climber.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Shooter.h"
@@ -11,7 +12,6 @@
 #include "Commands/ManualClimber.h"
 #include "Commands/ManualIntake.h"
 
-#include "Classes/Pneumatics.h"
 #include "Classes/AutoInput.h"
 #include "Classes/Cameras.h"
 

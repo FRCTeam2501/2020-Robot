@@ -1,17 +1,17 @@
 #include "RobotContainer.h"
-
+#include "frc/smartdashboard/SmartDashboard.h"
 
 void RobotContainer::BootSubsystems() {
 	driveStick = new frc::Joystick(JOYSTICK::DRIVER);
 	controlStick = new frc::Joystick(JOYSTICK::CONTROL);
 
 	drive = new Drivetrain();
+	pneumatics = new Pneumatics();
 	climber = new Climber(pneumatics);
 	intake = new Intake(pneumatics);
 	hopper = new Hopper(pneumatics);
 	shooter = new Shooter();
 
-	pneumatics = new Pneumatics();
 	autoInput = new AutoInput();
 	cameras = new Cameras();
 
@@ -303,12 +303,12 @@ void RobotContainer::DeleteSubsystems() {
 	delete controlStick;
 
 	delete drive;
+	delete pneumatics;
 	delete climber;
 	delete intake;
 	delete hopper;
 	delete shooter;
 
-	delete pneumatics;
 	delete autoInput;
 	delete cameras;
 

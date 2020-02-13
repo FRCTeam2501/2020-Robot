@@ -1,6 +1,6 @@
 #pragma once
 #include "include.h"
-#include "Classes/Pneumatics.h"
+#include "Subsystems/Pneumatics.h"
 
 
 class Intake : public frc2::SubsystemBase {

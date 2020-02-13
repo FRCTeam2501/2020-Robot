@@ -1,6 +1,6 @@
 #pragma once
 #include "include.h"
-#include "Classes/Pneumatics.h"
+#include "Subsystems/Pneumatics.h"
 
 
 class Climber : public frc2::SubsystemBase {

@@ -2,7 +2,7 @@
 #include "include.h"
 
 
-class Pneumatics : public frc::ErrorBase {
+class Pneumatics : public frc2::SubsystemBase {
 private:
 	frc::Compressor *compressor;
 	frc::DoubleSolenoid *climbArm, *climbExtend, *intake, *hopper;
