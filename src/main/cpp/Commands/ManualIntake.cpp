@@ -1,4 +1,4 @@
-#include "Intake/ManualIntake.h"
+#include "Commands/ManualIntake.h"
 
 
 ManualIntake::ManualIntake(Intake* intake,

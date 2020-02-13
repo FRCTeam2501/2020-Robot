@@ -1,5 +1,4 @@
-#include "include.h"
-#include "Hopper/Hopper.h"
+#include "Subsystems/Hopper.h"
 
 
 Hopper::Hopper(Pneumatics* pneumatics) : pneumatics(pneumatics) {

@@ -1,4 +1,4 @@
-#include "Intake/Intake.h"
+#include "Subsystems/Intake.h"
 
 Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	left = new WPI_TalonSRX(CAN::INTAKE_LEFT);

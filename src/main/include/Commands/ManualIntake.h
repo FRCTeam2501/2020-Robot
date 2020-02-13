@@ -1,6 +1,6 @@
 #pragma once
 #include "include.h"
-#include "Intake/Intake.h"
+#include "Subsystems/Intake.h"
 
 
 class ManualIntake

@@ -1,4 +1,4 @@
-#include "Climber/ManualClimber.h"
+#include "Commands/ManualClimber.h"
 
 
 ManualClimber::ManualClimber(Climber* climber,
