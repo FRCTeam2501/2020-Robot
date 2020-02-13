@@ -33,7 +33,7 @@ namespace PWM		//RoboRIO PWM Ports
 		LEFT_FRONT,
 		LEFT_REAR,
 		LIFTER,
-		EMPTY_5,
+		RGB,
 		EMPTY_6,
 		EMPTY_7,
 		EMPTY_8,
@@ -45,8 +45,26 @@ namespace CAN		//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES
 	{
-		CAN_PCM = 0,
-		EMPTY_1
+		LEFT_FRONT = 0,
+		LEFT_REAR,
+		RIGHT_FRONT,
+		RIGHT_REAR,
+		INTAKE,
+		HOPPER_LEFT,
+		HOPPER_RIGHT,
+		EMPTY_1,
+		EMPTY_2,
+		EMPTY_3,
+		EMPTY_4,
+		CLIMBER_LEFT,
+		CLIMBER_RIGHT,
+		SHOOTER_LEFT,
+		SHOOTER_RIGHT
+
+	};
+	enum CAN_PCM
+	{
+		CAN_PCM = 0
 	};
 }
 namespace DIO		//RoboRIO DIO Ports
@@ -66,13 +84,13 @@ namespace DIO		//RoboRIO DIO Ports
 		AUTO_E
 	};
 }
-namespace MXP		
+namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 {
-
+	//Do not add more ports, only edit and define MXP_DIO
 	#ifdef MXP_DIO 
 	#ifndef MXP_PWM
 	namespace DIO
-	{	
+	{	//Do not add more ports, the RIO only has 10 on MXP
 		enum DIO_ON_MXP
 		{
 			EMPTY0 = 10,
@@ -150,14 +168,14 @@ namespace PCM		//Pnuematics Control Module Ports
 	//Use SOL prefix for solenoids
 	enum PCM_PORTS
 	{
-		SOL_LEFT_A = 0,
-		SOL_LEFT_B,
-		SOL_RIGHT_A,
-		SOL_RIGHT_B,
-		SOL_RAISE_A,
-		SOL_RAISE_B,
-		EMPTY_6,
-		EMPTY_7
+		SOL_VERTICALLIFT_A = 0,
+		SOL_VERTICALLIFT_B,
+
+		SOL_CLIMB_A,
+		SOL_CLIMB_B,
+
+		SOL_INTAKE_A,
+		SOL_INTAKE_B
 	};
 }
 #endif
