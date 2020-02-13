@@ -22,6 +22,7 @@
 #include "Shooter/Shoot.h"
 
 #include "Climber/Climber.h"
+#include "Climber/VariableSpeed.h"
 
 using namespace frc;
 
@@ -38,9 +39,11 @@ class RobotContainer {
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
   Cameras *cameras;
+  Climber *climber;
   frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
                        *ShootTrigger,
-                       *intakeDeployButton, *intakeSet;
+                       *intakeDeployButton, *intakeSet,
+                       *winchForward, *winchReverse;
   Pneumatics *pneu;
   Intake *intake;
   Shooter *shoot;

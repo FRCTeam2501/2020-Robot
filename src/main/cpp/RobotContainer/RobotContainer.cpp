@@ -8,6 +8,7 @@ RobotContainer::RobotContainer()  {
 	pneu = new Pneumatics();
 	shoot = new Shooter();
 	intake = new Intake(pneu);
+	climber = new Climber(pneu);
 
   	drive->SetDefaultCommand(ManualDrive(
 		  drive,
@@ -41,6 +42,33 @@ RobotContainer::RobotContainer()  {
 	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
 
 	intakeDeployButton->WhenPressed(new ToggleDeployIntake(intake));
+
+	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
+	winchForward->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this]{
+			climber->ToggleWinchOn();
+		},
+		[this]{
+			climber->ToggleWinchOff();
+		},
+		{climber}
+	));
+
+	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
+	winchReverse->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this]{
+			climber->ToggleWinchDownOn();
+		},
+		[this]{
+			climber->ToggleWinchDownOff();
+		},
+		{climber}
+	));
+
+	climber->SetDefaultCommand(VariableSpeed(
+		  climber,
+		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)+1)/2;}
+	));
 }
 RobotContainer::~RobotContainer(){
 	delete drive;
@@ -48,6 +76,8 @@ RobotContainer::~RobotContainer(){
 	delete cameras;
 	delete switchDirection;
 	delete intake;
+	delete winchForward;
+	delete winchReverse;
 }
 
 

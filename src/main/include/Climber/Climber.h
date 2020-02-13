@@ -13,10 +13,20 @@ class Climber : public frc2::SubsystemBase {
 
   void StateUp();
   void StateBack();
-  void SetClimb(units::angular_velocity::revolutions_per_minute_t rpm);
+  void SetClimb(double speed);
+
+  void ToggleWinchOn();
+  void ToggleWinchOff();
+
+  void ToggleWinchDownOn(); 
+  void ToggleWinchDownOff();
+
+  void SetSpeed(double speed);
 
  private:
   Pneumatics *pneumatics;
+
+  double *speed;
 
   uint8_t *state;
 

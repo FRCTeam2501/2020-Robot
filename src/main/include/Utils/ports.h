@@ -20,8 +20,7 @@ namespace JOYSTICK	//USB Joystick Ports
 	enum JOYSTICK_ID
 	{
 		DRIVER = 0,
-		DRIVER_ROTATE,
-		CONTROL
+		DRIVER_ROTATE
 	};
 }
 namespace PWM		//RoboRIO PWM Ports
@@ -29,11 +28,11 @@ namespace PWM		//RoboRIO PWM Ports
 	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT
 	{
-		RIGHT_FRONT = 0,
-		RIGHT_REAR,
-		LEFT_FRONT,
-		LEFT_REAR,
-		LIFTER,
+		EMPTY_0 = 0,
+		EMPTY_1,
+		EMPTY_2,
+		EMPTY_3,
+		EMPTY_4,
 		EMPTY_5,
 		EMPTY_6,
 		EMPTY_7,
@@ -53,7 +52,7 @@ namespace CAN		//RoboRIO CAN Devices
 		INTAKE,
 		HOPPER_LEFT,
 		HOPPER_RIGHT,
-		EMPTY_1,
+		EMPTY_8,
 		EMPTY_2,
 		EMPTY_3,
 		EMPTY_4,
@@ -67,22 +66,17 @@ namespace CAN		//RoboRIO CAN Devices
 	{
 		CAN_PCM = 0
 	};
+	enum CAN_PDP
+	{
+		CAN_PDP = 0
+	};
 }
 namespace DIO		//RoboRIO DIO Ports
 {
 	//Do not add more ports, the RIO only has 10
 	enum DIO_PORTS
 	{
-		LS_BOTTOM = 0,
-		LS_TOP,
-		EMPTY_2,
-		EMPTY_3,
-		EMPTY_4,
-		AUTO_A,
-		AUTO_B,
-		AUTO_C,
-		AUTO_D,
-		AUTO_E
+		DIO_EMPTY = 0
 	};
 }
 namespace MXP		//RoboRIO's MyRIO eXpansion Ports

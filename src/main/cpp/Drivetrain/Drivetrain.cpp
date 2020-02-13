@@ -16,7 +16,7 @@ Drivetrain::Drivetrain() {
     drive = new DifferentialDrive(*frontLeft, *frontRight);
 }
 void Drivetrain::Switch(){
-    direction!=direction;
+    direction=!direction;
 }
 
 Drivetrain::~Drivetrain() {
