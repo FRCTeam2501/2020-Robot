@@ -1,16 +1,17 @@
 #pragma once
 #include "include.h"
 
-#include "Drivetrain/Drivetrain.h"
-#include "Drivetrain/ManualDrive.h"
-#include "Pneumatics/Pneumatics.h"
-#include "Climber/Climber.h"
-#include "Climber/ManualClimber.h"
-#include "Intake/Intake.h"
-#include "Intake/ManualIntake.h"
-#include "Shooter/Shooter.h"
-#include "Hopper/Hopper.h"
+#include "Subsystems/Drivetrain.h"
+#include "Subsystems/Climber.h"
+#include "Subsystems/Intake.h"
+#include "Subsystems/Shooter.h"
+#include "Subsystems/Hopper.h"
 
+#include "Commands/ManualDrive.h"
+#include "Commands/ManualClimber.h"
+#include "Commands/ManualIntake.h"
+
+#include "Classes/Pneumatics.h"
 #include "Classes/AutoInput.h"
 #include "Classes/Cameras.h"
 
@@ -29,9 +30,9 @@ private:
 
 	frc::Joystick *driveStick, *controlStick;
 	frc2::JoystickButton *toggleDrive,
-		*forwardClimbState, *reverseClimbState, *forwardClimbWinch, *reverseClimbWinch,
+		*forwardClimbState, *reverseClimbState, *forwardClimbWinch, *reverseClimbWinch, *toggleWinches,
 		*toggleIntakeDeploy, *toggleIntakeRunning, *reverseIntake,
-		*runHopper,
+		*runHopper, *timedHopper,
 		*toggleShooter, *shooterUp, *shooterDown;
 
 	frc2::Command *autoCommand,

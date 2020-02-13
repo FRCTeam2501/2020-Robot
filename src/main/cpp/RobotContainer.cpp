@@ -6,12 +6,12 @@ void RobotContainer::BootSubsystems() {
 	controlStick = new frc::Joystick(JOYSTICK::CONTROL);
 
 	drive = new Drivetrain();
-	pneumatics = new Pneumatics();
 	climber = new Climber(pneumatics);
 	intake = new Intake(pneumatics);
 	hopper = new Hopper(pneumatics);
 	shooter = new Shooter();
 
+	pneumatics = new Pneumatics();
 	autoInput = new AutoInput();
 	cameras = new Cameras();
 
@@ -89,6 +89,13 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ climber }
 	));
+	toggleWinches = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
+	toggleWinches->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			climber->ToggleWinches();
+		},
+		{ climber }
+	));
 
 	toggleIntakeRunning = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 	toggleIntakeRunning->ToggleWhenPressed(new frc2::StartEndCommand(
@@ -127,6 +134,19 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ hopper }
 	));
+	timedHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
+	timedHopper->WhenPressed(new frc2::ParallelRaceGroup(
+		frc2::StartEndCommand(
+			[this] {
+				hopper->Set(CONSTANTS::HOPPER::ON);
+			},
+			[this] {
+				hopper->Set(CONSTANTS::HOPPER::OFF);
+			},
+			{ hopper }
+		),
+		frc2::WaitCommand(CONSTANTS::TELEOP::HOPPER::TIME)
+	));
 
 	toggleShooter = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
 	toggleShooter->WhenPressed(new frc2::InstantCommand(
@@ -151,17 +171,12 @@ void RobotContainer::BootInstantCommands() {
 	));
 
 	cout << "Instant Commands Booted!\n";
-/*
-	TODO:
-	*	controlStick Thumb: Run hopper and retract pins on start, stop hopper and extend pins on end
-	*	Climber toggle: Toggle which winch is being run at a time
-	*	Climber speed:	Vary climber winch speed
-*/
 }
 
 void RobotContainer::BootAutoCommands() {
 	simpleDriveAuto  = new frc2::ParallelRaceGroup(
 		frc2::StartEndCommand(
+			
 			[this] {
 				drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
 			},
@@ -288,13 +303,14 @@ void RobotContainer::DeleteSubsystems() {
 	delete controlStick;
 
 	delete drive;
-	delete pneumatics;
 	delete climber;
 	delete intake;
 	delete hopper;
 	delete shooter;
 
+	delete pneumatics;
 	delete autoInput;
+	delete cameras;
 
 	cout << "Subsystems Deleted!\n";
 }
@@ -304,12 +320,16 @@ void RobotContainer::DeleteInstantCommands() {
 
 	delete forwardClimbState;
 	delete reverseClimbState;
+	delete forwardClimbWinch;
+	delete reverseClimbWinch;
+	delete toggleWinches;
 
 	delete toggleIntakeDeploy;
 	delete toggleIntakeRunning;
 	delete reverseIntake;
 
 	delete runHopper;
+	delete timedHopper;
 
 	delete toggleShooter;
 	delete shooterUp;

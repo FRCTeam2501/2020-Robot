@@ -42,6 +42,12 @@ namespace CONSTANTS {
 					OFF_SPEED = 0_rpm,
 					ADJUST_SPEED = 50_rpm;
 	}
+	namespace CAMERA {
+		constexpr uint32_t
+			WIDTH = 320,
+			HEIGHT = 240,
+			FPS = 30;
+	}
 /*
 	namespace SHOOTER_SATURDAY {
 		constexpr double
@@ -67,14 +73,14 @@ namespace CONSTANTS {
 		}
 		namespace SIMPLE_DRIVE {
 			constexpr uint8_t MODE = 0b00001;
-			constexpr units::second_t TIME = 1.0_s;
+			constexpr units::millisecond_t TIME = 1000_ms;
 			constexpr double SPEED = 0.75;
 		}
 		namespace SIMPLE_SHOOT {
 			constexpr uint8_t MODE = 0b00010;
-			constexpr units::second_t
-					SPIN_UP_TIME = 1.5_s,
-					SHOOT_TIME = 7.5_s;
+			constexpr units::millisecond_t
+					SPIN_UP_TIME = 1500_ms,
+					SHOOT_TIME = 7500_ms;
 		}
 		namespace SIMPLE_DRIVE_SHOOT {
 			constexpr uint8_t MODE = 0b00011;
@@ -86,10 +92,9 @@ namespace CONSTANTS {
 			constexpr uint8_t MODE = 0b11111;
 		}
 	}
-	namespace CAMERA {
-		constexpr uint32_t
-			WIDTH = 320,
-			HEIGHT = 240,
-			FPS = 30;
+	namespace TELEOP {
+		namespace HOPPER {
+			constexpr units::millisecond_t TIME = 500_ms;
+		}
 	}
 }
