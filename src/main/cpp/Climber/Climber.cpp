@@ -1,7 +1,7 @@
 #include "Climber/Climber.h"
 
-Climber::Climber(Pneumatics *pneumatics) {
-    state = new uint8_t(OFF);
+Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
+    armState = new uint8_t(OFF);
     speed = new double(0.0);
 
     left = new rev::CANSparkMax(CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
@@ -11,36 +11,35 @@ Climber::Climber(Pneumatics *pneumatics) {
 }
 
 Climber::~Climber(){
-    delete state;
+    delete armState;
     delete speed;
     delete left;
     delete right;
-    delete pneumatics;
     delete speed;
 }
 
 void Climber::StateUp(){
-    switch(*state){
-        case OFF:
+    switch(*armState){
+        case DEFAULT:
             pneumatics->ClimbRetract();
             pneumatics->VerticalLiftRetract();
-            *state = DOWN;
+            *armState = DOWN;
             break;
         case DOWN:
             pneumatics->VerticalLiftExtend();
-            *state = UP;
+            *armState = UP;
             break;
         case UP:
             pneumatics->ClimbExtend();
-            *state = EXTEND;
+            *armState = EXTEND;
             break;
         case EXTEND:
             pneumatics->ClimbRetract();
-            *state = RETRACT;
+            *armState = RETRACT;
             break;
         case RETRACT:
             pneumatics->VerticalLiftRetract();
-            *state = DOWN;
+            *armState = DOWN;
             break;
         default:
             break;
@@ -48,27 +47,27 @@ void Climber::StateUp(){
 }
 
 void Climber::StateBack(){
-    switch(*state){
-            case OFF:
+    switch(*armState){
+            case DEFAULT:
                 pneumatics->ClimbRetract();
                 pneumatics->VerticalLiftRetract();
-                *state = DOWN;
+                *armState = DOWN;
                 break;
             case DOWN:
                 pneumatics->VerticalLiftExtend();
-                *state = UP;
+                *armState = UP;
                 break;
             case UP:
                 pneumatics->VerticalLiftRetract();
-                *state = DOWN;
+                *armState = DOWN;
                 break;
             case EXTEND:
                 pneumatics->ClimbRetract();
-                *state = RETRACT;
+                *armState = RETRACT;
                 break;
             case RETRACT:
                 pneumatics->ClimbExtend();
-                *state = EXTEND;
+                *armState = EXTEND;
                 break;
             default:
                 break;
@@ -81,35 +80,35 @@ void Climber::SetClimb(double speed){
 
 void Climber::ToggleWinchOn(){
     switch(*winchState){
-        case NOT_ON:
+        case OFF:
             *winchState = FORWARD;
 
             break;
         case FORWARD:
         case REVERSE:  
         default:
-            *winchState = NOT_ON;
+            *winchState = OFF;
                 break;
     }
 }
 
 void Climber::ToggleWinchOff(){
-    *winchState = OFF;
+    *winchState = DEFAULT;
 }
 
 void Climber::ToggleWinchDownOn(){
     switch(*winchState){
-        case NOT_ON:
+        case OFF:
             *winchState = REVERSE;
         case REVERSE:
         default:
-            *winchState = NOT_ON;
+            *winchState = OFF;
                 break;
     }
 }
 
 void Climber::ToggleWinchDownOff(){
-    *winchState = OFF;
+    *winchState = DEFAULT;
 }
 
 void Climber::SetSpeed(double speed){

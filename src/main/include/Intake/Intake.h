@@ -10,7 +10,7 @@ using namespace ctre::phoenix::motorcontrol::can;
 
 class Intake : public frc2::SubsystemBase {
  private:
-  WPI_TalonSRX *intakeWheel;
+  WPI_TalonSRX *intakeWheel, intakeWheel2;
   Pneumatics *pneumatics;
 
  public:

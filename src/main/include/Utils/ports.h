@@ -45,21 +45,22 @@ namespace CAN		//RoboRIO CAN Devices
 	//Can have a dynamic number of devices
 	enum CAN_DEVICES
 	{
-		LEFT_FRONT = 0,
+		EMPTY_0 = 0,
 		LEFT_REAR,
 		RIGHT_FRONT,
 		RIGHT_REAR,
-		INTAKE,
+		INTAKE_LEFT,
 		HOPPER_LEFT,
 		HOPPER_RIGHT,
-		EMPTY_8,
+		INTAKE_RIGHT,
 		EMPTY_9,
 		EMPTY_10,
 		EMPTY_11,
 		CLIMBER_LEFT,
 		CLIMBER_RIGHT,
 		SHOOTER_LEFT,
-		SHOOTER_RIGHT
+		SHOOTER_RIGHT,
+		LEFT_FRONT
 
 	};
 	enum CAN_PCM
@@ -171,6 +172,28 @@ namespace PCM		//Pnuematics Control Module Ports
 
 		SOL_INTAKE_A,
 		SOL_INTAKE_B
+	};
+}
+
+namespace PDP {
+	enum PDP_PORTS {
+		EMPTY_0 = 0,
+		LEFT_REAR,
+		RIGHT_FRONT,
+		RIGHT_REAR,
+		INTAKE_LEFT,
+		INTAKE_RIGHT,
+		HOPPER_LEFT,
+		HOPPER_RIGHT,
+		PCM,
+		EMPTY_9,
+		EMPTY_10,
+		EMPTY_11,
+		CLIMBER_LEFT,
+		CLIMBER_RIGHT,
+		SHOOTER_LEFT,
+		SHOOTER_RIGHT,
+		LEFT_FRONT
 	};
 }
 #endif

@@ -1,7 +1,9 @@
 #include "Intake/Intake.h"
 
 Intake::Intake(Pneumatics *pneumatics) {
-    intakeWheel = new WPI_TalonSRX(CAN::INTAKE);
+    intakeWheel = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
+    intakeWheel2 = new WPI_TalonSRX(CAN::INTAKE_LEFT);
+    pneumatics = new Pneumatics();
 
 }
 Intake::~Intake() {
