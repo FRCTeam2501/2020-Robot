@@ -25,7 +25,7 @@ shooter = new Shooter;
 	shooterToggle = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 	shooterToggle->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			shooter->toggle();
+			shooter->Toggle();
 		},
 		{ shooter }
 	), false);

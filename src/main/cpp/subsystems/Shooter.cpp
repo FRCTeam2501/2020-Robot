@@ -16,6 +16,8 @@ spinnyThrowerRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::
     spinnyThrowerLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
 
     spinnyThrowerRight->Follow (*spinnyThrowerLeft);
+
+    rpm = new double; 
 }
 
 
@@ -29,36 +31,36 @@ void Shooter::flywheleSpeed(double SetPoint){
 
 }
 
-void Shooter::toggle(){
+void Shooter::Toggle(){
 
-    if (Toggle){
-        Toggle = 0;
-    }else {
-        Toggle = 1;
+    if (toggle){
+        toggle = 0;
+    } else {
+        toggle = 1;
     }
 
-    if (Toggle){
+    if (toggle){
 
-        rpm = 3900; 
+        *rpm = 3900; 
 
-        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
-        Toggle = false;
-    }else {
-        double rpm = 0;
-        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
+        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        toggle = false;
+    } else {
+        double *rpm = 0;
+        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
 }
 
  void Shooter::moreSpeed(){
-    if (rpm <= 5650){
-        rpm + adjustSpeed;
-        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
+    if (*rpm <= 5650){
+        *rpm + CONSTANTS::SHOOTER::adjustSpeed ;
+        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }
 
  void Shooter::lessSpeed(){
-    if (rpm >= -5650){
-        rpm - adjustSpeed;
-        spinnyThrowerLeft->GetPIDController().SetReference(rpm, rev::ControlType::kVelocity);
+    if (*rpm >= -5650){
+        *rpm - CONSTANTS::SHOOTER::adjustSpeed;
+        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }

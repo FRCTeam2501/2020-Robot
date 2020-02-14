@@ -11,15 +11,15 @@ private:
     CANSparkMax *spinnyThrowerLeft, *spinnyThrowerRight;
         //spinnyThrower is the motor controller for the flywhele.
     
-    const double MaxRPM = 5700;
-    bool Toggle = 0;    
-    double rpm, adjustSpeed = 50;
+    bool toggle = 0;    
+    double *rpm;
 public:
     Shooter();
     ~Shooter();
     void flywheleSpeed(double SetPoint);
-    void toggle();
+    void Toggle();
     void moreSpeed();
     void lessSpeed();
 
 };
+ 
