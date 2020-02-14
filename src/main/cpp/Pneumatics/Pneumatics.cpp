@@ -113,3 +113,12 @@ void Pneumatics::ToggleIntake(){
             break;
     }
 }
+
+void Pneumatics::Periodic() {
+    wpi::outs() << "Control: " << compressor->GetClosedLoopControl()
+    << "\nCurrent: " << compressor->GetCompressorCurrent()
+    << "\nCompressor Short: " << compressor->GetCompressorShortedFault()
+    << "\nCompressor too high: " << compressor->GetCompressorCurrentTooHighFault()
+    << "\nPressure switch: " << compressor->GetPressureSwitchValue()
+    << "\nNot connected: " << compressor->GetCompressorNotConnectedFault();
+}

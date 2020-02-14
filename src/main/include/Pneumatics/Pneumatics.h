@@ -18,6 +18,8 @@ public:
     Pneumatics();
     ~Pneumatics();
 
+    void Periodic() override;
+
     void InitPneumatics();
     void DisableAll();
 

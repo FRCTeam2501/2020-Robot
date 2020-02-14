@@ -27,13 +27,23 @@ RobotContainer::RobotContainer()  {
 	
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
-	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_8);
+	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_7);
 
-	Pneumatics1->WhenPressed(new ToggleVert(pneu));
+	Pneumatics1->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			climber->StateUp();
+		},
+		{ climber }
+	));
 
 	Pneumatics2 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
 
-	Pneumatics2->WhenPressed(new ToggleClimb(pneu));
+	Pneumatics2->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			climber->StateBack();
+		},
+		{ climber }
+	));
 
 	ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 
