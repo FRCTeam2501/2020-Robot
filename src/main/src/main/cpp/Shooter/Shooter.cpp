@@ -44,14 +44,14 @@ void Shooter::FlyWheelSet(double SetPoint){
 
 void Shooter::Periodic() {
     if(frc2::GetTime() - last > units::time::second_t(0.1)) {
-        //wpi::outs() << flyWheel->GetEncoder().GetVelocity() << "\n";
+        wpi::outs() << flyWheel->GetEncoder().GetVelocity() << "\n";
         last = frc2::GetTime();
     }
 }
 
 
 void Shooter::ToggleShoot(){
-    //wpi::outs() << "toggle shoot\n";
+    wpi::outs() << "toggle shoot\n";
     if(toggleShoot){
         toggleShoot = false;
         FlyWheelSet(0);

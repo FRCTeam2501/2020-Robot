@@ -10,13 +10,8 @@ Climber::Climber(Pneumatics *pneumatics) {
     right->Follow(*left);
 }
 
-Climber::~Climber(){
-    delete state;
-    delete speed;
-    delete left;
-    delete right;
-    delete pneumatics;
-    delete speed;
+Climber::~Climber() {
+    
 }
 
 void Climber::StateUp(){
@@ -80,36 +75,19 @@ void Climber::SetClimb(double speed){
 }
 
 void Climber::ToggleWinchOn(){
-    switch(*winchState){
-        case NOT_ON:
-            *winchState = FORWARD;
 
-            break;
-        case FORWARD:
-        case REVERSE:  
-        default:
-            *winchState = NOT_ON;
-                break;
-    }
 }
 
 void Climber::ToggleWinchOff(){
-    *winchState = OFF;
+
 }
 
 void Climber::ToggleWinchDownOn(){
-    switch(*winchState){
-        case NOT_ON:
-            *winchState = REVERSE;
-        case REVERSE:
-        default:
-            *winchState = NOT_ON;
-                break;
-    }
+
 }
 
 void Climber::ToggleWinchDownOff(){
-    *winchState = OFF;
+
 }
 
 void Climber::SetSpeed(double speed){

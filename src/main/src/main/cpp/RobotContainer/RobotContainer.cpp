@@ -2,8 +2,8 @@
 
 RobotContainer::RobotContainer()  {
   	drive = new Drivetrain();
-	driveStick = new Joystick(0);
-	controlStick = new Joystick(1);
+	driveStick = new Joystick(OIConstants::kDriverControllerPort);
+	controlStick = new Joystick(OIConstants::kControlControllerPort);
 
 	pneu = new Pneumatics();
 	shoot = new Shooter();
@@ -21,7 +21,7 @@ RobotContainer::RobotContainer()  {
 		  [this] {return controlStick->GetRawAxis(3);}
 	));
 
-	//cameras = new Cameras();
+	cameras = new Cameras();
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	
@@ -82,5 +82,13 @@ RobotContainer::~RobotContainer(){
 
 
 void RobotContainer::Periodic() {
-
+	if(driveStick->GetTrigger()) {
+		if(!state) {
+			shoot->ToggleShoot();
+			state = true;
+		}
+	}
+	else if(state) {
+		state = false;
+	}
 }

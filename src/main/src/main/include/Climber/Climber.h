@@ -28,7 +28,7 @@ class Climber : public frc2::SubsystemBase {
 
   double *speed;
 
-  uint8_t *state, *winchState;
+  uint8_t *state;
 
   rev::CANSparkMax *left, *right;
 
@@ -38,10 +38,5 @@ class Climber : public frc2::SubsystemBase {
       UP,
       EXTEND,
       RETRACT
-  };
-  enum WINCH_STATES{
-      NOT_ON = 0,
-      FORWARD,
-      REVERSE
   };
 };
