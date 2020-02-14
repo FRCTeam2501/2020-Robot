@@ -1,4 +1,5 @@
 #include <math.h>
+
 #pragma once
 
 
@@ -84,5 +85,10 @@ namespace CONSTANTS
 		const double DEADZONE = 0.1;         //Deadzone on joystick axes for drive inputs
 		const double  MOTOR_MIN = 0.2;      //Minimum current to spin motor
 		const int LINEARITY = 3;       //Linearity of drive curve
+	}
+	namespace SHOOTER{
+		const double kP = 6e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000015, kMaxOutput = 1.0, kMinOutput = -1.0;
+
+	
 	}
 }

@@ -8,6 +8,7 @@ Intake::Intake(Pneumatics *pneumatics){
 
 intakeWheel = new WPI_TalonSRX(CAN::INTAKEWHEEL);
 
+
 }
 
 
@@ -24,8 +25,8 @@ Intake::intakeSpeed(){
 }
 
 
-*/
 
+*/
 
 
 
