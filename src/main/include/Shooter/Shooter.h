@@ -1,24 +1,26 @@
 #pragma once
-
-#include <frc2/command/SubsystemBase.h>
-
 #include "Utils/include.h"
 
+
+using namespace rev;
 using namespace frc;
-using namespace rev; 
 
-class Shooter : public frc2::SubsystemBase {
+class Shooter : public frc2::SubsystemBase 
+{
+private:
+    CANSparkMax *spinnyShootyLeft, *spinnyShootyRight;
+        //spinnyThrower is the motor controller for the flywhele.
+    
+    bool toggle = 0;    
+    double *rpm;
+public:
+    Shooter();
+    ~Shooter();
+    void flywheleSpeed(double SetPoint);
+    void Toggle();
+    void moreSpeed();
+    void lessSpeed();
 
- private:
-  units::time::second_t last = frc2::GetTime();
-  CANSparkMax *flyWheel, *flyWheel2;
-  bool toggleShoot = false;
- public:
-  Shooter();
-  ~Shooter();
-
-  void FlyWheelSet(double SetPoint);
-  void ToggleShoot();
-
-  void Periodic() override;
+    void Periodic();
 };
+ 

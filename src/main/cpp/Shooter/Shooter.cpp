@@ -1,63 +1,61 @@
-#include "Shooter/Shooter.h"
-
-using namespace rev;
-
-Shooter::Shooter() {
-
-    flyWheel = new CANSparkMax(CAN::SHOOTER_LEFT, CANSparkMax::MotorType::kBrushless);
-    
-    flyWheel->SetInverted(true);
-
-    flyWheel->GetPIDController().SetP(ShooterConstants::kP);
-    flyWheel->GetPIDController().SetI(ShooterConstants::kI);
-    flyWheel->GetPIDController().SetD(ShooterConstants::kD);
-    flyWheel->GetPIDController().SetIZone(ShooterConstants::kIz);
-    flyWheel->GetPIDController().SetFF(ShooterConstants::kFF);
-    flyWheel->GetPIDController().SetOutputRange(ShooterConstants::kMinOutput, ShooterConstants::kMaxOutput);
+#include "subsystems/Shooter.h"
 
 
-    flyWheel2 = new CANSparkMax(CAN::SHOOTER_RIGHT, CANSparkMax::MotorType::kBrushless);
+Shooter::Shooter(){
 
-    flyWheel2->SetInverted(false);
-    
-    flyWheel2->GetPIDController().SetP(ShooterConstants::kP);
-    flyWheel2->GetPIDController().SetI(ShooterConstants::kI);
-    flyWheel2->GetPIDController().SetD(ShooterConstants::kD);
-    flyWheel2->GetPIDController().SetIZone(ShooterConstants::kIz);
-    flyWheel2->GetPIDController().SetFF(ShooterConstants::kFF);
-    flyWheel2->GetPIDController().SetOutputRange(ShooterConstants::kMinOutput, ShooterConstants::kMaxOutput);    
+spinnyShootyLeft = new CANSparkMax(CAN::SHOOTER_LEFT,CANSparkMax::MotorType::kBrushless);
+spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::kBrushless);
+
+    spinnyShootyLeft->GetPIDController().SetP(CONSTANTS::SHOOTER:: kP);
+    spinnyShootyLeft->GetPIDController().SetI(CONSTANTS::SHOOTER:: kI);
+    spinnyShootyLeft->GetPIDController().SetD(CONSTANTS::SHOOTER:: kD);
+    spinnyShootyLeft->GetPIDController().SetIZone(CONSTANTS::SHOOTER:: kIz);
+    spinnyShootyLeft->GetPIDController().SetFF(CONSTANTS::SHOOTER:: kFF);
+    spinnyShootyLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
+
+    spinnyShootyRight->Follow (*spinnyShootyLeft);
 
 
-    flyWheel2->Follow(*flyWheel);
-    flyWheel->GetEncoder().GetVelocityConversionFactor();
-
-    wpi::outs() << "shooter made\n";
+    rpm = new double(0);
 }
+
+
 Shooter::~Shooter(){
-    delete flyWheel;
+    delete spinnyShootyLeft;
+    delete spinnyShootyRight;
 }
 
-void Shooter::FlyWheelSet(double SetPoint){
-    flyWheel->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
-    flyWheel2->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
+void Shooter::flywheleSpeed(double SetPoint){
+    //spinnyShootyLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
+
 }
+
+void Shooter::Toggle(){
+    toggle = !toggle;
+
+    if (toggle) {
+        *rpm = 3900.0;
+    } else {
+        *rpm = 0.0;
+    }
+
+    spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+}
+
+ void Shooter::moreSpeed(){
+    if (*rpm <= 5650){
+        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
+    }
+ }
+
+ void Shooter::lessSpeed(){
+    if (*rpm >= -5650){
+        *rpm -= CONSTANTS::SHOOTER::adjustSpeed;
+    }
+ }
+
 
 void Shooter::Periodic() {
-    if(frc2::GetTime() - last > units::time::second_t(0.1)) {
-        //wpi::outs() << flyWheel->GetEncoder().GetVelocity() << "\n";
-        last = frc2::GetTime();
-    }
-}
-
-
-void Shooter::ToggleShoot(){
-    //wpi::outs() << "toggle shoot\n";
-    if(toggleShoot){
-        toggleShoot = false;
-        FlyWheelSet(0);
-    }
-    else{
-        toggleShoot = true;
-        FlyWheelSet(5000);
-    }
+    SmartDashboard::PutNumber("Setpoint: ", *rpm);
+    SmartDashboard::PutNumber("Speed: ", spinnyShootyLeft->GetEncoder().GetVelocity());
 }
