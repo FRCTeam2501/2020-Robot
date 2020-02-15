@@ -1,22 +1,23 @@
-#pragma once
-
-#include <frc2/command/SubsystemBase.h>
+#pragma once 
 
 #include "Utils/include.h"
-#include "Pneumatics/Pneumatics.h"
+#include "subsystems/Pneumatics.h"
 
-using namespace frc;
+using namespace frc; 
 using namespace ctre::phoenix::motorcontrol::can;
 
-class Intake : public frc2::SubsystemBase {
- private:
-  WPI_TalonSRX *intakeWheel, intakeWheel2;
-  Pneumatics *pneumatics;
-
- public:
-  Intake(Pneumatics *pneumatics);
-  ~Intake();
+class Intake : public frc2::SubsystemBase { 
+public: 
   
-  void IntakeSpeed(double IntakeSet);
-  void ToggleDeploy();
-  };
+    Intake(Pneumatics *pneumatics);
+    ~Intake();
+
+        void Toggledeploy();
+        void IntakeSpeed (double x);
+
+    void Periodic(); 
+
+private:
+    WPI_TalonSRX *motor1, *motor2;
+    Pneumatics *pneumatics;
+};

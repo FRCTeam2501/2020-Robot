@@ -1,17 +1,26 @@
-#include "Intake/Intake.h"
 
-Intake::Intake(Pneumatics *pneumatics) {
-    intakeWheel = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
-    intakeWheel2 = new WPI_TalonSRX(CAN::INTAKE_LEFT);
-    pneumatics = new Pneumatics();
+#include "subsystems/intake/intake.h"
 
-}
+ void Intake::Periodic() {}
+
+ Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
+    motor1 = new WPI_TalonSRX(CAN::front);
+    motor2 = new WPI_TalonSRX(CAN::back);
+    
+ }
+
+
 Intake::~Intake() {
-    delete intakeWheel;
+    delete motor1;
+    delete motor2;
+    delete pneumatics;
 }
-void Intake::IntakeSpeed(double IntakeSet){
-    intakeWheel->Set(IntakeSet);
-}
-void Intake::ToggleDeploy(){
+
+void Intake::Toggledeploy(){
     pneumatics->ToggleIntake();
+}
+
+void Intake::IntakeSpeed (double x){
+    motor1-> Set (x);
+    motor2-> Set (x);
 }
