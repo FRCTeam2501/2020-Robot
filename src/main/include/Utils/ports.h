@@ -50,9 +50,10 @@ namespace CAN		//RoboRIO CAN Devices
 		RIGHT_FRONT,
 		RIGHT_REAR,
 		INTAKE_LEFT,
-		HOPPER_LEFT,
-		HOPPER_RIGHT,
 		INTAKE_RIGHT,
+		HOPPER,
+		HOPPER_EMPTY,
+		EMPTY_8,
 		EMPTY_9,
 		EMPTY_10,
 		EMPTY_11,
@@ -61,7 +62,6 @@ namespace CAN		//RoboRIO CAN Devices
 		SHOOTER_LEFT,
 		SHOOTER_RIGHT,
 		LEFT_FRONT
-
 	};
 	enum CAN_PCM
 	{

@@ -1,0 +1,15 @@
+The following subsystems were coded by students:
+ - Cameras: Brian Alberg
+ - Climber: Brian Alberg
+ - Drivetrain: Brian Alberg
+ - Hopper: Tony DeMars and Parker Nelson
+ - Intake: Tony DeMars
+ - Pneumatics: Brian Alberg
+ - Robot: Brian Alberg
+ - RobotContainer: Brian Alberg
+ - Shooter: Jacob Hagberg
+
+
+With help from the following mentors:
+ - Tyler Seiford
+ - Blake Shamla

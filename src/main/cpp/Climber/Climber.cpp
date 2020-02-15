@@ -100,6 +100,7 @@ void Climber::ToggleWinchDownOn(){
     switch(*winchState){
         case OFF:
             *winchState = REVERSE;
+            break;
         case REVERSE:
         default:
             *winchState = OFF;

@@ -31,4 +31,6 @@ public:
     void ToggleClimb();
 
     void ToggleIntake();
+
+    void ToggleHopper();
 };

@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "Utils/include.h"
-#include "subsystems/Pneumatics.h"
+#include "Pneumatics/Pneumatics.h"
 
 using namespace frc; 
 using namespace ctre::phoenix::motorcontrol::can;

@@ -1,12 +1,10 @@
-
-#include "subsystems/intake/intake.h"
+#include "Intake/Intake.h"
 
  void Intake::Periodic() {}
 
  Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-    motor1 = new WPI_TalonSRX(CAN::front);
-    motor2 = new WPI_TalonSRX(CAN::back);
-    
+    motor1 = new WPI_TalonSRX(CAN::INTAKE_LEFT);
+    motor2 = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
  }
 
 

@@ -113,3 +113,7 @@ void Pneumatics::ToggleIntake(){
             break;
     }
 }
+
+void Pneumatics::ToggleHopper() {
+    //NOTHING!
+}

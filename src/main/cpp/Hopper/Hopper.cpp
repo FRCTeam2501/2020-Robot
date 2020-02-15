@@ -1,9 +1,9 @@
-#include "hopper/hopper.h"
+#include "Hopper/Hopper.h"
 
 void Hopper::Periodic() {}
 
 Hopper::Hopper(Pneumatics *pneumatics) : pneumatics(pneumatics) { 
-    hopper = new WPI_TalonSRX(PWM::Hopper);
+    hopper = new WPI_TalonSRX(CAN::HOPPER);
     
 }
 

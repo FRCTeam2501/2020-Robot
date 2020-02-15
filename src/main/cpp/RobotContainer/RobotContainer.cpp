@@ -18,32 +18,24 @@ RobotContainer::RobotContainer()  {
 
 	intake->SetDefaultCommand(IntakeSpeed(
 		  intake,
-		  [this] {return controlStick->GetRawAxis(3);}
+		  [this] {return (controlStick->GetRawAxis(3)+1)/2;}
 	));
-
-	//cameras = new Cameras();
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
-	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_8);
+//
 
-	Pneumatics1->WhenPressed(new ToggleVert(pneu));
+	intakeDeployButton = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
+	intakeDeployButton->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			intake->Toggledeploy();
+		},
+		{ intake }
+	));
 
-	Pneumatics2 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
-
-	Pneumatics2->WhenPressed(new ToggleClimb(pneu));
-
-	ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
-
-	ShootTrigger->WhenPressed(new Shoot(shoot));
-
-	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
-
-	intakeDeployButton->WhenPressed(new ToggleDeployIntake(intake));
-
-	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
+	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
 	winchForward->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this]{
 			climber->ToggleWinchOn();
@@ -54,7 +46,7 @@ RobotContainer::RobotContainer()  {
 		{climber}
 	));
 
-	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
+	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
 	winchReverse->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this]{
 			climber->ToggleWinchDownOn();
@@ -73,7 +65,6 @@ RobotContainer::RobotContainer()  {
 RobotContainer::~RobotContainer(){
 	delete drive;
 	delete driveStick;
-	delete cameras;
 	delete switchDirection;
 	delete intake;
 	delete winchForward;
