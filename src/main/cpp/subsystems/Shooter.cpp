@@ -5,29 +5,29 @@ using namespace rev;
 
 Shooter::Shooter(){
 
-spinnyThrowerLeft = new CANSparkMax(CAN::SHOOTER_LEFT,CANSparkMax::MotorType::kBrushless);
-spinnyThrowerRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::kBrushless);
+spinnyShootyLeft = new CANSparkMax(CAN::SHOOTER_LEFT,CANSparkMax::MotorType::kBrushless);
+spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::kBrushless);
 
-    spinnyThrowerLeft->GetPIDController().SetP(CONSTANTS::SHOOTER:: kP);
-    spinnyThrowerLeft->GetPIDController().SetI(CONSTANTS::SHOOTER:: kI);
-    spinnyThrowerLeft->GetPIDController().SetD(CONSTANTS::SHOOTER:: kD);
-    spinnyThrowerLeft->GetPIDController().SetIZone(CONSTANTS::SHOOTER:: kIz);
-    spinnyThrowerLeft->GetPIDController().SetFF(CONSTANTS::SHOOTER:: kFF);
-    spinnyThrowerLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
+    spinnyShootyLeft->GetPIDController().SetP(CONSTANTS::SHOOTER:: kP);
+    spinnyShootyLeft->GetPIDController().SetI(CONSTANTS::SHOOTER:: kI);
+    spinnyShootyLeft->GetPIDController().SetD(CONSTANTS::SHOOTER:: kD);
+    spinnyShootyLeft->GetPIDController().SetIZone(CONSTANTS::SHOOTER:: kIz);
+    spinnyShootyLeft->GetPIDController().SetFF(CONSTANTS::SHOOTER:: kFF);
+    spinnyShootyLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
 
-    spinnyThrowerRight->Follow (*spinnyThrowerLeft);
+    spinnyShootyRight->Follow (*spinnyShootyLeft);
 
     rpm = new double; 
 }
 
 
 Shooter::~Shooter(){
-    delete spinnyThrowerLeft;
-    delete spinnyThrowerRight;
+    delete spinnyShootyLeft;
+    delete spinnyShootyRight;
 }
 
 void Shooter::flywheleSpeed(double SetPoint){
-    spinnyThrowerLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
+    spinnyShootyLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
 
 }
 
@@ -43,24 +43,24 @@ void Shooter::Toggle(){
 
         *rpm = 3900; 
 
-        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
         toggle = false;
     } else {
         double *rpm = 0;
-        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
 }
 
  void Shooter::moreSpeed(){
     if (*rpm <= 5650){
         *rpm + CONSTANTS::SHOOTER::adjustSpeed ;
-        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }
 
  void Shooter::lessSpeed(){
     if (*rpm >= -5650){
         *rpm - CONSTANTS::SHOOTER::adjustSpeed;
-        spinnyThrowerLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }

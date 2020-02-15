@@ -8,7 +8,7 @@ using namespace rev;
 class Shooter : public frc2::SubsystemBase 
 {
 private:
-    CANSparkMax *spinnyThrowerLeft, *spinnyThrowerRight;
+    CANSparkMax *spinnyShootyLeft, *spinnyShootyRight;
         //spinnyThrower is the motor controller for the flywhele.
     
     bool toggle = 0;    
