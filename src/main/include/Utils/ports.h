@@ -36,8 +36,8 @@ namespace PWM		//RoboRIO PWM Ports
 		motor,
 		frontmotor,
 		backmotor,
-		EMPTY_8,
-		EMPTY_9
+		front,
+		back
 	};
 }
 namespace CAN		//RoboRIO CAN Devices
@@ -46,7 +46,8 @@ namespace CAN		//RoboRIO CAN Devices
 	enum CAN_DEVICES
 	{
 		CAN_PCM = 0,
-		EMPTY_1
+		front,
+		back,
 	};
 }
 namespace DIO		//RoboRIO DIO Ports

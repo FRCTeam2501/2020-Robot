@@ -25,4 +25,6 @@ public:
     void ClimbRetract();
     void ToggleVert();
     void ToggleClimb();
+    
+    void ToggleIntake();
 };

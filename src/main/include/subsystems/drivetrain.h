@@ -15,7 +15,7 @@ void ArcadeDrive(double x, double z);
     void Periodic();
 
  private:
-        DifferentialDrive *drive;
+        DifferentialDrive *drive, *autocommand;
         PWMVictorSPX *frontLeft, *rearLeft, *frontRight, *rearRight;
 
        SpeedControllerGroup *left, *right;

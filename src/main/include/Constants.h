@@ -10,3 +10,9 @@ namespace DriveConstants {
 namespace OIConstants {
     constexpr int kDriverControllerPort = 2;
 }
+
+namespace AutoConstants {
+     constexpr int AUTO_SPEED = 0;
+     constexpr int AUTO_TIME = 0;
+
+}
