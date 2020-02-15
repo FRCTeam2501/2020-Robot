@@ -15,6 +15,8 @@
 #include "Climber/Climber.h"
 #include "Climber/VariableSpeed.h"
 
+#include "Hopper/Hopper.h"
+
 using namespace frc;
 
 class RobotContainer {
@@ -32,8 +34,10 @@ class RobotContainer {
   frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
                        *ShootTrigger,
                        *intakeDeployButton, *intakeSet,
-                       *winchForward, *winchReverse;
+                       *winchForward, *winchReverse,
+                       *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, *runHopper;
   Pneumatics *pneu;
   Intake *intake;
   Shooter *shoot;
+  Hopper *hopper;
 };

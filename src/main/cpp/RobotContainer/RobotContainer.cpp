@@ -9,6 +9,8 @@ RobotContainer::RobotContainer()  {
 	shoot = new Shooter();
 	intake = new Intake(pneu);
 	climber = new Climber(pneu);
+	shoot = new Shooter();
+	hopper = new Hopper(pneu);
 
   	drive->SetDefaultCommand(ManualDrive(
 		  drive,
@@ -35,7 +37,7 @@ RobotContainer::RobotContainer()  {
 		{ intake }
 	));
 
-	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
+	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
 	winchForward->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this]{
 			climber->ToggleWinchOn();
@@ -46,7 +48,7 @@ RobotContainer::RobotContainer()  {
 		{climber}
 	));
 
-	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
+	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
 	winchReverse->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this]{
 			climber->ToggleWinchDownOn();
@@ -60,6 +62,71 @@ RobotContainer::RobotContainer()  {
 	climber->SetDefaultCommand(VariableSpeed(
 		  climber,
 		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)+1)/2;}
+	));
+
+
+	ShootTrigger = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
+	ShootTrigger->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shoot->Toggle();
+		},
+		{ shoot }
+	));
+
+	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
+	evacHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this] {
+			hopper->HopperToggle();
+			hopper->UppyWuppy(0.5);
+		},
+		[this] {
+			hopper->HopperToggle();
+			hopper->UppyWuppy(0.0);
+		},
+		{ hopper }
+	));
+
+	shootUp = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_5);
+	shootUp->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shoot->moreSpeed();
+		},
+		{ shoot }
+	));
+
+	shootDown = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_3);
+	shootDown->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			shoot->lessSpeed();
+		},
+		{ shoot }
+	));
+
+	climbForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
+	climbForward->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			climber->StateUp();
+		},
+		{ climber }
+	));
+
+	climbReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
+	climbReverse->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			climber->StateBack();
+		},
+		{ climber }
+	));
+
+	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
+	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this] {
+			hopper->UppyWuppy(0.5);
+		},
+		[this] {
+			hopper->UppyWuppy(0.0);
+		},
+		{ hopper }
 	));
 }
 RobotContainer::~RobotContainer(){
