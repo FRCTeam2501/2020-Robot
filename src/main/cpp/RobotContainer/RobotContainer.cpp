@@ -20,7 +20,7 @@ RobotContainer::RobotContainer()  {
 
 	intake->SetDefaultCommand(IntakeSpeed(
 		  intake,
-		  [this] {return (controlStick->GetRawAxis(3)+1)/2;}
+		  [this] {return (controlStick->GetRawAxis(JOYSTICK::Z) + 1.0) / 2.0;}
 	));
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
@@ -61,7 +61,7 @@ RobotContainer::RobotContainer()  {
 
 	climber->SetDefaultCommand(VariableSpeed(
 		  climber,
-		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)+1)/2;}
+		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)-1)/2;}
 	));
 
 
@@ -77,7 +77,7 @@ RobotContainer::RobotContainer()  {
 	evacHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->HopperToggle();
-			hopper->UppyWuppy(0.5);
+			hopper->UppyWuppy(1.0);
 		},
 		[this] {
 			hopper->HopperToggle();
@@ -121,10 +121,12 @@ RobotContainer::RobotContainer()  {
 	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
 	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			hopper->UppyWuppy(0.5);
+			hopper->UppyWuppy(1.0);
+			//wpi::outs() << "Uppy Wuppy\n";
 		},
 		[this] {
 			hopper->UppyWuppy(0.0);
+			//wpi::outs() << "Downy wuppy\n";
 		},
 		{ hopper }
 	));

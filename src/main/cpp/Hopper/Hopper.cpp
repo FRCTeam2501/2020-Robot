@@ -17,5 +17,6 @@ void Hopper::HopperToggle(){
 
 void Hopper::UppyWuppy(double speed){
     hopper->Set(speed);
-    }
+    //wpi::outs() << "UppyWuppy: " << speed << "\n";
+}
 

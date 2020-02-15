@@ -21,4 +21,5 @@ void Intake::Toggledeploy(){
 void Intake::IntakeSpeed (double x){
     motor1-> Set (x);
     motor2-> Set (x);
+    //wpi::outs() << "Set Intake: " << x << "\n";
 }
