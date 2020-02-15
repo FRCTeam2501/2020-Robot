@@ -3,7 +3,7 @@
 
 
 using namespace rev;
-
+using namespace frc;
 
 class Shooter : public frc2::SubsystemBase 
 {
@@ -21,5 +21,6 @@ public:
     void moreSpeed();
     void lessSpeed();
 
+    void Periodic();
 };
  
