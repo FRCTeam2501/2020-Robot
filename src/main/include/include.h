@@ -10,6 +10,8 @@
 #include <frc/DigitalInput.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/livewindow/LiveWindow.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/kinematics/DifferentialDriveOdometry.h>
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>

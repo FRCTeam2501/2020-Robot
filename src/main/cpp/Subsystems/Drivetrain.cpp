@@ -7,16 +7,19 @@ Drivetrain::Drivetrain() {
 	rightFront = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
 	rightRear = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
-	leftFront->RestoreFactoryDefaults();
 	leftFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	leftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-	rightFront->RestoreFactoryDefaults();
+	leftFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+	leftFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+
 	rightFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	rightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-	leftRear->RestoreFactoryDefaults();
+	rightFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+	rightFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+
 	leftRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	leftRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-	rightRear->RestoreFactoryDefaults();
+	
 	rightRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	rightRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
@@ -42,13 +45,10 @@ Drivetrain::~Drivetrain() {
 
 void Drivetrain::Periodic() {}
 
-void Drivetrain::ArcadeDrive(double y, double rz) {
-	if(*inverted)
-		y *= -1.0;
+void Drivetrain::ArcadeDrive(double x, double rz) {
+	if(!*inverted) {
+		x *= -1.0;
+	}
 
-	drive->ArcadeDrive(y, rz);
-}
-
-void Drivetrain::Stop() {
-	ArcadeDrive(0.0, 0.0);
+	drive->ArcadeDrive(x, rz);
 }

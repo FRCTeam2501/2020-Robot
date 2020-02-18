@@ -8,23 +8,32 @@ namespace CONSTANTS {
 
 	namespace DRIVETRAIN {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 60.0_A;
+					CURRENT_LIMIT = 60_A;
+		constexpr units::inch_t
+					WHEEL_DIAMETER = 8_in,
+					TRACK_WIDTH = 22_in;
+		constexpr units::length::foot_t
+					WHEEL_CIR = (WHEEL_DIAMETER * units::constants::pi);
+		constexpr units::dimensionless::scalar_t
+					GEAR_RATIO = 10.1;
+		constexpr auto
+					TURN_TO_FEET = WHEEL_CIR * GEAR_RATIO / units::angle::turn_t(1);
 	}
 	namespace CLIMBER {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 60.0_A;
+					CURRENT_LIMIT = 60_A;
 	}
 	namespace INTAKE {
 		constexpr units::current::ampere_t
-					CONTINUOUS_LIMIT = 20.0_A,
-					PEAK_LIMIT = 35.0_A;
+					CONTINUOUS_LIMIT = 20_A,
+					PEAK_LIMIT = 35_A;
 		constexpr units::millisecond_t
 					PEAK_TIME = 1000_ms;
 	}
 	namespace HOPPER {
 		constexpr units::current::ampere_t
-					CONTINUOUS_LIMIT = 20.0_A,
-					PEAK_LIMIT = 35.0_A;
+					CONTINUOUS_LIMIT = 20_A,
+					PEAK_LIMIT = 35_A;
 		constexpr units::millisecond_t
 					PEAK_TIME = 1000_ms;
 		constexpr double ON = 0.5, OFF = 0;
@@ -36,7 +45,7 @@ namespace CONSTANTS {
 		constexpr units::voltage::volt_t
 					FF = 0_V;
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 40.0_A;
+					CURRENT_LIMIT = 40_A;
 		constexpr units::angular_velocity::revolutions_per_minute_t
 					ON_SPEED = 3900_rpm,
 					OFF_SPEED = 0_rpm,
