@@ -122,5 +122,5 @@ void Pneumatics::ToggleIntake(){
 }
 
 void Pneumatics::ToggleHopper() {
-    //NOTHING!
+
 }

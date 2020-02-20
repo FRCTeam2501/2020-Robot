@@ -12,7 +12,7 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 
 Climber::~Climber(){
     delete armState;
-    delete speed;
+    delete speedWinch;
     delete left;
     delete right;
     delete speed;
@@ -130,5 +130,32 @@ void Climber::ToggleWinchDownOff(){
 }
 
 void Climber::SetSpeed(double speed){
-    *Climber::speed = speed;
+    *Climber::speedWinch = speed;
+}
+
+void Climber::Periodic() {
+    if(*changed) {
+        if(*armState == RETRACT){
+            double speed = 0.0;
+            switch(*runState) {
+                case FORWARD:
+                    speed = *speedWinch;
+                    break;
+                case REVERSE:
+                    speed = *speedWinch * -1.0;
+                    break;
+                case OFF:
+                default:
+                    break;
+            }
+            switch(*winchState) {
+                case BOTH:
+                default:
+                    left->Set(speed);
+                    right->Set(speed);
+                break;
+            }
+        }
+
+    }
 }

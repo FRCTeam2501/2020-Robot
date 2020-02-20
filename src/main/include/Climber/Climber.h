@@ -23,12 +23,16 @@ class Climber : public frc2::SubsystemBase {
 
   void SetSpeed(double speed);
 
+  void Periodic();
+
  private:
   Pneumatics *pneumatics;
 
-  double *speed;
+  double *speedWinch, *speed;
 
-  uint8_t *armState, *winchState;
+  bool *changed;
+
+  uint8_t *armState, *winchState, *runState;
 
   rev::CANSparkMax *left, *right;
 
@@ -39,9 +43,14 @@ class Climber : public frc2::SubsystemBase {
       EXTEND,
       RETRACT
   };
-  enum WINCH_STATES{
+  enum RUN_STATES{
       OFF = 0,
       FORWARD,
       REVERSE
+  };
+  enum WINCH_STATES{
+      BOTH = 0,
+      LEFT,
+      RIGHT
   };
 };
