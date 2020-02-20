@@ -44,16 +44,8 @@ void Shooter::Toggle(){
 
  void Shooter::moreSpeed(){
     if (*rpm <= 5650){
-<<<<<<< HEAD
-<<<<<<< HEAD
         *rpm + CONSTANTS::SHOOTER::adjustSpeed;
         spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
-=======
-        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
->>>>>>> 4812a405f9e9237e4bf308398b2be8904bc45ad1
-=======
-        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
->>>>>>> 4812a405f9e9237e4bf308398b2be8904bc45ad1
     }
  }
 
