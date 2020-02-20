@@ -1,7 +1,5 @@
 #include "subsystems/Shooter.h"
 
-using namespace rev;
-
 
 Shooter::Shooter(){
 
@@ -17,7 +15,8 @@ spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::k
 
     spinnyShootyRight->Follow (*spinnyShootyLeft);
 
-    rpm = new double; 
+
+    rpm = new double(0);
 }
 
 
@@ -27,40 +26,45 @@ Shooter::~Shooter(){
 }
 
 void Shooter::flywheleSpeed(double SetPoint){
-    spinnyShootyLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
+    //spinnyShootyLeft->GetPIDController().SetReference(SetPoint, rev::ControlType::kVelocity);
 
 }
 
 void Shooter::Toggle(){
+    toggle = !toggle;
 
-    if (toggle){
-        toggle = 0;
+    if (toggle) {
+        *rpm = 3900.0;
     } else {
-        toggle = 1;
+        *rpm = 0.0;
     }
 
-    if (toggle){
-
-        *rpm = 3900; 
-
-        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
-        toggle = false;
-    } else {
-        double *rpm = 0;
-        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
-    }
+    spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
 }
 
  void Shooter::moreSpeed(){
     if (*rpm <= 5650){
-        *rpm + CONSTANTS::SHOOTER::adjustSpeed ;
+<<<<<<< HEAD
+<<<<<<< HEAD
+        *rpm + CONSTANTS::SHOOTER::adjustSpeed;
         spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+=======
+        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
+>>>>>>> 4812a405f9e9237e4bf308398b2be8904bc45ad1
+=======
+        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
+>>>>>>> 4812a405f9e9237e4bf308398b2be8904bc45ad1
     }
  }
 
  void Shooter::lessSpeed(){
     if (*rpm >= -5650){
-        *rpm - CONSTANTS::SHOOTER::adjustSpeed;
-        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
+        *rpm -= CONSTANTS::SHOOTER::adjustSpeed;
     }
  }
+
+
+void Shooter::Periodic() {
+    SmartDashboard::PutNumber("Setpoint: ", *rpm);
+    SmartDashboard::PutNumber("Speed: ", spinnyShootyLeft->GetEncoder().GetVelocity());
+}

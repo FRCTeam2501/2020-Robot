@@ -28,7 +28,7 @@ shooter = new Shooter;
 			shooter->Toggle();
 		},
 		{ shooter }
-	), false);
+	));
 
 lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 	lessSpeed->WhenPressed(new frc2::InstantCommand(
@@ -36,7 +36,7 @@ lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 			shooter->lessSpeed();
 		},
 		{ shooter }
-	), false);
+	));
   
   moreSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_5);
 	moreSpeed->WhenPressed(new frc2::InstantCommand(
@@ -44,8 +44,7 @@ lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 			shooter->moreSpeed();
 		},
 		{ shooter }
-	), false);
-
+	));
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

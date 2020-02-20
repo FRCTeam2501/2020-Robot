@@ -7,8 +7,10 @@ using namespace frc;
 class Cameras : frc2::SubsystemBase
 {
 private:
-    cs::UsbCamera *WideCam;
+    cs::UsbCamera *WideCam, *OtherCam;
     cs::MjpegServer *dashStream;
+
+    char *stream;
 
     const int WITH = 320;
     const int HEIGHT = 230;
@@ -18,10 +20,11 @@ public:
     Cameras();
     ~Cameras();
 
-    void Periodic();
+    void InitDefaultCommand();
+    void StreamOtherCam();
+    void StreamWideCam();
+    char GetStream();
 
-
- 
 };
 
 
