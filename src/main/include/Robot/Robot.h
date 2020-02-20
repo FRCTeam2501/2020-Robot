@@ -24,4 +24,5 @@ class Robot : public frc::TimedRobot {
 
  private:
 	RobotContainer *container;
+    frc2::Command *autoCommand;
 };

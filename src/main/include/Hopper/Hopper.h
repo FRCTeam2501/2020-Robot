@@ -15,7 +15,7 @@ public:
     void UppyWuppy(double speed);
     private:
    
-   WPI_TalonSRX *hopper;
+   PWMVictorSPX *hopper;
    
     Pneumatics *pneumatics;
 

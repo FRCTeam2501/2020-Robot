@@ -3,8 +3,8 @@
  void Intake::Periodic() {}
 
  Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-    motor1 = new WPI_TalonSRX(CAN::INTAKE_LEFT);
-    motor2 = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
+    motor1 = new PWMVictorSPX(CAN::INTAKE_LEFT);
+    motor2 = new PWMVictorSPX(CAN::INTAKE_RIGHT);
  }
 
 
@@ -20,6 +20,6 @@ void Intake::Toggledeploy(){
 
 void Intake::IntakeSpeed (double x){
     motor1-> Set (x);
-    motor2-> Set (x);
+    motor2-> Set (-x);
     //wpi::outs() << "Set Intake: " << x << "\n";
 }

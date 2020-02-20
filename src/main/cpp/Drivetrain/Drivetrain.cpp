@@ -13,6 +13,11 @@ Drivetrain::Drivetrain() {
     rearLeft->Follow(*frontLeft);
     rearRight->Follow(*frontRight);
 
+    frontLeft->SetSmartCurrentLimit(60);
+    frontRight->SetSmartCurrentLimit(60);
+    rearLeft->SetSmartCurrentLimit(60);
+    rearRight->SetSmartCurrentLimit(60);
+
     drive = new DifferentialDrive(*frontLeft, *frontRight);
 }
 void Drivetrain::Switch(){

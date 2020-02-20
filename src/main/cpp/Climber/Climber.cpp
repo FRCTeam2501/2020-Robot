@@ -24,22 +24,34 @@ void Climber::StateUp(){
             pneumatics->ClimbRetract();
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
+//            wpi::outs() << "DEFAULT";
+            SmartDashboard::PutString("CLimb", "DEFAULT->DOWN");
             break;
         case DOWN:
             pneumatics->VerticalLiftExtend();
             *armState = UP;
+//            wpi::outs() << "DOWN";
+            SmartDashboard::PutString("CLimb", "DOWN->UP");
             break;
         case UP:
             pneumatics->ClimbExtend();
             *armState = EXTEND;
+//            wpi::outs() << "UP";
+            SmartDashboard::PutString("CLimb", "UP->EXTEND");
+
             break;
         case EXTEND:
             pneumatics->ClimbRetract();
             *armState = RETRACT;
+//            wpi::outs() << "EXTEND";
+            SmartDashboard::PutString("CLimb", "EXTEND->RETRACT");
+
             break;
         case RETRACT:
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
+//            wpi::outs() << "RETRACT";
+            SmartDashboard::PutString("CLimb", "RETRACT->DOWN");
             break;
         default:
             break;
@@ -51,23 +63,28 @@ void Climber::StateBack(){
             case DEFAULT:
                 pneumatics->ClimbRetract();
                 pneumatics->VerticalLiftRetract();
-                *armState = DOWN;
+                *armState = DOWN;   
+                SmartDashboard::PutString("CLimb", "DEFAULT->DOWN");
                 break;
             case DOWN:
                 pneumatics->VerticalLiftExtend();
                 *armState = UP;
+                SmartDashboard::PutString("CLimb", "DOWN->UP");
                 break;
             case UP:
                 pneumatics->VerticalLiftRetract();
                 *armState = DOWN;
+                SmartDashboard::PutString("CLimb", "UP->DOWN");
                 break;
             case EXTEND:
                 pneumatics->ClimbRetract();
                 *armState = RETRACT;
+                SmartDashboard::PutString("CLimb", "EXTEND->RETRACT");
                 break;
             case RETRACT:
                 pneumatics->ClimbExtend();
                 *armState = EXTEND;
+                SmartDashboard::PutString("CLimb", "RETRACT->EXTEND");
                 break;
             default:
                 break;

@@ -1,3 +1,15 @@
+/*
+*Thanks to the Hardwork and Dedication of all the 2501 Programmers
+*Brian Alberg, "I haven't slept in days"
+*Tony DeMars, "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+*Parker Nelson, "my only inspiration was the robots movie with the thicc mom"
+*Jacob Hagberg, "I don't know how to program"
+*Maxwell Xiong, "I love the chinease"
+*and Ethan Owens "What is C++?"
+*Also, our sincere gratitute to our programming mentor,
+*Tyler Seiford
+*/
+
 #include "Robot/Robot.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -7,6 +19,7 @@ using namespace frc;
 
 Robot::Robot() {
   container = new RobotContainer();
+  autoCommand = nullptr;
 }
 Robot::~Robot() {
   delete container;
@@ -23,11 +36,27 @@ void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {}
 
-void Robot::AutonomousInit() {}
+void Robot::AutonomousInit() {
+  if(autoCommand == nullptr){
+    autoCommand = container->GitAutoCommand();
+    autoCommand->Schedule();
+  }
+}
 
 void Robot::AutonomousPeriodic() {}
 
-void Robot::TeleopInit() {}
+void Robot::TeleopInit() {
+  if(autoCommand != nullptr){
+    autoCommand->Cancel();
+    autoCommand = nullptr;
+  }
+
+  //container->pneu->ClimbExtend();
+  //container->pneu->VerticalLiftExtend();
+
+  container->pneu->ClimbRetract();
+  container->pneu->VerticalLiftRetract();
+}
 
 void Robot::TeleopPeriodic() {}
 

@@ -9,7 +9,6 @@ RobotContainer::RobotContainer()  {
 	shoot = new Shooter();
 	intake = new Intake(pneu);
 	climber = new Climber(pneu);
-	shoot = new Shooter();
 	hopper = new Hopper(pneu);
 
   	drive->SetDefaultCommand(ManualDrive(
@@ -20,7 +19,7 @@ RobotContainer::RobotContainer()  {
 
 	intake->SetDefaultCommand(IntakeSpeed(
 		  intake,
-		  [this] {return (controlStick->GetRawAxis(JOYSTICK::Z) + 1.0) / 2.0;}
+		  [this] {return (driveStick->GetRawAxis(JOYSTICK::Z) - 1.0) / -2.0;}
 	));
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
@@ -121,12 +120,10 @@ RobotContainer::RobotContainer()  {
 	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
 	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			hopper->UppyWuppy(1.0);
-			//wpi::outs() << "Uppy Wuppy\n";
+			hopper->UppyWuppy(-1.0);
 		},
 		[this] {
 			hopper->UppyWuppy(0.0);
-			//wpi::outs() << "Downy wuppy\n";
 		},
 		{ hopper }
 	));
@@ -143,4 +140,19 @@ RobotContainer::~RobotContainer(){
 
 void RobotContainer::Periodic() {
 
+}
+
+frc2::Command *RobotContainer::GitAutoCommand() {
+	return new frc2::ParallelRaceGroup(
+		frc2::WaitCommand(50_s),
+		frc2::StartEndCommand(
+			[this] {
+				drive->ArcadeDrive(1, 0.0);
+			},
+			[this] {
+				drive->ArcadeDrive(0.0, 0.0);
+			},
+			{ drive }
+		)
+	);
 }

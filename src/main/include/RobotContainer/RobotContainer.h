@@ -26,8 +26,9 @@ class RobotContainer {
   ~RobotContainer();
 
   void Periodic();
+  frc2::Command *GitAutoCommand();
   
- private:
+// private:
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
   Climber *climber;

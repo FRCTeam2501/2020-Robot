@@ -3,7 +3,7 @@
 void Hopper::Periodic() {}
 
 Hopper::Hopper(Pneumatics *pneumatics) : pneumatics(pneumatics) { 
-    hopper = new WPI_TalonSRX(CAN::HOPPER);
+    hopper = new PWMVictorSPX(CAN::HOPPER);
     
 }
 
@@ -17,6 +17,6 @@ void Hopper::HopperToggle(){
 
 void Hopper::UppyWuppy(double speed){
     hopper->Set(speed);
-    //wpi::outs() << "UppyWuppy: " << speed << "\n";
+    wpi::outs() << "UppyWuppy: " << speed << "\n";
 }
 

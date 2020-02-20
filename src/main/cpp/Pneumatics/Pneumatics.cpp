@@ -42,22 +42,27 @@ void Pneumatics::DisableAll()
 }
  
 void Pneumatics::VerticalLiftExtend(){
+    wpi::outs() << "V Extend\n";
     VerticalLift->Set(DoubleSolenoid::kForward);
 }
 
 void Pneumatics::VerticalLiftRetract(){
+    wpi::outs() << "V Retract\n";
     VerticalLift->Set(DoubleSolenoid::kReverse);
 }
 
 void Pneumatics::ClimbExtend(){
     Climb->Set(DoubleSolenoid::kForward);
+     wpi::outs() << "Climb extend\n";
 }
 
 void Pneumatics::ClimbRetract(){
     Climb->Set(DoubleSolenoid::kReverse);
+     wpi::outs() << "climb retract\n";
 }
 
 void Pneumatics::ToggleVert(){
+     wpi::outs() << "Toggle vert\n";
     switch(VerticalLift->Get()){
         case DoubleSolenoid::kForward:
              VerticalLift->Set(DoubleSolenoid::kReverse);
@@ -77,13 +82,14 @@ void Pneumatics::ToggleVert(){
 }
 
 void Pneumatics::ToggleClimb(){
+     wpi::outs() << "toggle climb\n";
     switch(Climb->Get()){    
         case DoubleSolenoid::kForward:
-             Climb->Set(DoubleSolenoid::kForward);     
+             Climb->Set(DoubleSolenoid::kReverse);     
             break;
 
         case DoubleSolenoid::kReverse:
-             Climb->Set(DoubleSolenoid::kReverse);
+             Climb->Set(DoubleSolenoid::kForward);
             break;
 
         case DoubleSolenoid::kOff:
@@ -96,13 +102,14 @@ void Pneumatics::ToggleClimb(){
 }
 
 void Pneumatics::ToggleIntake(){
+     wpi::outs() << "toggle intake\n";
     switch(Intake->Get()){    
         case DoubleSolenoid::kForward:
-             Intake->Set(DoubleSolenoid::kForward);     
+             Intake->Set(DoubleSolenoid::kReverse);     
             break;
 
         case DoubleSolenoid::kReverse:
-             Intake->Set(DoubleSolenoid::kReverse);
+             Intake->Set(DoubleSolenoid::kForward);
             break;
 
         case DoubleSolenoid::kOff:
