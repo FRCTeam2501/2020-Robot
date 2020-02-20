@@ -33,11 +33,13 @@ Intake::~Intake() {
 
 void Intake::Periodic() {
 	if(*changed) {
-		if(*inverted) {
-			left->Set(*speed * -1.0);
-		}
-		else {
-			right->Set(*speed);
+		if(*running) {
+			if(*inverted) {
+				left->Set(*speed * -1.0);
+			}
+			else {
+				right->Set(*speed);
+			}
 		}
 		*changed = false;
 	}
