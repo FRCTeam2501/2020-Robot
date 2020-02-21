@@ -14,6 +14,7 @@
 
 #include "Classes/AutoInput.h"
 #include "Classes/Cameras.h"
+#include "Classes/RGB.h"
 
 
 class RobotContainer : public frc::ErrorBase {
@@ -27,6 +28,7 @@ private:
 
 	AutoInput *autoInput;
 	Cameras *cameras;
+	RGB *rgb;
 
 	frc::Joystick *driveStick, *controlStick;
 	frc2::JoystickButton *toggleDrive,

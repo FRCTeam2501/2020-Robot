@@ -1,5 +1,5 @@
-#include <units/units.h>
 #pragma once
+#include <include.h>
 
 
 namespace CONSTANTS {
@@ -49,13 +49,79 @@ namespace CONSTANTS {
 		constexpr units::angular_velocity::revolutions_per_minute_t
 					ON_SPEED = 3900_rpm,
 					OFF_SPEED = 0_rpm,
-					ADJUST_SPEED = 50_rpm;
+					ADJUST_SPEED = 50_rpm,
+					MAX_SPEED = 5700_rpm;
 	}
 	namespace CAMERA {
 		constexpr uint32_t
 			WIDTH = 320,
 			HEIGHT = 240,
 			FPS = 30;
+	}
+	namespace RGB {
+		constexpr uint32_t
+			//Length of entire strip
+			LENGTH = 150;
+
+			namespace DRIVETRAIN {
+				constexpr uint32_t
+					LENGTH = 30,
+					STRIP_LENGTH = LENGTH / 2,
+					START = 0,
+
+					LEFT_FRONT_END = START + (STRIP_LENGTH / 2) - 1,
+					LEFT_REAR_START = LEFT_FRONT_END + 1,
+					LEFT_END = START + STRIP_LENGTH - 1,
+					RIGHT_START = LEFT_END + 1,
+					RIGHT_FRONT_END = RIGHT_START + (STRIP_LENGTH / 2) - 1,
+					RIGHT_REAR_START = RIGHT_FRONT_END + 1,
+
+					END = START + LENGTH - 1;
+			}
+
+			namespace CLIMBER {
+				constexpr uint32_t
+					LENGTH = 60,
+					STRIP_LENGTH = LENGTH / 4,
+					START = DRIVETRAIN::END + 1,
+
+					LEFT_ARM_END = START + STRIP_LENGTH - 1,
+					RIGHT_ARM_START = LEFT_ARM_END + 1,
+					RIGHT_ARM_END = RIGHT_ARM_START + STRIP_LENGTH - 1,
+					LEFT_WINCH_START = RIGHT_ARM_END + 1,
+					LEFT_WINCH_END = LEFT_WINCH_START + STRIP_LENGTH - 1,
+					RIGHT_WINCH_START = LEFT_WINCH_END + 1,
+
+					END = START + LENGTH - 1;
+			}
+
+			namespace INTAKE {
+				constexpr uint32_t
+					LENGTH = 30,
+					STRIP_LENGTH = LENGTH / 2,
+					START = CLIMBER::END,
+
+					LEFT_END = START + STRIP_LENGTH - 1,
+					RIGHT_START = LEFT_END + 1,
+
+					END = START + LENGTH - 1;
+			}
+
+			namespace SHOOTER {
+				constexpr uint32_t
+					LENGTH = 30,
+					STRIP_LENGTH = LENGTH / 2,
+					START = INTAKE::END,
+
+					LEFT_END = START + STRIP_LENGTH - 1,
+					RIGHT_START = LEFT_END + 1,
+
+					END = START + LENGTH - 1;
+			}
+
+			constexpr frc::Color8Bit
+				DISABLED = frc::Color::kGray,
+				ERROR = frc::Color::kDeepPink;
 	}
 /*
 	namespace SHOOTER_SATURDAY {
@@ -78,27 +144,27 @@ namespace CONSTANTS {
 */
 	namespace AUTO {
 		namespace OFF_0 {
-			constexpr uint8_t MODE = 0b00000;
+			constexpr uint32_t MODE = 0b00000;
 		}
 		namespace SIMPLE_DRIVE {
-			constexpr uint8_t MODE = 0b00001;
+			constexpr uint32_t MODE = 0b00001;
 			constexpr units::millisecond_t TIME = 1000_ms;
 			constexpr double SPEED = 0.75;
 		}
 		namespace SIMPLE_SHOOT {
-			constexpr uint8_t MODE = 0b00010;
+			constexpr uint32_t MODE = 0b00010;
 			constexpr units::millisecond_t
 					SPIN_UP_TIME = 1500_ms,
 					SHOOT_TIME = 7500_ms;
 		}
 		namespace SIMPLE_DRIVE_SHOOT {
-			constexpr uint8_t MODE = 0b00011;
+			constexpr uint32_t MODE = 0b00011;
 		}
 		namespace SIMPLE_SHOOT_DRIVE {
-			constexpr uint8_t MODE = 0b00100;
+			constexpr uint32_t MODE = 0b00100;
 		}
 		namespace OFF_1 {
-			constexpr uint8_t MODE = 0b11111;
+			constexpr uint32_t MODE = 0b11111;
 		}
 	}
 	namespace TELEOP {
