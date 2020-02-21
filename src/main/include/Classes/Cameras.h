@@ -5,7 +5,7 @@ class Cameras : public frc::ErrorBase {
 private:
 	cs::UsbCamera *front, *top;
 	cs::MjpegServer stream;
-	uint8_t *state;
+	uint32_t *state;
 
 	enum STATE {
 		OFF = 0,

@@ -12,6 +12,8 @@
 #include <frc/livewindow/LiveWindow.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
+#include <frc/AddressableLED.h>
+#include <frc/DriverStation.h>
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>

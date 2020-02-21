@@ -1,8 +1,9 @@
 #include "Subsystems/Intake.h"
 
+
 Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-	left = new WPI_TalonSRX(CAN::INTAKE_LEFT);
-	right = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
+	left = new WPI_TalonSRX(PORTS::CAN::INTAKE_LEFT);
+	right = new WPI_TalonSRX(PORTS::CAN::INTAKE_RIGHT);
 	speed = new double(0.0);
 	inverted = new bool(false);
 	running = new bool(false);

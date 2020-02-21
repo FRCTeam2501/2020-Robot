@@ -2,10 +2,10 @@
 
 
 Drivetrain::Drivetrain() {
-	leftFront = new rev::CANSparkMax(CAN::LEFT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
-	leftRear = new rev::CANSparkMax(CAN::LEFT_REAR, rev::CANSparkMax::MotorType::kBrushless);
-	rightFront = new rev::CANSparkMax(CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
-	rightRear = new rev::CANSparkMax(CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
+	leftFront = new rev::CANSparkMax(PORTS::CAN::LEFT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+	leftRear = new rev::CANSparkMax(PORTS::CAN::LEFT_REAR, rev::CANSparkMax::MotorType::kBrushless);
+	rightFront = new rev::CANSparkMax(PORTS::CAN::RIGHT_FRONT, rev::CANSparkMax::MotorType::kBrushless);
+	rightRear = new rev::CANSparkMax(PORTS::CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
 	leftFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	leftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);

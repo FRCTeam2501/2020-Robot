@@ -1,6 +1,7 @@
 #pragma once
 #include "include.h"
 
+class RGB;
 
 class Drivetrain : public frc2::SubsystemBase {
 private:
@@ -14,6 +15,16 @@ private:
 
 	units::meters_per_second_t GetSpeed(rev::CANSparkMax *smax) {
 		return units::feet_per_second_t(smax->GetEncoder().GetVelocity());
+	}
+
+protected:
+	friend class RGB;
+
+	double* GetLeft() {
+		return nullptr;
+	}
+	double* GetRight() {
+		return nullptr;
 	}
 
 public:

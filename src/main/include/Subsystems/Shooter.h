@@ -2,6 +2,8 @@
 #include "include.h"
 
 
+class RGB;
+
 class Shooter : public frc2::SubsystemBase {
 private:
 	rev::CANSparkMax *left, *right;
@@ -10,6 +12,16 @@ private:
 	bool *on;
 	bool *changed;
 
+protected:
+	friend class RGB;
+
+	units::angular_velocity::revolutions_per_minute_t* GetSetpoint() {
+		return speed;
+	}
+
+	bool* GetOn() {
+		return on;
+	}
 
 public:
 	Shooter();
@@ -32,11 +44,12 @@ public:
 	void Toggle() {
 		*on = !*on;
 		if(*on) {
-			Set(CONSTANTS::SHOOTER::ON_SPEED);
+			*speed = CONSTANTS::SHOOTER::ON_SPEED;
 		}
 		else {
-			Set(CONSTANTS::SHOOTER::OFF_SPEED);
+			*speed = CONSTANTS::SHOOTER::OFF_SPEED;
 		}
+		*changed = true;
 	}
 
 	void Up() {

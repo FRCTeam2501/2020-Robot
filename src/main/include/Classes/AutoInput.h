@@ -9,5 +9,5 @@ public:
 	AutoInput();
 	~AutoInput();
 
-	uint8_t Get();
+	uint32_t Get();
 };

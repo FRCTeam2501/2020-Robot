@@ -2,9 +2,9 @@
 
 
 Shooter::Shooter() {
-	left = new rev::CANSparkMax(CAN::SHOOTER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
-	right = new rev::CANSparkMax(CAN::SHOOTER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
-	lidar = new libcu::Lasershark(DIO::LASERSHARK);
+	left = new rev::CANSparkMax(PORTS::CAN::SHOOTER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
+	right = new rev::CANSparkMax(PORTS::CAN::SHOOTER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
+	lidar = new libcu::Lasershark(PORTS::DIO::LASERSHARK);
 	speed = new units::angular_velocity::revolutions_per_minute_t(0.0);
 	on = new bool(false);
 	changed = new bool(false);

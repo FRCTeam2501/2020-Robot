@@ -2,8 +2,8 @@
 
 
 Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-	left = new rev::CANSparkMax(CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
-	right = new rev::CANSparkMax(CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
+	left = new rev::CANSparkMax(PORTS::CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
+	right = new rev::CANSparkMax(PORTS::CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
 	left->RestoreFactoryDefaults();
 	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
@@ -13,9 +13,9 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	right->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 
 	winchSpeed = new double(0.0);
-	armState = new uint8_t(DEFAULT);
-	winchState = new uint8_t(BOTH);
-	runState = new uint8_t(OFF);
+	armState = new uint32_t(DEFAULT);
+	winchState = new uint32_t(BOTH);
+	runState = new uint32_t(OFF);
 	changed = new bool(false);
 
 	cout << "Climber Subsystem Booted!\n";
@@ -123,28 +123,25 @@ void Climber::ReverseArmState() {
 		case DEFAULT:
 		case DOWN:
 			SetArm(true);
-			*changed = true;
 			*armState = UP;
 			break;
 		case UP:
 			SetArm(false);
-			*changed = true;
 			*armState = DOWN;
 			break;
 		case EXTEND:
 			SetExtend(false);
-			*changed = true;
 			*armState = RETRACT;
 			break;
 		case RETRACT:
 			SetExtend(true);
-			*changed = true;
 			*armState = EXTEND;
 			break;
 		default:
 			cout << "Climber in illegal state!";
 			break;
 	}
+	*changed = true;
 }
 
 void Climber::SetWinchSpeed(double speed) {
@@ -156,18 +153,16 @@ void Climber::ToggleWinches() {
 	switch(*winchState) {
 		case BOTH:
 			*winchState = LEFT;
-			*changed = true;
 			break;
 		case LEFT:
 			*winchState = RIGHT;
-			*changed = true;
 			break;
 		case RIGHT:
 		default:
 			*winchState = BOTH;
-			*changed = true;
 			break;
 	}
+	*changed = true;
 }
 
 void Climber::ToggleRunning(bool reverse) {

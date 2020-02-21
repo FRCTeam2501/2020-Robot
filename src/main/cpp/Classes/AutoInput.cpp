@@ -1,11 +1,11 @@
 #include "Classes/AutoInput.h"
 
 AutoInput::AutoInput() {
-	switch0 = new frc::DigitalInput(MXP::DIO::AUTO_0);
-	switch1 = new frc::DigitalInput(MXP::DIO::AUTO_1);
-	switch2 = new frc::DigitalInput(MXP::DIO::AUTO_2);
-	switch3 = new frc::DigitalInput(MXP::DIO::AUTO_3);
-	switch4 = new frc::DigitalInput(MXP::DIO::AUTO_4);
+	switch0 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_0);
+	switch1 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_1);
+	switch2 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_2);
+	switch3 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_3);
+	switch4 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_4);
 
 	cout << "AutoInput Booted!\n";
 }
@@ -18,7 +18,7 @@ AutoInput::~AutoInput() {
 	delete switch4;
 }
 
-uint8_t AutoInput::Get() {
+uint32_t AutoInput::Get() {
 	return
 		(switch4->Get() << 4) +
 		(switch3->Get() << 3) +

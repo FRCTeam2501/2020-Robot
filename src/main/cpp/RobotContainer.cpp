@@ -1,10 +1,9 @@
 #include "RobotContainer.h"
-#include "frc/smartdashboard/SmartDashboard.h"
 
 
 void RobotContainer::BootSubsystems() {
-	driveStick = new frc::Joystick(JOYSTICK::DRIVER);
-	controlStick = new frc::Joystick(JOYSTICK::CONTROL);
+	driveStick = new frc::Joystick(PORTS::JOYSTICK::DRIVER);
+	controlStick = new frc::Joystick(PORTS::JOYSTICK::CONTROL);
 
 	drive = new Drivetrain();
 	pneumatics = new Pneumatics();
@@ -15,6 +14,7 @@ void RobotContainer::BootSubsystems() {
 
 	autoInput = new AutoInput();
 	cameras = new Cameras();
+	rgb = new RGB(drive, climber, intake, shooter);
 
 	cout << "Subsystems Booted!\n";
 }
@@ -312,6 +312,7 @@ void RobotContainer::DeleteSubsystems() {
 
 	delete autoInput;
 	delete cameras;
+	delete rgb;
 
 	cout << "Subsystems Deleted!\n";
 }
@@ -356,7 +357,9 @@ RobotContainer::~RobotContainer() {
 	cout << "RobotContainer Deleted!\n";
 }
 
-void RobotContainer::Periodic() {}
+void RobotContainer::Periodic() {
+	rgb->Periodic();
+}
 
 frc2::Command* RobotContainer::GetAutoCommand() {
 	switch(autoInput->Get()) {

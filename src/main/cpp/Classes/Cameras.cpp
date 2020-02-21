@@ -1,10 +1,10 @@
 #include "Classes/Cameras.h"
 
 Cameras::Cameras() {
-	front = new cs::UsbCamera("Front Camera", CAMERA::FRONT);
-	top = new cs::UsbCamera("Top Camera", CAMERA::TOP);
+	front = new cs::UsbCamera("Front Camera", PORTS::CAMERA::FRONT);
+	top = new cs::UsbCamera("Top Camera", PORTS::CAMERA::TOP);
 	stream = frc::CameraServer::GetInstance()->AddSwitchedCamera("Switched Stream");
-	state = new uint8_t(OFF);
+	state = new uint32_t(OFF);
 
 	front->SetResolution(CONSTANTS::CAMERA::WIDTH, CONSTANTS::CAMERA::HEIGHT);
 	front->SetFPS(CONSTANTS::CAMERA::FPS);

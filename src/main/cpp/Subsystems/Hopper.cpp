@@ -2,8 +2,8 @@
 
 
 Hopper::Hopper(Pneumatics* pneumatics) : pneumatics(pneumatics) {
-	left = new WPI_TalonSRX(CAN::HOPPER_LEFT);
-	right = new WPI_TalonSRX(CAN::HOPPER_RIGHT);
+	left = new WPI_TalonSRX(PORTS::CAN::HOPPER_LEFT);
+	right = new WPI_TalonSRX(PORTS::CAN::HOPPER_RIGHT);
 
 	left->ConfigContinuousCurrentLimit(CONSTANTS::HOPPER::CONTINUOUS_LIMIT.to<int>());
 	left->ConfigPeakCurrentLimit(CONSTANTS::HOPPER::PEAK_LIMIT.to<int>());
