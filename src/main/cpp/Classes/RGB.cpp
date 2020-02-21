@@ -17,8 +17,8 @@ RGB::RGB(Drivetrain *drivetrain, Climber *climber, Intake *intake, Shooter *shoo
 
 	leds = new frc::AddressableLED(PORTS::PWM::RGB);
 
-	leds->SetData(ledData);
 	leds->SetLength(CONSTANTS::RGB::LENGTH);
+	leds->SetData(ledData);
 	leds->Start();
 }
 
@@ -96,6 +96,9 @@ void RGB::RunDrivetrain() {
 		else {
 			SetDrivetrain(CONSTANTS::RGB::ERROR, 1.0, 1.0);
 		}
+	}
+	else {
+		SetDrivetrainDisabled();
 	}
 }
 
