@@ -1,13 +1,18 @@
 #include "Climber/Climber.h"
 
 Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-    armState = new uint8_t(OFF);
+    armState = new uint8_t(DEFAULT);
     speed = new double(0.0);
+    speedWinch = new double(0.0);
+    runState = new uint8_t(OFF);
+    winchState = new uint8_t(BOTH);
+
+    changed = new bool(false);
 
     left = new rev::CANSparkMax(CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
     right = new rev::CANSparkMax(CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
-    right->Follow(*left);
+    //right->Follow(*left);
 }
 
 Climber::~Climber(){
@@ -96,37 +101,37 @@ void Climber::SetClimb(double speed){
 }
 
 void Climber::ToggleWinchOn(){
-    switch(*winchState){
+    switch(*runState){
         case OFF:
-            *winchState = FORWARD;
+            *runState = FORWARD;
 
             break;
         case FORWARD:
         case REVERSE:  
         default:
-            *winchState = OFF;
+            *runState = OFF;
                 break;
     }
 }
 
 void Climber::ToggleWinchOff(){
-    *winchState = DEFAULT;
+    *runState = DEFAULT;
 }
 
 void Climber::ToggleWinchDownOn(){
-    switch(*winchState){
+    switch(*runState){
         case OFF:
-            *winchState = REVERSE;
+            *runState = REVERSE;
             break;
         case REVERSE:
         default:
-            *winchState = OFF;
+            *runState = OFF;
                 break;
     }
 }
 
 void Climber::ToggleWinchDownOff(){
-    *winchState = DEFAULT;
+    *runState = DEFAULT;
 }
 
 void Climber::SetSpeed(double speed){
@@ -134,14 +139,17 @@ void Climber::SetSpeed(double speed){
 }
 
 void Climber::Periodic() {
-    if(*changed) {
+//    if(*changed) {
         if(*armState == RETRACT){
+            wpi::outs() << "IN RETRACT";
             double speed = 0.0;
             switch(*runState) {
                 case FORWARD:
                     speed = *speedWinch;
+                    wpi::outs() << "forward ";
                     break;
                 case REVERSE:
+                    wpi::outs() << "reverse ";
                     speed = *speedWinch * -1.0;
                     break;
                 case OFF:
@@ -151,11 +159,12 @@ void Climber::Periodic() {
             switch(*winchState) {
                 case BOTH:
                 default:
+                    wpi::outs() << "both\n";
                     left->Set(speed);
                     right->Set(speed);
                 break;
             }
         }
 
-    }
+ //   }
 }
