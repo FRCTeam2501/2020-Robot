@@ -16,6 +16,6 @@ void Hopper::HopperToggle(){
 }
 
 void Hopper::UppyWuppy(double speed){
-    hopper->Set(speed);
+    hopper->Set(speed);         
     }
 
