@@ -11,7 +11,7 @@ using namespace frc;
 
 
 RobotContainer::RobotContainer(){
-
+	WPI_TalonSRX *talon = new WPI_TalonSRX(6);
   //drive = new Drivetrain();
   driveStick = new Joystick(JOYSTICK::DRIVER);
 	shooter = new Shooter();

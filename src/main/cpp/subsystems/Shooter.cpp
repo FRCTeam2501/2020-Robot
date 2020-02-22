@@ -16,7 +16,8 @@ spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::k
     spinnyShootyLeft->GetPIDController().SetFF(CONSTANTS::SHOOTER:: kFF);
     spinnyShootyLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
 
-    spinnyShootyRight->Follow (*spinnyShootyLeft);
+    spinnyShootyLeft->SetInverted(true);
+    spinnyShootyRight->Follow (*spinnyShootyLeft, true);
 
 
     rpm = new double(0);
@@ -37,7 +38,7 @@ void Shooter::Toggle(){
     toggle = !toggle;
 
     if (toggle) {
-        *rpm = 2000.0;
+        *rpm = 3900.0;
     } else {
         *rpm = 0.0;
     }

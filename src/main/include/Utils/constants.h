@@ -89,9 +89,11 @@ namespace CONSTANTS
 	namespace SHOOTER{
 		const double 
 		kP = 6e-5,
-		
+		//kP is the thing that keeps it at that speed
 		kI = 5e-7, 
+		//kI is the thing that gets it up to speed
 		kD = 0, 
+		//kD is the thing that is ocelation prevention
 		kIz = 0, 
 		kFF = 0, 
 		kMaxOutput = 1.0, 
