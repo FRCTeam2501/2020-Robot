@@ -88,9 +88,9 @@ namespace CONSTANTS
 	}
 	namespace SHOOTER{
 		const double 
-		kP = 1e-3,
-		//WAY TOO MUCH P GAIN
-		kI = 0, 
+		kP = 6e-5,
+		
+		kI = 5e-7, 
 		kD = 0, 
 		kIz = 0, 
 		kFF = 0, 
