@@ -50,12 +50,6 @@ void Robot::TeleopInit() {
     autoCommand->Cancel();
     autoCommand = nullptr;
   }
-
-  //container->pneu->ClimbExtend();
-  //container->pneu->VerticalLiftExtend();
-
-  container->pneu->ClimbRetract();
-  container->pneu->VerticalLiftRetract();
 }
 
 void Robot::TeleopPeriodic() {}

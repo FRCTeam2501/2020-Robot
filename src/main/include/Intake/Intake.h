@@ -18,6 +18,6 @@ public:
     void Periodic(); 
 
 private:
-    PWMVictorSPX *motor1, *motor2;
+    WPI_TalonSRX *motor1, *motor2;
     Pneumatics *pneumatics;
 };
