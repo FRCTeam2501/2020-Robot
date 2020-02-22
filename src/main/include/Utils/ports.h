@@ -56,6 +56,7 @@ namespace CAN		//RoboRIO CAN Devices
 		EMPTY_2,
 		EMPTY_3,
 		EMPTY_4,
+		EMPTY_x,
 		CLIMBER_LEFT,
 		CLIMBER_RIGHT,
 		SHOOTER_LEFT,

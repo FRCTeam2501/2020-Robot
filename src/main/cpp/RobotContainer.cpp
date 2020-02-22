@@ -12,15 +12,14 @@ using namespace frc;
 
 RobotContainer::RobotContainer(){
 
-  drive = new Drivetrain();
+  //drive = new Drivetrain();
   driveStick = new Joystick(JOYSTICK::DRIVER);
 	shooter = new Shooter();
-drive->SetDefaultCommand(ManualDrive(
+/*drive->SetDefaultCommand(ManualDrive(
 		  drive,
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
 		  [this] { return driveStick->GetRawAxis(0); }
-	));
-shooter = new Shooter;
+	));*/
 
 	shooterToggle = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 	shooterToggle->WhenPressed(new frc2::InstantCommand(
@@ -28,7 +27,8 @@ shooter = new Shooter;
 			shooter->Toggle();
 		},
 		{ shooter }
-	));
+		
+	)); 
 
 lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 	lessSpeed->WhenPressed(new frc2::InstantCommand(
@@ -36,7 +36,8 @@ lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 			shooter->lessSpeed();
 		},
 		{ shooter }
-	));
+		
+	));  
   
   moreSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_5);
 	moreSpeed->WhenPressed(new frc2::InstantCommand(
@@ -44,7 +45,7 @@ lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 			shooter->moreSpeed();
 		},
 		{ shooter }
-	));
+	)); 
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

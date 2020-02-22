@@ -1,5 +1,8 @@
 #include "subsystems/Shooter.h"
 
+using namespace rev;
+using namespace frc;
+using namespace std;
 
 Shooter::Shooter(){
 
@@ -13,7 +16,7 @@ spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::k
     spinnyShootyLeft->GetPIDController().SetFF(CONSTANTS::SHOOTER:: kFF);
     spinnyShootyLeft->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER:: kMinOutput, CONSTANTS::SHOOTER::  kMaxOutput);
 
-    spinnyShootyRight->Follow (*spinnyShootyLeft);
+    //spinnyShootyRight->Follow (*spinnyShootyLeft);
 
 
     rpm = new double(0);
@@ -34,7 +37,7 @@ void Shooter::Toggle(){
     toggle = !toggle;
 
     if (toggle) {
-        *rpm = 3900.0;
+        *rpm = 2000.0;
     } else {
         *rpm = 0.0;
     }
@@ -44,7 +47,7 @@ void Shooter::Toggle(){
 
  void Shooter::moreSpeed(){
     if (*rpm <= 5650){
-        *rpm + CONSTANTS::SHOOTER::adjustSpeed;
+        *rpm += CONSTANTS::SHOOTER::adjustSpeed;
         spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }
@@ -52,6 +55,7 @@ void Shooter::Toggle(){
  void Shooter::lessSpeed(){
     if (*rpm >= -5650){
         *rpm -= CONSTANTS::SHOOTER::adjustSpeed;
+        spinnyShootyLeft->GetPIDController().SetReference(*rpm, rev::ControlType::kVelocity);
     }
  }
 
