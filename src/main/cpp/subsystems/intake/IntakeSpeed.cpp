@@ -3,7 +3,7 @@
 using namespace frc;
 
 
-IntakeSpeed::IntakeSpeed(Intake* subsystem, 
+IntakeSpeed::IntakeSpeed(Intake *subsystem, 
         std::function<double()>intakeRC)
         : intake(subsystem), intakeRC(intakeRC) {
         AddRequirements(subsystem);

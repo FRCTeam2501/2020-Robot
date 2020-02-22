@@ -24,3 +24,6 @@ void Intake::IntakeSpeed (double x){
     motor1-> Set (x);
     motor2-> Set (x);
 }
+void Intake::intaketoggle(){
+    *running = !*running; 
+}

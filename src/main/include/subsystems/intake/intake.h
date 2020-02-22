@@ -14,10 +14,20 @@ public:
 
         void Toggledeploy();
         void IntakeSpeed (double x);
+        void intaketoggle();
 
     void Periodic(); 
+   
+        bool GetInverted() {
+		return *inverted;
+     }
+    bool GetRunning() {
+            return *running;
+    }
 
 private:
     WPI_TalonSRX *motor1, *motor2;
     Pneumatics *pneumatics;
+bool *inverted, *running, *changed;
+
 };
