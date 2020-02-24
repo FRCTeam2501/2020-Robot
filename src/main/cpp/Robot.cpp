@@ -34,7 +34,8 @@ void Robot::RobotInit() {}
  * LiveWindow and SmartDashboard integrated updating.
  */
 void Robot::RobotPeriodic() { 
-  frc2::CommandScheduler::GetInstance().Run(); 
+  frc2::CommandScheduler::GetInstance().Run();
+  //wpi::outs() << "RobotPeriodic\n";
 }
 
    
