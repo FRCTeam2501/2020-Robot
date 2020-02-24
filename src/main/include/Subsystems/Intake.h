@@ -3,12 +3,27 @@
 #include "Subsystems/Pneumatics.h"
 
 
+class RGB;
+
 class Intake : public frc2::SubsystemBase {
 private:
 	Pneumatics *pneumatics;
 	WPI_TalonSRX *left, *right;
 	double *speed;
 	bool *inverted, *running, *changed;
+
+protected:
+	friend class RGB;
+
+	bool* GetInvertedPointer() {
+		return inverted;
+	}
+	bool* GetRunningPointer() {
+		return running;
+	}
+	double* GetSpeedPointer() {
+		return speed;
+	}
 
 public:
 	Intake(Pneumatics *pneumatics);

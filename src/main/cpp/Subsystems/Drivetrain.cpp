@@ -28,6 +28,8 @@ Drivetrain::Drivetrain() {
 
 	drive = new frc::DifferentialDrive(*leftFront, *rightFront);
 
+	left = new double(0.0);
+	right = new double(0.0);
 	inverted = new bool(false);
 	cout << "Drivetrain Subsystem Booted!\n";
 }
@@ -40,6 +42,8 @@ Drivetrain::~Drivetrain() {
 
 	delete drive;
 
+	delete left;
+	delete right;
 	delete inverted;
 }
 
@@ -51,4 +55,7 @@ void Drivetrain::ArcadeDrive(double x, double rz) {
 	}
 
 	drive->ArcadeDrive(x, rz);
+
+	*left = leftFront->Get();
+	*right = rightFront->Get();
 }

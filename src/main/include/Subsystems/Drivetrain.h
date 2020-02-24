@@ -7,6 +7,7 @@ class Drivetrain : public frc2::SubsystemBase {
 private:
 	rev::CANSparkMax *leftFront, *leftRear, *rightFront, *rightRear;
 	frc::DifferentialDrive *drive;
+	double *left, *right;
 	bool *inverted;
 
 	units::meter_t GetDistance(rev::CANSparkMax *smax) {
@@ -21,10 +22,10 @@ protected:
 	friend class RGB;
 
 	double* GetLeft() {
-		return nullptr;
+		return left;
 	}
 	double* GetRight() {
-		return nullptr;
+		return right;
 	}
 
 public:

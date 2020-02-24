@@ -61,13 +61,15 @@ namespace CONSTANTS {
 	namespace RGB {
 		constexpr uint32_t
 			//Length of entire strip
-			LENGTH = 150;
+			LENGTH = 150,
+			START = 0,
+			END = LENGTH - 1;
 
 			namespace DRIVETRAIN {
 				constexpr uint32_t
 					LENGTH = 30,
 					STRIP_LENGTH = LENGTH / 2,
-					START = 0,
+					START = RGB::START,
 
 					LEFT_FRONT_END = START + (STRIP_LENGTH / 2) - 1,
 					LEFT_REAR_START = LEFT_FRONT_END + 1,
@@ -123,25 +125,7 @@ namespace CONSTANTS {
 				DISABLED = frc::Color::kGray,
 				ERROR = frc::Color::kDeepPink;
 	}
-/*
-	namespace SHOOTER_SATURDAY {
-		constexpr double
-					P = 1e-7, I = 0, D = 0,
-					IZ = 0, FF = 1.75e-4,
-					MIN = -1.0, MAX = 1.0,
-					ON_SPEED = (3900/2), OFF_SPEED = 0, ADJUST_SPEED = 50,
-					CURRENT_LIMIT = 60.0;
-	}
-	namespace SHOOTER_OLD {
-		constexpr double
-					P = 6e-5, I = 1e-6, D = 0,
-					IZ = 0, FF = 1.5e-5,
-					MAX = 1.0, MIN = -1.0,
-					ON_SPEED = 3900, OFF_SPEED = 0, ADJUST_SPEED = 25,
-					CURRENT_LIMIT = 60.0,
-					PPR = 42;			//Pulses per revolution
-	}
-*/
+
 	namespace AUTO {
 		namespace OFF_0 {
 			constexpr uint32_t MODE = 0b00000;

@@ -12,8 +12,8 @@ private:
 	std::array<frc::AddressableLED::LEDData, CONSTANTS::RGB::LENGTH> ledData;
 
 	frc::Color8Bit GetAllianceColor();
-	void SetLEDsPercent(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength);
-	void SetLEDsPercentReverse(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength);
+	void SetLEDsPercent(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength, bool reverse = false);
+	void RunDisabled();
 
 	frc::Color8Bit Multiply(frc::Color8Bit base, frc::Color8Bit mask) {
 		return frc::Color8Bit(base.red * mask.red / 255, base.green * mask.red / 255, base.blue * mask.blue / 255);
@@ -40,24 +40,8 @@ private:
 			rearPercent = abs(percentLength);
 		}
 	
-		SetLEDsPercentReverse(front_start, front_end, color, frontPercent);
+		SetLEDsPercent(front_start, front_end, color, frontPercent, true);
 		SetLEDsPercent(rear_start, rear_end, color, rearPercent);
-	}
-	void SetDrivetrainDisabled() {
-		//Rainbow effect on drivetrain
-		constexpr uint32_t LENGTH = CONSTANTS::RGB::DRIVETRAIN::END - CONSTANTS::RGB::DRIVETRAIN::START;
-
-		static uint32_t baseHue = 0;
-
-		for(uint32_t i = CONSTANTS::RGB::DRIVETRAIN::START; i < CONSTANTS::RGB::DRIVETRAIN::END; i++) {
-			uint32_t hue = 180 * (double(i - CONSTANTS::RGB::DRIVETRAIN::START) / LENGTH);
-			ledData[i].SetHSV(
-				(baseHue + hue) % 180,
-				255,
-				255
-			);
-		}
-		baseHue += 3;
 	}
 
 	uint32_t *climbArm, *climbWinch, *climbRun;
@@ -74,7 +58,13 @@ private:
 		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::RIGHT_WINCH_START, CONSTANTS::RGB::CLIMBER::END, color, rightPercent);
 	}
 
+	bool *intakeRunning, *intakeInverted;
+	double *intakeSpeed;
 	void RunIntake();
+	void SetIntake(frc::Color8Bit color, double percentLength) {
+		SetLEDsPercent(CONSTANTS::RGB::INTAKE::START, CONSTANTS::RGB::INTAKE::LEFT_END, color, percentLength);
+		SetLEDsPercent(CONSTANTS::RGB::INTAKE::RIGHT_START, CONSTANTS::RGB::INTAKE::END, color, percentLength);
+	}
 
 	units::angular_velocity::revolutions_per_minute_t *shooterSpeed;
 	bool *shooterOn;

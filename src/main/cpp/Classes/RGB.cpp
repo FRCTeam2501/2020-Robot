@@ -11,6 +11,10 @@ RGB::RGB(Drivetrain *drivetrain, Climber *climber, Intake *intake, Shooter *shoo
 	climbRun = climber->GetRunState();
 	climbSpeed = climber->GetWinchSpeed();
 
+	intakeRunning = intake->GetRunningPointer();
+	intakeInverted = intake->GetInvertedPointer();
+	intakeSpeed = intake->GetSpeedPointer();
+
 	shooterSpeed = shooter->GetSetpoint();
 	shooterOn = shooter->GetOn();
 
@@ -40,65 +44,83 @@ frc::Color8Bit RGB::GetAllianceColor() {
 	}
 }
 
-void RGB::SetLEDsPercent(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength) {
-	uint32_t i = start, length = end - start;
-	while(i < ((percentLength * length) + start) && i < end) {
-		ledData[i].SetLED(color);
-		i++;
-	}
-	while(i < end) {
-		ledData[i].SetLED(frc::Color::kBlack);
-	}
-}
-
-void RGB::SetLEDsPercentReverse(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength) {
-	uint32_t i = end, length = end - start;
-	while(i > end - ((percentLength * length)) && i >= start) {
-		ledData[i].SetLED(color);
-		i--;
-	}
-	while(i >= start) {
-		ledData[i].SetLED(frc::Color::kBlack);
-	}
-}
-
-void RGB::Periodic() {
-	RunDrivetrain();
-	RunClimber();
-	RunShooter();
-}
-
-void RGB::RunDrivetrain() {
-	if(frc::DriverStation::GetInstance().IsEnabled()) {
-		if(frc::DriverStation::GetInstance().IsOperatorControl()) {
-			//Change drivetrain RGB length depending on that side's speed, color depends on match type and alliance
-			frc::Color color;
-			switch(frc::DriverStation::GetInstance().GetMatchType()) {
-				case frc::DriverStation::MatchType::kElimination:
-					color = GetAllianceColor();
-					break;
-				case frc::DriverStation::MatchType::kQualification:
-					color = Multiply(GetAllianceColor(), CONSTANTS::RGB::DISABLED);
-					break;
-				case frc::DriverStation::MatchType::kPractice:
-					color = frc::Color::kPurple;
-					break;
-				case frc::DriverStation::MatchType::kNone:
-				default:
-					color = CONSTANTS::RGB::ERROR;
-					break;
-			}
-			SetDrivetrain(color, *driveLeft, *driveRight);
+void RGB::SetLEDsPercent(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength, bool reverse) {
+	uint32_t i, length = end - start;
+	if(!reverse) {
+		i = start;
+		while(i < ((percentLength * length) + start) && i < end) {
+			ledData[i].SetLED(color);
+			i++;
 		}
-		else if(frc::DriverStation::GetInstance().IsAutonomous()) {
-			SetDrivetrain(frc::Color::kWhite, *driveLeft, *driveRight);
-		}
-		else {
-			SetDrivetrain(CONSTANTS::RGB::ERROR, 1.0, 1.0);
+		while(i < end) {
+			ledData[i].SetLED(frc::Color::kBlack);
 		}
 	}
 	else {
-		SetDrivetrainDisabled();
+		i = end;
+		while(i > end - ((percentLength * length)) && i >= start) {
+			ledData[i].SetLED(color);
+			i--;
+		}
+		while(i >= start) {
+			ledData[i].SetLED(frc::Color::kBlack);
+		}
+	}
+}
+
+void RGB::RunDisabled() {
+	//Rainbow effect on drivetrain
+	static uint32_t baseHue = 0;
+
+	for(uint32_t i = CONSTANTS::RGB::START; i < CONSTANTS::RGB::END; i++) {
+		uint32_t hue = 180 * (double(i - CONSTANTS::RGB::START) / CONSTANTS::RGB::LENGTH);
+		ledData[i].SetHSV(
+			(baseHue + hue) % 180,
+			255,
+			255
+		);
+	}
+	baseHue += 3;
+}
+
+void RGB::Periodic() {
+	if(frc::DriverStation::GetInstance().IsEnabled()) {
+		RunDrivetrain();
+		RunClimber();
+		RunIntake();
+		RunShooter();
+	}
+	else {
+		RunDisabled();
+	}
+}
+
+void RGB::RunDrivetrain() {
+	if(frc::DriverStation::GetInstance().IsOperatorControl()) {
+		//Change drivetrain RGB length depending on that side's speed, color depends on match type and alliance
+		frc::Color8Bit color;
+		switch(frc::DriverStation::GetInstance().GetMatchType()) {
+			case frc::DriverStation::MatchType::kElimination:
+				color = GetAllianceColor();
+				break;
+			case frc::DriverStation::MatchType::kQualification:
+				color = Multiply(GetAllianceColor(), CONSTANTS::RGB::DISABLED);
+				break;
+			case frc::DriverStation::MatchType::kPractice:
+				color = frc::Color::kPurple;
+				break;
+			case frc::DriverStation::MatchType::kNone:
+			default:
+				color = CONSTANTS::RGB::ERROR;
+				break;
+		}
+		SetDrivetrain(color, *driveLeft, *driveRight);
+	}
+	else if(frc::DriverStation::GetInstance().IsAutonomous()) {
+		SetDrivetrain(frc::Color::kWhite, *driveLeft, *driveRight);
+	}
+	else {
+		SetDrivetrain(CONSTANTS::RGB::ERROR, 1.0, 1.0);
 	}
 }
 
@@ -152,7 +174,20 @@ void RGB::RunClimber() {
 }
 
 void RGB::RunIntake() {
+	frc::Color8Bit color;
+	if(*intakeRunning) {
+		if(!*intakeInverted) {
+			color = GetAllianceColor();
+		}
+		else {
+			color = frc::Color::kPurple;
+		}
+	}
+	else {
+		color = CONSTANTS::RGB::DISABLED;
+	}
 
+	SetIntake(color, *intakeSpeed);
 }
 
 void RGB::RunShooter() {
