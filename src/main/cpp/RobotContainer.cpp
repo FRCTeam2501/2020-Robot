@@ -20,17 +20,66 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   return &m_autonomousCommand;
 }
+RobotContainer::RobotContainer() {
+  stick = new frc::Joystick(JOYSTICK::STICK);
 
-//void autocommand(){
-  //new frc2::ParallelRaceGroup( 
- //frc::WaitCommand(AutoConstants::AUTO_TIME),
- //frc::StartEndCommand(
-  // [this]{
-    // drive->ArcadeDrive(AutoConstants::AUTO_SPEED, 0.0);
-   //},
-   //[this]{
-     //drive->ArcadeDrive(0.0, 0.0);
-   //},
-   //{drive}
- //)
-//);
+switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
+	
+	switchDirection->WhenPressed(new SwitchDirection(drive));
+
+	Pneumatics1 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_8);
+
+	Pneumatics1->WhenPressed(new ToggleVert(pneu));
+
+	Pneumatics2 = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
+
+	Pneumatics2->WhenPressed(new ToggleClimb(pneu));
+
+	ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+
+	ShootTrigger->WhenPressed(new Shoot(shoot));
+
+	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
+
+	intakeDeployButton->WhenPressed(new ToggleDeployIntake(intake));
+
+  intaketoggle = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_4);
+  
+  intaketoggle->WhenPressed(new intaketoggle(intake);
+
+	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
+	winchForward->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this]{
+			climber->ToggleWinchOn();
+		},
+		[this]{
+			climber->ToggleWinchOff();
+		},
+		{climber}
+	));
+
+	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
+	winchReverse->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this]{
+			climber->ToggleWinchDownOn();
+		},
+		[this]{
+			climber->ToggleWinchDownOff();
+		},
+		{climber}
+	));
+
+	climber->SetDefaultCommand(VariableSpeed(
+		  climber,
+		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)+1)/2;}
+	));
+}
+RobotContainer::~RobotContainer(){
+	delete drive;
+	delete driveStick;
+	delete cameras;
+	delete switchDirection;
+	delete intake;
+	delete winchForward;
+	delete winchReverse;
+}
