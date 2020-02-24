@@ -8,10 +8,6 @@
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Hopper.h"
 
-#include "Commands/ManualDrive.h"
-#include "Commands/ManualClimber.h"
-#include "Commands/ManualIntake.h"
-
 #include "Classes/AutoInput.h"
 #include "Classes/Cameras.h"
 #include "Classes/RGB.h"

@@ -27,18 +27,18 @@ void RobotContainer::BootDefaultCommands() {
 		{ drive }
 	));
 
-	climber->SetDefaultCommand(ManualClimber(
-		climber,
+	climber->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			return (controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2;
-		}
+			climber->SetWinchSpeed((controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2);
+		},
+		{ climber }
 	));
 
-	intake->SetDefaultCommand(ManualIntake(
-		intake,
+	intake->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			return (driveStick->GetRawAxis(JOYSTICK::Z) + 1) / 2;
-		}
+			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::Z) + 1) / 2);
+		},
+		{ intake }
 	));
 
 	cout << "Default Commands Booted!\n";
