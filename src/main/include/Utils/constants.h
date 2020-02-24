@@ -36,7 +36,10 @@ namespace CONSTANTS {
 					PEAK_LIMIT = 35_A;
 		constexpr units::millisecond_t
 					PEAK_TIME = 1000_ms;
-		constexpr double ON = 0.5, OFF = 0;
+		constexpr double
+			ON = 0.5,
+			OFF = 0,
+			REVERSE = -0.5;
 	}
 	namespace SHOOTER {
 		constexpr double

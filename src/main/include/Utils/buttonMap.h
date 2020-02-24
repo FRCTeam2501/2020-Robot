@@ -3,7 +3,7 @@
 namespace CONTROLLER {
 	namespace DI {
 		//Logitech controller button and axis numbers (DUAL INPUT NORMAL MODE)
-		const int X = 1,
+		const uint32_t X = 1,
 			A = 2,
 			B = 3,
 			Y = 4,
@@ -23,7 +23,7 @@ namespace CONTROLLER {
 	}
 	namespace X {
 		//Logitech controller button and axis numbers (XBOX NORMAL MODE)
-		const int A = 1,
+		const uint32_t A = 1,
 			B = 2,
 			X = 3,
 			Y = 4,
@@ -41,7 +41,7 @@ namespace CONTROLLER {
 	}
 	namespace POV {
 		//Logitech controller POV degrees
-		const int
+		const uint32_t
 			TOP = 0,
 			TOP_RIGHT = 45,
 			RIGHT = 90,
@@ -55,7 +55,7 @@ namespace CONTROLLER {
 
 namespace JOYSTICK {
 	//Standard Logitech joystick button and axis numbers
-	const int X = 0,
+	const uint32_t X = 0,
 		Y = 1,
 		R = 2,
 		Z = 3,
@@ -71,4 +71,16 @@ namespace JOYSTICK {
 		BUTTON_10 = 10,
 		BUTTON_11 = 11,
 		BUTTON_12 = 12;
+	namespace POV {
+		//Logitech controller POV degrees
+		const uint32_t
+			TOP = 0,
+			TOP_RIGHT = 45,
+			RIGHT = 90,
+			BOTTOM_RIGHT = 135,
+			BOTTOM = 180,
+			BOTTOM_LEFT = 225,
+			LEFT = 270,
+			TOP_LEFT = 315;
+	}
 }

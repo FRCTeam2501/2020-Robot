@@ -120,8 +120,8 @@ void RobotContainer::BootInstantCommands() {
 		{ intake }
 	));
 
-	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
-	runHopper->WhenPressed(new frc2::StartEndCommand(
+	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
+	evacHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->Set(CONSTANTS::HOPPER::ON);
 			hopper->TogglePin();
@@ -132,18 +132,25 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ hopper }
 	));
-	timedHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
-	timedHopper->WhenPressed(new frc2::ParallelRaceGroup(
-		frc2::StartEndCommand(
-			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON);
-			},
-			[this] {
-				hopper->Set(CONSTANTS::HOPPER::OFF);
-			},
-			{ hopper }
-		),
-		frc2::WaitCommand(CONSTANTS::TELEOP::HOPPER::TIME)
+	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
+	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this] {
+			hopper->Set(CONSTANTS::HOPPER::ON);
+		},
+		[this] {
+			hopper->Set(CONSTANTS::HOPPER::OFF);
+		},
+		{ hopper }
+	));
+	reverseHopper = new frc2::POVButton(controlStick, JOYSTICK::POV::TOP);
+	reverseHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this] {
+			hopper->Set(CONSTANTS::HOPPER::REVERSE);
+		},
+		[this] {
+			hopper->Set(CONSTANTS::HOPPER::OFF);
+		},
+		{ hopper }
 	));
 
 	toggleShooter = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
@@ -326,8 +333,8 @@ void RobotContainer::DeleteInstantCommands() {
 	delete toggleIntakeRunning;
 	delete reverseIntake;
 
+	delete evacHopper;
 	delete runHopper;
-	delete timedHopper;
 
 	delete toggleShooter;
 	delete shooterUp;

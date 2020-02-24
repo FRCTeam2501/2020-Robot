@@ -30,8 +30,9 @@ private:
 	frc2::JoystickButton *toggleDrive,
 		*forwardClimbState, *reverseClimbState, *forwardClimbWinch, *reverseClimbWinch, *toggleWinches,
 		*toggleIntakeDeploy, *toggleIntakeRunning, *reverseIntake,
-		*runHopper, *timedHopper,
+		*evacHopper, *runHopper,
 		*toggleShooter, *shooterUp, *shooterDown;
+	frc2::POVButton *reverseHopper;
 
 	frc2::Command *autoCommand,
 		*simpleDriveAuto, *simpleShootAuto, *simpleDriveShootAuto, *simpleShootDriveAuto;
