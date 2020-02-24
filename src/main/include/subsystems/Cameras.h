@@ -8,7 +8,7 @@ class Cameras : frc2::SubsystemBase
 {
 private:
     cs::UsbCamera *WideCam, *OtherCam;
-    cs::MjpegServer *dashStream;
+    cs::MjpegServer *dashStream, *otherStream;
 
     char *stream;
 
