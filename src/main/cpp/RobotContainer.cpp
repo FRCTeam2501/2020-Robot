@@ -20,14 +20,11 @@ void RobotContainer::BootSubsystems() {
 }
 
 void RobotContainer::BootDefaultCommands() {
-	drive->SetDefaultCommand(ManualDrive(
-		drive,
+	drive->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			return -1.0 * driveStick->GetRawAxis(JOYSTICK::Y);
+			drive->ArcadeDrive(-1.0 * driveStick->GetRawAxis(JOYSTICK::Y), driveStick->GetRawAxis(JOYSTICK::X));
 		},
-		[this] {
-			return driveStick->GetRawAxis(JOYSTICK::X);
-		}
+		{ drive }
 	));
 
 	climber->SetDefaultCommand(ManualClimber(
