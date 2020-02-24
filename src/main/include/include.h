@@ -17,7 +17,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>
-//#include <frc2/command/button/POVButton.h>
+#include <frc2/command/button/POVButton.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc2/command/CommandBase.h>
@@ -29,6 +29,8 @@
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/ParallelDeadlineGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/RunCommand.h>
+#include <frc2/command/FunctionalCommand.h>
 
 #include <units/units.h>
 #include <hal/HAL.h>
