@@ -20,16 +20,20 @@ RGB::RGB(Drivetrain *drivetrain, Climber *climber, Intake *intake, Shooter *shoo
 
 
 	leds = new frc::AddressableLED(PORTS::PWM::RGB);
+	timer = new frc2::Timer();
 
 	leds->SetLength(CONSTANTS::RGB::LENGTH);
 	leds->SetData(ledData);
 	leds->Start();
+	timer->Start();
 }
 
 RGB::~RGB() {
 	leds->Stop();
+	timer->Stop();
 
 	delete leds;
+	delete timer;
 }
 
 frc::Color8Bit RGB::GetAllianceColor() {
@@ -85,10 +89,12 @@ void RGB::RunDisabled() {
 
 void RGB::Periodic() {
 	if(frc::DriverStation::GetInstance().IsEnabled()) {
-		RunDrivetrain();
-		RunClimber();
-		RunIntake();
-		RunShooter();
+		if(timer->HasPeriodPassed(CONSTANTS::RGB::PERIOD)) {
+			RunDrivetrain();
+			RunClimber();
+			RunIntake();
+			RunShooter();
+		}
 	}
 	else {
 		RunDisabled();

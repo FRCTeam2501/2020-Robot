@@ -10,6 +10,7 @@ class RGB : public frc::ErrorBase {
 private:
 	frc::AddressableLED *leds;
 	std::array<frc::AddressableLED::LEDData, CONSTANTS::RGB::LENGTH> ledData;
+	frc2::Timer *timer;
 
 	frc::Color8Bit GetAllianceColor();
 	void SetLEDsPercent(uint32_t start, uint32_t end, frc::Color8Bit color, double percentLength, bool reverse = false);
@@ -78,6 +79,9 @@ public:
 	RGB(Drivetrain *drivetrain, Climber *climber, Intake *intake, Shooter *shooter);
 	~RGB();
 
+	/*
+	 * Runs RGB on all subsystems, rate limited at 10 times a second.
+	 */
 	void Periodic();
 	void Start() {
 		leds->Start();

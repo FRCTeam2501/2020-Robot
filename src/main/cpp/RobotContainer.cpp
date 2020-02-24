@@ -174,7 +174,6 @@ void RobotContainer::BootInstantCommands() {
 void RobotContainer::BootAutoCommands() {
 	simpleDriveAuto  = new frc2::ParallelRaceGroup(
 		frc2::StartEndCommand(
-			
 			[this] {
 				drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
 			},

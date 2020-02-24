@@ -59,6 +59,8 @@ namespace CONSTANTS {
 			FPS = 30;
 	}
 	namespace RGB {
+		constexpr units::millisecond_t
+			PERIOD = 100_ms;
 		constexpr uint32_t
 			//Length of entire strip
 			LENGTH = 150,

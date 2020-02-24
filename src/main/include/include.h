@@ -31,6 +31,7 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/RunCommand.h>
 #include <frc2/command/FunctionalCommand.h>
+#include <frc2/Timer.h>
 
 #include <units/units.h>
 #include <hal/HAL.h>
