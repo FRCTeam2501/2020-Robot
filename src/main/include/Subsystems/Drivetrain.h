@@ -11,11 +11,11 @@ private:
 	bool *inverted;
 
 	units::meter_t GetDistance(rev::CANSparkMax *smax) {
-		return units::length::foot_t(smax->GetEncoder().GetPosition());
+		return units::meter_t(smax->GetEncoder().GetPosition());
 	}
 
 	units::meters_per_second_t GetSpeed(rev::CANSparkMax *smax) {
-		return units::feet_per_second_t(smax->GetEncoder().GetVelocity());
+		return units::meters_per_second_t(smax->GetEncoder().GetVelocity());
 	}
 
 protected:
@@ -70,11 +70,19 @@ public:
 		return GetDistance(rightFront);
 	}
 
+	units::meter_t GetAvgDistance() {
+		return (GetLeftDistance() + GetRightDistance()) / 2;
+	}
+
 	units::meters_per_second_t GetLeftSpeed() {
 		return GetSpeed(leftFront);
 	}
 
 	units::meters_per_second_t GetRightSpeed() {
 		return GetSpeed(rightFront);
+	}
+
+	units::meter_t GetAvgSpeed() {
+		return (GetLeftSpeed() + GetRightSpeed()) / 2;
 	}
 };

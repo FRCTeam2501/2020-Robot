@@ -9,13 +9,13 @@ Drivetrain::Drivetrain() {
 
 	leftFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	leftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-	leftFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
-	leftFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+	leftFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
+	leftFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 
 	rightFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	rightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
-	rightFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
-	rightFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_FEET.to<double>());
+	rightFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
+	rightFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 
 	leftRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 	leftRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
@@ -31,6 +31,7 @@ Drivetrain::Drivetrain() {
 	left = new double(0.0);
 	right = new double(0.0);
 	inverted = new bool(false);
+
 	cout << "Drivetrain Subsystem Booted!\n";
 }
 

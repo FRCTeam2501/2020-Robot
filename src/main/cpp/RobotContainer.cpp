@@ -29,6 +29,7 @@ void RobotContainer::BootDefaultCommands() {
 
 	climber->SetDefaultCommand(frc2::RunCommand(
 		[this] {
+			//Varies speed from 0% to 100%
 			climber->SetWinchSpeed((controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2);
 		},
 		{ climber }
@@ -36,7 +37,8 @@ void RobotContainer::BootDefaultCommands() {
 
 	intake->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::Z) + 1) / 2);
+			//Varies speed from 50% to 100%
+			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::Z) + 3) / 4);
 		},
 		{ intake }
 	));
@@ -70,10 +72,10 @@ void RobotContainer::BootInstantCommands() {
 	forwardClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
 	forwardClimbWinch->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			climber->ToggleRunning(false);
+			climber->ToggleRunning();
 		},
 		[this] {
-			climber->ToggleRunning(false);
+			climber->ToggleRunning();
 		},
 		{ climber }
 	));

@@ -9,15 +9,14 @@ namespace CONSTANTS {
 	namespace DRIVETRAIN {
 		constexpr units::current::ampere_t
 					CURRENT_LIMIT = 60_A;
-		constexpr units::inch_t
-					WHEEL_DIAMETER = 8_in,
-					TRACK_WIDTH = 22_in;
-		constexpr units::length::foot_t
-					WHEEL_CIR = (WHEEL_DIAMETER * units::constants::pi);
 		constexpr units::dimensionless::scalar_t
-					GEAR_RATIO = 10.1;
+					GEAR_RATIO = 11.0;
+		constexpr units::meter_t
+					WHEEL_DIAMETER = 8_in,
+					TRACK_WIDTH = 22_in,
+					WHEEL_CIR = (WHEEL_DIAMETER * units::constants::pi);
 		constexpr auto
-					TURN_TO_FEET = WHEEL_CIR * GEAR_RATIO / units::angle::turn_t(1);
+					TURN_TO_METER = WHEEL_CIR * GEAR_RATIO / units::angle::turn_t(1);
 	}
 	namespace CLIMBER {
 		constexpr units::current::ampere_t

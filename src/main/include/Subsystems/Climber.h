@@ -64,5 +64,5 @@ public:
 
 
 	void ToggleWinches();
-	void ToggleRunning(bool reverse);
+	void ToggleRunning(bool reverse = false);
 };
