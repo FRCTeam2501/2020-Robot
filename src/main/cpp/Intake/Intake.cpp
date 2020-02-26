@@ -18,8 +18,11 @@ void Intake::Toggledeploy(){
     pneumatics->ToggleIntake();
 }
 
-void Intake::IntakeSpeed (double x){
+void Intake::IntakeSpeed(double x){
     motor1-> Set (x);
     motor2-> Set (-x);
-    //wpi::outs() << "Set Intake: " << x << "\n";
+}
+
+void Intake::IntakeToggle(){
+    *running = !*running; 
 }

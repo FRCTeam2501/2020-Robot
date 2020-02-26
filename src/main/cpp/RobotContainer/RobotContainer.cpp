@@ -26,14 +26,28 @@ RobotContainer::RobotContainer()  {
 	
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
-//
-
 	intakeDeployButton = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 	intakeDeployButton->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->Toggledeploy();
 		},
 		{ intake }
+	));
+
+	intakeReverse = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_4);
+	intakeReverse->WhenHeld(new frc2::InstantCommand(
+		[this]{
+			intake->IntakeToggle();
+		},
+		{ intake }
+	));
+
+	winchSelect = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
+	winchSelect->WhenPressed(new frc2::InstantCommand(
+		[this]{
+			climber->WinchToggle();
+		},
+		{ climber }
 	));
 
 	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);

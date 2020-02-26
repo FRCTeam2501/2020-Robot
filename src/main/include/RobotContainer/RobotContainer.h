@@ -34,8 +34,8 @@ class RobotContainer {
   Climber *climber;
   frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
                        *ShootTrigger,
-                       *intakeDeployButton, *intakeSet,
-                       *winchForward, *winchReverse,
+                       *intakeDeployButton, *intakeSet, *intakeReverse,
+                       *winchForward, *winchReverse, *winchSelect,
                        *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, *runHopper;
   Pneumatics *pneu;
   Intake *intake;

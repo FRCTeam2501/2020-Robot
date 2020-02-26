@@ -13,10 +13,10 @@ Drivetrain::Drivetrain() {
     rearLeft->Follow(*frontLeft);
     rearRight->Follow(*frontRight);
 
-    frontLeft->SetSmartCurrentLimit(60);
-    frontRight->SetSmartCurrentLimit(60);
-    rearLeft->SetSmartCurrentLimit(60);
-    rearRight->SetSmartCurrentLimit(60);
+    frontLeft->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+    frontRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+    rearLeft->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+    rearRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 
     drive = new DifferentialDrive(*frontLeft, *frontRight);
 }

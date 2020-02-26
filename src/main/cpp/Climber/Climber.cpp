@@ -12,7 +12,7 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
     left = new rev::CANSparkMax(CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
     right = new rev::CANSparkMax(CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
-    //right->Follow(*left);
+    right->Follow(*left);
 }
 
 Climber::~Climber(){
@@ -29,33 +29,28 @@ void Climber::StateUp(){
             pneumatics->ClimbRetract();
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
-//            wpi::outs() << "DEFAULT";
             SmartDashboard::PutString("CLimb", "DEFAULT->DOWN");
             break;
         case DOWN:
             pneumatics->VerticalLiftExtend();
             *armState = UP;
-//            wpi::outs() << "DOWN";
             SmartDashboard::PutString("CLimb", "DOWN->UP");
             break;
         case UP:
             pneumatics->ClimbExtend();
             *armState = EXTEND;
-//            wpi::outs() << "UP";
             SmartDashboard::PutString("CLimb", "UP->EXTEND");
 
             break;
         case EXTEND:
             pneumatics->ClimbRetract();
             *armState = RETRACT;
-//            wpi::outs() << "EXTEND";
             SmartDashboard::PutString("CLimb", "EXTEND->RETRACT");
 
             break;
         case RETRACT:
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
-//            wpi::outs() << "RETRACT";
             SmartDashboard::PutString("CLimb", "RETRACT->DOWN");
             break;
         default:
@@ -138,6 +133,13 @@ void Climber::SetSpeed(double speed){
     *Climber::speedWinch = speed;
 }
 
+void Climber::WinchToggle(){
+    *winchState++;
+    if(*winchState = 2){
+        *winchState = 0;
+    };
+}
+
 void Climber::Periodic() {
 //    if(*changed) {
         if(*armState == RETRACT){
@@ -163,8 +165,16 @@ void Climber::Periodic() {
                     left->Set(speed);
                     right->Set(speed);
                 break;
+                case LEFT:
+                    wpi::outs() << "left\n";
+                    left->Set(speed);
+                    right->Set(0);
+                break;
+                case RIGHT:
+                    wpi::outs() << "right\n";
+                    left->Set(0);
+                    right->Set(speed);
+                break;
             }
         }
-
- //   }
 }

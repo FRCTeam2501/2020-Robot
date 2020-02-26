@@ -21,6 +21,8 @@ class Climber : public frc2::SubsystemBase {
   void ToggleWinchDownOn(); 
   void ToggleWinchDownOff();
 
+  void WinchToggle();
+
   void SetSpeed(double speed);
 
   void Periodic();
@@ -43,11 +45,13 @@ class Climber : public frc2::SubsystemBase {
       EXTEND,
       RETRACT
   };
+
   enum RUN_STATES{
       OFF = 0,
       FORWARD,
       REVERSE
   };
+  
   enum WINCH_STATES{
       BOTH = 0,
       LEFT,
