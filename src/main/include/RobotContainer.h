@@ -34,8 +34,7 @@ private:
 		*toggleShooter, *shooterUp, *shooterDown;
 	frc2::POVButton *reverseHopper;
 
-	frc2::Command *autoCommand,
-		*simpleDriveAuto, *simpleShootAuto, *simpleDriveShootAuto, *simpleShootDriveAuto;
+	frc2::Command *autoCommand;
 
 	void BootSubsystems();
 	void BootDefaultCommands();

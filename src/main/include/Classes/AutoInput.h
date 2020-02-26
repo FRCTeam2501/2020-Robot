@@ -10,4 +10,5 @@ public:
 	~AutoInput();
 
 	uint32_t Get();
+	wpi::Twine GetTwine();
 };

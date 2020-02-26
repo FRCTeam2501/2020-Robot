@@ -71,7 +71,7 @@ public:
 	}
 
 	units::meter_t GetAvgDistance() {
-		return (GetLeftDistance() + GetRightDistance()) / 2;
+		return (GetLeftDistance() + GetRightDistance());
 	}
 
 	units::meters_per_second_t GetLeftSpeed() {
@@ -82,7 +82,7 @@ public:
 		return GetSpeed(rightFront);
 	}
 
-	units::meter_t GetAvgSpeed() {
+	units::meters_per_second_t GetAvgSpeed() {
 		return (GetLeftSpeed() + GetRightSpeed()) / 2;
 	}
 };

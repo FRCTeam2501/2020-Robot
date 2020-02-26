@@ -32,6 +32,8 @@
 #include <frc2/command/RunCommand.h>
 #include <frc2/command/FunctionalCommand.h>
 #include <frc2/Timer.h>
+#include <frc2/command/PrintCommand.h>
+#include <frc2/command/WaitUntilCommand.h>
 
 #include <units/units.h>
 #include <hal/HAL.h>

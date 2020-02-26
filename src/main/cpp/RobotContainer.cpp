@@ -181,115 +181,6 @@ void RobotContainer::BootInstantCommands() {
 }
 
 void RobotContainer::BootAutoCommands() {
-	simpleDriveAuto  = new frc2::ParallelRaceGroup(
-		frc2::StartEndCommand(
-			[this] {
-				drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
-			},
-			[this] {
-				drive->Stop();
-			},
-			{ drive }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
-	);
-
-	simpleShootAuto = new frc2::SequentialCommandGroup(
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
-			},
-			{ shooter }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
-		frc2::InstantCommand(
-			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON);
-			},
-			{ hopper }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF);
-			},
-			{ shooter, hopper }
-		)
-	);
-
-	simpleShootDriveAuto = new frc2::SequentialCommandGroup(
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
-			},
-			{ shooter }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
-		frc2::InstantCommand(
-			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON);
-			},
-			{ hopper }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF);
-			},
-			{ shooter, hopper }
-		),
-		frc2::ParallelRaceGroup(
-			frc2::StartEndCommand(
-				[this] {
-					drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
-				},
-				[this] {
-					drive->Stop();
-				},
-				{ drive }
-			),
-			frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
-		)
-	);
-
-	simpleDriveShootAuto = new frc2::SequentialCommandGroup(
-		frc2::ParallelRaceGroup(
-			frc2::StartEndCommand(
-				[this] {
-					drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
-				},
-				[this] {
-					drive->Stop();
-				},
-				{ drive }
-			),
-			frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
-		),
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
-			},
-			{ shooter }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
-		frc2::InstantCommand(
-			[this] {
-				hopper->Set(CONSTANTS::HOPPER::ON);
-			},
-			{ hopper }
-		),
-		frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
-		frc2::InstantCommand(
-			[this] {
-				shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
-				hopper->Set(CONSTANTS::HOPPER::OFF);
-			},
-			{ shooter, hopper }
-		)
-	);
-
 	autoCommand = nullptr;
 
 	cout << "Auto Commands Booted!\n";
@@ -346,10 +237,7 @@ void RobotContainer::DeleteInstantCommands() {
 }
 
 void RobotContainer::DeleteAutoCommands() {
-	delete simpleDriveAuto;
-	delete simpleShootAuto;
-	delete simpleDriveShootAuto;
-	delete simpleShootDriveAuto;
+	delete autoCommand;
 
 	cout << "Auto Commands Deleted!\n";
 }
@@ -368,22 +256,148 @@ void RobotContainer::Periodic() {
 
 frc2::Command* RobotContainer::GetAutoCommand() {
 	switch(autoInput->Get()) {
+		case CONSTANTS::AUTO::ADV_DRIVE::MODE:
+			autoCommand = new frc2::SequentialCommandGroup(
+				frc2::InstantCommand(
+					[this] {
+						drive->ArcadeDrive(CONSTANTS::AUTO::ADV_DRIVE::SPEED, 0.0);
+					},
+					{ drive }
+				),
+				frc2::WaitUntilCommand(
+					[this] {
+						return drive->GetAvgDistance() > CONSTANTS::AUTO::ADV_DRIVE::DISTANCE;
+					}
+				),
+				frc2::InstantCommand(
+					[this] {
+						drive->Stop();
+					},
+					{ drive }
+				)
+			);
+			break;
 		case CONSTANTS::AUTO::SIMPLE_SHOOT_DRIVE::MODE:
-			autoCommand = simpleShootDriveAuto;
+			autoCommand = new frc2::SequentialCommandGroup(
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
+					},
+					{ shooter }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
+				frc2::InstantCommand(
+					[this] {
+						hopper->Set(CONSTANTS::HOPPER::ON);
+						hopper->TogglePin();
+					},
+					{ hopper }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
+						hopper->Set(CONSTANTS::HOPPER::OFF);
+						hopper->TogglePin();
+					},
+					{ shooter, hopper }
+				),
+				frc2::ParallelRaceGroup(
+					frc2::StartEndCommand(
+						[this] {
+							drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
+						},
+						[this] {
+							drive->Stop();
+						},
+						{ drive }
+					),
+					frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
+				)
+			);
 			break;
 		case CONSTANTS::AUTO::SIMPLE_DRIVE_SHOOT::MODE:
-			autoCommand = simpleDriveShootAuto;
+			autoCommand = new frc2::SequentialCommandGroup(
+				frc2::ParallelRaceGroup(
+					frc2::StartEndCommand(
+						[this] {
+							drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
+						},
+						[this] {
+							drive->Stop();
+						},
+						{ drive }
+					),
+					frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
+				),
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
+					},
+					{ shooter }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
+				frc2::InstantCommand(
+					[this] {
+						hopper->Set(CONSTANTS::HOPPER::ON);
+						hopper->TogglePin();
+					},
+					{ hopper }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
+						hopper->Set(CONSTANTS::HOPPER::OFF);
+						hopper->TogglePin();
+					},
+					{ shooter, hopper }
+				)
+			);
 			break;
 		case CONSTANTS::AUTO::SIMPLE_SHOOT::MODE:
-			autoCommand = simpleShootAuto;
+			autoCommand = new frc2::SequentialCommandGroup(
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::ON_SPEED);
+					},
+					{ shooter }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SPIN_UP_TIME),
+				frc2::InstantCommand(
+					[this] {
+						hopper->Set(CONSTANTS::HOPPER::ON);
+					},
+					{ hopper }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_SHOOT::SHOOT_TIME),
+				frc2::InstantCommand(
+					[this] {
+						shooter->Set(CONSTANTS::SHOOTER::OFF_SPEED);
+						hopper->Set(CONSTANTS::HOPPER::OFF);
+					},
+					{ shooter, hopper }
+				)
+			);
 			break;
 		case CONSTANTS::AUTO::SIMPLE_DRIVE::MODE:
-			autoCommand = simpleDriveAuto;
+			autoCommand = new frc2::ParallelRaceGroup(
+				frc2::StartEndCommand(
+					[this] {
+						drive->ArcadeDrive(CONSTANTS::AUTO::SIMPLE_DRIVE::SPEED, 0.0);
+					},
+					[this] {
+						drive->Stop();
+					},
+					{ drive }
+				),
+				frc2::WaitCommand(CONSTANTS::AUTO::SIMPLE_DRIVE::TIME)
+			);
 			break;
 		case CONSTANTS::AUTO::OFF_1::MODE:
 		case CONSTANTS::AUTO::OFF_0::MODE:
 		default:
-			autoCommand = simpleDriveAuto;
+			autoCommand = new frc2::PrintCommand("Error: " + autoInput->GetTwine());
 			break;
 	}
 	return autoCommand;

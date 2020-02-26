@@ -131,33 +131,40 @@ namespace CONSTANTS {
 	}
 
 	namespace AUTO {
+		//	Do nothing (0)
 		namespace OFF_0 {
 			constexpr uint32_t MODE = 0b00000;
 		}
+		//	Drive forward at x percent for y time
 		namespace SIMPLE_DRIVE {
 			constexpr uint32_t MODE = 0b00001;
 			constexpr units::millisecond_t TIME = 1000_ms;
 			constexpr double SPEED = 0.75;
 		}
+		//	Shoot a few balls
 		namespace SIMPLE_SHOOT {
 			constexpr uint32_t MODE = 0b00010;
 			constexpr units::millisecond_t
-					SPIN_UP_TIME = 1500_ms,
-					SHOOT_TIME = 7500_ms;
+				SPIN_UP_TIME = 1500_ms,
+				SHOOT_TIME = 7500_ms;
 		}
+		//	Combine SIMPLE_DRIVE and SIMPLE_SHOOT (in that order)
 		namespace SIMPLE_DRIVE_SHOOT {
 			constexpr uint32_t MODE = 0b00011;
 		}
+		//	Combine SIMPLE_SHOOT and SIMPLE_DRIVE (in that order)
 		namespace SIMPLE_SHOOT_DRIVE {
 			constexpr uint32_t MODE = 0b00100;
 		}
+		//	Drive at x percent until past y feet
+		namespace ADV_DRIVE {
+			constexpr unit32_t MODE = 0b00101;
+			constexpr double SPEED = 0.75;
+			constexpr units::meter_t DISTANCE = 3_ft;
+		}
+		//	Do nothing (1)
 		namespace OFF_1 {
 			constexpr uint32_t MODE = 0b11111;
-		}
-	}
-	namespace TELEOP {
-		namespace HOPPER {
-			constexpr units::millisecond_t TIME = 500_ms;
 		}
 	}
 }

@@ -27,3 +27,7 @@ uint32_t AutoInput::Get() {
 		(switch0->Get() << 0)
 	;
 }
+
+wpi::Twine AutoInput::GetTwine() {
+	return wpi::Twine(Get());
+}
