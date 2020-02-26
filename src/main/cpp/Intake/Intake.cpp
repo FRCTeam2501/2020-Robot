@@ -19,10 +19,17 @@ void Intake::Toggledeploy(){
 }
 
 void Intake::IntakeSpeed(double x){
-    motor1-> Set (x);
-    motor2-> Set (-x);
+    *speed = x;
 }
 
 void Intake::IntakeToggle(){
     *running = !*running; 
+}
+
+void Intake::IntakeInvert(){
+    *inverted = !*inverted;
+}
+
+void Intake::Periodic(){
+    
 }

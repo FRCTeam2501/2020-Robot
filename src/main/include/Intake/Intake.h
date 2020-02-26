@@ -15,6 +15,7 @@ public:
         void Toggledeploy();
         void IntakeSpeed(double x);
         void IntakeToggle();
+        void IntakeInvert();
 
         bool GetRunning(){
             return *running;
@@ -30,4 +31,5 @@ private:
     WPI_TalonSRX *motor1, *motor2;
     Pneumatics *pneumatics;
     bool *running, *changed, *inverted;
+    double *speed;
 };

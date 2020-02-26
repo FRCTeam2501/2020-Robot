@@ -37,9 +37,20 @@ RobotContainer::RobotContainer()  {
 	intakeReverse = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_4);
 	intakeReverse->WhenHeld(new frc2::InstantCommand(
 		[this]{
-			intake->IntakeToggle();
+			intake->IntakeInvert();
 		},
 		{ intake }
+	));
+
+	intakeRun = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	intakeRun->ToggleWhenPressed(new frc2::StartEndCommand(
+		[this]{
+			intake->IntakeToggle();
+		},
+		[this]{
+			intake->IntakeToggle();
+		},
+		{intake}
 	));
 
 	winchSelect = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
