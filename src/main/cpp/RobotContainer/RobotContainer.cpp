@@ -146,7 +146,7 @@ RobotContainer::RobotContainer()  {
 		{ hopper }
 	));
 
-	reverseHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
+	reverseHopper = new frc2::POVButton(controlStick, JOYSTICK::POV::TOP);
 	reverseHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->UppyWuppy(1.0);
