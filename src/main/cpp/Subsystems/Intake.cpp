@@ -21,6 +21,8 @@ Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	right->Follow(*left, ctre::phoenix::motorcontrol::FollowerType::FollowerType_PercentOutput);
 
 	cout << "Intake Subsystem Booted!\n";
+
+	pneumatics->SetIntake(frc::DoubleSolenoid::kReverse);
 }
 
 Intake::~Intake() {

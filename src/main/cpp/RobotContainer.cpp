@@ -22,7 +22,7 @@ void RobotContainer::BootSubsystems() {
 void RobotContainer::BootDefaultCommands() {
 	drive->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			drive->ArcadeDrive(-1.0 * driveStick->GetRawAxis(JOYSTICK::Y), driveStick->GetRawAxis(JOYSTICK::X));
+			drive->ArcadeDrive(-1.0 * driveStick->GetRawAxis(JOYSTICK::AXIS::Y), driveStick->GetRawAxis(JOYSTICK::AXIS::X));
 		},
 		{ drive }
 	));
@@ -30,7 +30,7 @@ void RobotContainer::BootDefaultCommands() {
 	climber->SetDefaultCommand(frc2::RunCommand(
 		[this] {
 			//Varies speed from 0% to 100%
-			climber->SetWinchSpeed((controlStick->GetRawAxis(JOYSTICK::Z) + 1) / 2);
+			climber->SetWinchSpeed((controlStick->GetRawAxis(JOYSTICK::AXIS::Z) + 1) / 2);
 		},
 		{ climber }
 	));
@@ -38,7 +38,7 @@ void RobotContainer::BootDefaultCommands() {
 	intake->SetDefaultCommand(frc2::RunCommand(
 		[this] {
 			//Varies speed from 50% to 100%
-			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::Z) + 3) / 4);
+			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::AXIS::Z) + 3) / 4);
 		},
 		{ intake }
 	));
@@ -47,7 +47,7 @@ void RobotContainer::BootDefaultCommands() {
 }
 
 void RobotContainer::BootInstantCommands() {
-	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
+	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON::THUMB);
 	toggleDrive->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			drive->ToggleInverted();
@@ -55,21 +55,21 @@ void RobotContainer::BootInstantCommands() {
 		{ drive }
 	));
 
-	forwardClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
+	forwardClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_7);
 	forwardClimbState->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->ForwardArmState();
 		},
 		{ climber }
 	));
-	reverseClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_9);
+	reverseClimbState = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_9);
 	reverseClimbState->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->ReverseArmState();
 		},
 		{ climber }
 	));
-	forwardClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
+	forwardClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_6);
 	forwardClimbWinch->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			climber->ToggleRunning();
@@ -79,7 +79,7 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ climber }
 	));
-	reverseClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
+	reverseClimbWinch = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_4);
 	reverseClimbWinch->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			climber->ToggleRunning(true);
@@ -89,7 +89,7 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ climber }
 	));
-	toggleWinches = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
+	toggleWinches = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_12);
 	toggleWinches->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			climber->ToggleWinches();
@@ -97,7 +97,7 @@ void RobotContainer::BootInstantCommands() {
 		{ climber }
 	));
 
-	toggleIntakeRunning = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
+	toggleIntakeRunning = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON::TRIGGER);
 	toggleIntakeRunning->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			intake->ToggleRunning();
@@ -107,14 +107,14 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ intake }
 	));
-	toggleIntakeDeploy = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
+	toggleIntakeDeploy = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON::BUTTON_3);
 	toggleIntakeDeploy->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->ToggleDeploy();
 		},
 		{ intake }
 	));
-	reverseIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_4);
+	reverseIntake = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON::BUTTON_4);
 	reverseIntake->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->ToggleInverted();
@@ -122,7 +122,7 @@ void RobotContainer::BootInstantCommands() {
 		{ intake }
 	));
 
-	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
+	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::THUMB);
 	evacHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->Set(CONSTANTS::HOPPER::ON);
@@ -134,7 +134,7 @@ void RobotContainer::BootInstantCommands() {
 		},
 		{ hopper }
 	));
-	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
+	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_11);
 	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
 			hopper->Set(CONSTANTS::HOPPER::ON);
@@ -155,21 +155,21 @@ void RobotContainer::BootInstantCommands() {
 		{ hopper }
 	));
 
-	toggleShooter = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
+	toggleShooter = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::TRIGGER);
 	toggleShooter->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Toggle();
 		},
 		{ shooter }
 	));
-	shooterUp = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_5);
+	shooterUp = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_5);
 	shooterUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Up();
 		},
 		{ shooter }
 	));
-	shooterDown = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_3);
+	shooterDown = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON::BUTTON_3);
 	shooterDown->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			shooter->Down();
@@ -258,7 +258,7 @@ frc2::Command* RobotContainer::GetAutoCommand() {
 	switch(autoInput->Get()) {
 		case CONSTANTS::AUTO::ADV_DRIVE::MODE:
 			autoCommand = new frc2::SequentialCommandGroup(
-				frc2::InstantCommand(
+				frc2::InstantCommand( 
 					[this] {
 						drive->ArcadeDrive(CONSTANTS::AUTO::ADV_DRIVE::SPEED, 0.0);
 					},

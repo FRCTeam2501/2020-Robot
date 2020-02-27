@@ -8,19 +8,23 @@ Drivetrain::Drivetrain() {
 	rightRear = new rev::CANSparkMax(PORTS::CAN::RIGHT_REAR, rev::CANSparkMax::MotorType::kBrushless);
 
 	leftFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	leftFront->SetSecondaryCurrentLimit(CONSTANTS::DRIVETRAIN::HARD_CURRENT_LIMIT.to<double>());
 	leftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 	leftFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 	leftFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 
 	rightFront->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	rightFront->SetSecondaryCurrentLimit(CONSTANTS::DRIVETRAIN::HARD_CURRENT_LIMIT.to<double>());
 	rightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 	rightFront->GetEncoder().SetPositionConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 	rightFront->GetEncoder().SetVelocityConversionFactor(CONSTANTS::DRIVETRAIN::TURN_TO_METER.to<double>());
 
 	leftRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	leftRear->SetSecondaryCurrentLimit(CONSTANTS::DRIVETRAIN::HARD_CURRENT_LIMIT.to<double>());
 	leftRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 	
 	rightRear->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+	rightRear->SetSecondaryCurrentLimit(CONSTANTS::DRIVETRAIN::HARD_CURRENT_LIMIT.to<double>());
 	rightRear->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
 	leftRear->Follow(*leftFront);

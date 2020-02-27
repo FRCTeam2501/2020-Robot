@@ -10,16 +10,18 @@ Shooter::Shooter() {
 	changed = new bool(false);
 
 	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	left->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	left->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
 	right->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	right->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	right->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
 	left->GetPIDController().SetP(CONSTANTS::SHOOTER::P);
 	left->GetPIDController().SetI(CONSTANTS::SHOOTER::I);
 	left->GetPIDController().SetD(CONSTANTS::SHOOTER::D);
 	left->GetPIDController().SetIZone(CONSTANTS::SHOOTER::IZ);
-	left->GetPIDController().SetFF(CONSTANTS::SHOOTER::FF.to<double>());
+	left->GetPIDController().SetFF(CONSTANTS::SHOOTER::FF);
 	left->GetPIDController().SetOutputRange(CONSTANTS::SHOOTER::MIN, CONSTANTS::SHOOTER::MAX);
 	
 	//Set left inverted, and set right to follow it inverted of that

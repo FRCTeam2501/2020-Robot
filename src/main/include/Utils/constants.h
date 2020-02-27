@@ -8,7 +8,8 @@ namespace CONSTANTS {
 
 	namespace DRIVETRAIN {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 60_A;
+					CURRENT_LIMIT = 60_A,
+					HARD_CURRENT_LIMIT = 100_A;
 		constexpr units::dimensionless::scalar_t
 					GEAR_RATIO = 11.0;
 		constexpr units::meter_t
@@ -20,21 +21,22 @@ namespace CONSTANTS {
 	}
 	namespace CLIMBER {
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 60_A;
+					CURRENT_LIMIT = 60_A,
+					HARD_CURRENT_LIMIT = 100_A;
 	}
 	namespace INTAKE {
 		constexpr units::current::ampere_t
 					CONTINUOUS_LIMIT = 20_A,
-					PEAK_LIMIT = 35_A;
+					PEAK_LIMIT = 30_A;
 		constexpr units::millisecond_t
-					PEAK_TIME = 1000_ms;
+					PEAK_TIME = 500_ms;
 	}
 	namespace HOPPER {
 		constexpr units::current::ampere_t
 					CONTINUOUS_LIMIT = 20_A,
-					PEAK_LIMIT = 35_A;
+					PEAK_LIMIT = 30_A;
 		constexpr units::millisecond_t
-					PEAK_TIME = 1000_ms;
+					PEAK_TIME = 500_ms;
 		constexpr double
 			ON = 0.5,
 			OFF = 0,
@@ -43,11 +45,11 @@ namespace CONSTANTS {
 	namespace SHOOTER {
 		constexpr double
 					MIN = -1.0, MAX = 1.0,
-					P = 1e-7, I = 0, D = 0, IZ = 0;
-		constexpr units::voltage::volt_t
-					FF = 0_V;
+					P = 1e-7, I = 0, D = 0, IZ = 0,
+					FF = 0;
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 40_A;
+					CURRENT_LIMIT = 40_A,
+					HARD_CURRENT_LIMIT = 100_A;
 		constexpr units::angular_velocity::revolutions_per_minute_t
 					ON_SPEED = 3900_rpm,
 					OFF_SPEED = 0_rpm,
@@ -158,7 +160,7 @@ namespace CONSTANTS {
 		}
 		//	Drive at x percent until past y feet
 		namespace ADV_DRIVE {
-			constexpr unit32_t MODE = 0b00101;
+			constexpr uint32_t MODE = 0b00101;
 			constexpr double SPEED = 0.75;
 			constexpr units::meter_t DISTANCE = 3_ft;
 		}

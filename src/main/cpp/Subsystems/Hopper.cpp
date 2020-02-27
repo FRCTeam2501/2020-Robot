@@ -17,6 +17,8 @@ Hopper::Hopper(Pneumatics* pneumatics) : pneumatics(pneumatics) {
 	right->Follow(*left, ctre::phoenix::motorcontrol::FollowerType::FollowerType_PercentOutput);
 
 	cout << "Hopper Subsystem Booted!\n";
+
+	pneumatics->SetHopper(frc::DoubleSolenoid::kForward);
 }
 
 Hopper::~Hopper() {

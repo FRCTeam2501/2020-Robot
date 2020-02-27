@@ -1,5 +1,6 @@
 #include "Classes/AutoInput.h"
 
+
 AutoInput::AutoInput() {
 	switch0 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_0);
 	switch1 = new frc::DigitalInput(PORTS::MXP::DIO::AUTO_1);

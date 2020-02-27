@@ -7,9 +7,11 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 
 	left->RestoreFactoryDefaults();
 	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	left->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	left->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 	right->RestoreFactoryDefaults();
 	right->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	right->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	right->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 
 	winchSpeed = new double(0.0);
@@ -19,6 +21,9 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	changed = new bool(false);
 
 	cout << "Climber Subsystem Booted!\n";
+
+	pneumatics->SetClimbArm(frc::DoubleSolenoid::kOff);
+	pneumatics->SetClimbExtend(frc::DoubleSolenoid::kOff);
 }
 
 Climber::~Climber() {
