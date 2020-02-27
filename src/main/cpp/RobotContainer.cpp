@@ -1,4 +1,4 @@
-#include "RobotContainer/RobotContainer.h"
+#include "RobotContainer.h"
 
 RobotContainer::RobotContainer()  {
   	drive = new Drivetrain();
@@ -11,19 +11,30 @@ RobotContainer::RobotContainer()  {
 	climber = new Climber(pneu);
 	hopper = new Hopper(pneu);
 
-  	drive->SetDefaultCommand(ManualDrive(
-		  drive,
-		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
-		  [this] { return driveStick->GetRawAxis(0); }
+	drive->SetDefaultCommand(frc2::RunCommand(
+		[this] {
+			drive->ArcadeDrive(
+				-1.0 * driveStick->GetRawAxis(1),
+				driveStick->GetRawAxis(0)
+			);
+		},
+		{ drive }
 	));
 
-	intake->SetDefaultCommand(IntakeSpeed(
-		  intake,
-		  [this] {return (driveStick->GetRawAxis(JOYSTICK::Z) - 1.0) / -2.0;}
+	intake->SetDefaultCommand(frc2::RunCommand(
+		[this] {
+			intake->IntakeSpeed((driveStick->GetRawAxis(JOYSTICK::Z) - 1.0) / -2.0);
+		},
+		{ intake }
 	));
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
-	switchDirection->WhenPressed(new SwitchDirection(drive));
+	switchDirection->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			drive->Switch();
+		},
+		{ drive }
+	));
 
 	intakeDeployButton = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 	intakeDeployButton->WhenPressed(new frc2::InstantCommand(

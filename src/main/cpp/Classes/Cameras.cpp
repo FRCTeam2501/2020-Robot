@@ -1,4 +1,4 @@
-#include "Cameras/Cameras.h"
+#include "Classes/Cameras.h"
 
 Cameras::Cameras() {
     wideCam = new cs::UsbCamera("Top Camera", 0);

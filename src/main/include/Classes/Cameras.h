@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Utils/Include.h"
-#include <frc2/command/SubsystemBase.h>
+#include "include.h"
 
-class Cameras : public frc2::SubsystemBase {
+class Cameras : public frc::ErrorBase {
  public:
 
   Cameras();

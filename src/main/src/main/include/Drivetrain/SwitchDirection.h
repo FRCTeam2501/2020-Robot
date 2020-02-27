@@ -2,8 +2,8 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/InstantCommand.h>
-#include "Utils/include.h"
-#include "Drivetrain/Drivetrain.h"
+#include "include.h"
+#include "Subsystems/Drivetrain.h"
 
 class SwitchDirection
     : public frc2::CommandHelper<frc2::InstantCommand,

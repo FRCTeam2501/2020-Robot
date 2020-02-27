@@ -3,8 +3,8 @@
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
 
-#include "Utils/include.h"
-#include "RobotContainer/RobotContainer.h"
+#include "include.h"
+#include "RobotContainer.h"
 
 class Robot : public frc::TimedRobot {
  public:

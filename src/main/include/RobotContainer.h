@@ -1,21 +1,21 @@
 #pragma once
 
-#include "Utils/include.h"
-#include "Drivetrain/Drivetrain.h"
+#include "include.h"
+#include "Subsystems/Drivetrain.h"
 #include "Drivetrain/SwitchDirection.h"
 #include "Drivetrain/ManualDrive.h"
 
-#include "Pneumatics/Pneumatics.h"
+#include "Classes/Pneumatics.h"
 
-#include "Intake/Intake.h"
+#include "Subsystems/Intake.h"
 #include "Intake/IntakeSpeed.h"
 
-#include "Shooter/Shooter.h"
+#include "Subsystems/Shooter.h"
 
-#include "Climber/Climber.h"
+#include "Subsystems/Climber.h"
 #include "Climber/VariableSpeed.h"
 
-#include "Hopper/Hopper.h"
+#include "Subsystems/Hopper.h"
 
 using namespace frc;
 
@@ -32,7 +32,7 @@ class RobotContainer {
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
   Climber *climber;
-  frc2::JoystickButton *switchDirection, *Pneumatics1, *Pneumatics2,
+  frc2::JoystickButton *switchDirection,
                        *ShootTrigger,
                        *intakeDeployButton, *intakeSet, *intakeReverse, *intakeRun,
                        *winchForward, *winchReverse, *winchSelect,

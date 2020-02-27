@@ -1,8 +1,8 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include "Utils/include.h"
-#include "Pneumatics/Pneumatics.h"
+#include "include.h"
+#include "Classes/Pneumatics.h"
 
 using namespace frc;
 

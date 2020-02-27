@@ -3,8 +3,8 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "Utils/include.h"
-#include "Climber/Climber.h"
+#include "include.h"
+#include "Subsystems/Climber.h"
 
 class VariableSpeed
     : public frc2::CommandHelper<frc2::CommandBase, VariableSpeed> {

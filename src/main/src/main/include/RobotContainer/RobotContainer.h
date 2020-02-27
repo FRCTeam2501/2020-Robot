@@ -3,26 +3,26 @@
 #include <frc2/command/Command.h>
 #include "frc/WPILib.h"
 
-#include "Utils/include.h"
-#include "Drivetrain/Drivetrain.h"
-#include "Drivetrain/SwitchDirection.h"
-#include "Drivetrain/ManualDrive.h"
+#include "include.h"
+#include "Subsystems/Drivetrain.h"
+#include "Subsystems/SwitchDirection.h"
+#include "Subsystems/ManualDrive.h"
 
-#include "Cameras/Cameras.h"
+#include "Classes/Cameras.h"
 
-#include "Pneumatics/Pneumatics.h"
-#include "Pneumatics/TogglePneu.h"
-#include "Pneumatics/TogglePneu2.h"
+#include "Classes/Pneumatics.h"
+#include "Classes/TogglePneu.h"
+#include "Classes/TogglePneu2.h"
 
-#include "Intake/Intake.h"
-#include "Intake/IntakeSpeed.h"
-#include "Intake/ToggleDeployIntake.h"
+#include "Subsystems/Intake.h"
+#include "Subsystems/IntakeSpeed.h"
+#include "Subsystems/ToggleDeployIntake.h"
 
-#include "Shooter/Shooter.h"
-#include "Shooter/Shoot.h"
+#include "Subsystems/Shooter.h"
+#include "Subsystems/Shoot.h"
 
-#include "Climber/Climber.h"
-#include "Climber/VariableSpeed.h"
+#include "Subsystems/Climber.h"
+#include "Subsystems/VariableSpeed.h"
 
 using namespace frc;
 

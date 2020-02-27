@@ -3,8 +3,8 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "Utils/include.h"
-#include "Intake/Intake.h"
+#include "include.h"
+#include "Subsystems/Intake.h"
 
 using namespace frc;
 

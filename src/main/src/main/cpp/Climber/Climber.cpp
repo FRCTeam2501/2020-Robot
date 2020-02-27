@@ -1,4 +1,4 @@
-#include "Climber/Climber.h"
+#include "Subsystems/Climber.h"
 
 Climber::Climber(Pneumatics *pneumatics) {
     state = new uint8_t(OFF);

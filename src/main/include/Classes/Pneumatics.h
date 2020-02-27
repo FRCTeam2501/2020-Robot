@@ -1,18 +1,15 @@
 #pragma once
 
-#include "Utils/include.h"
-
-
+#include "include.h"
 using namespace frc;
 
 
 
-class Pneumatics : public frc2::SubsystemBase 
-{
+class Pneumatics : public ErrorBase {
 private:
     
     Compressor *compressor;
-    DoubleSolenoid *VerticalLift, *Climb, *Intake;
+    DoubleSolenoid *VerticalLift, *Climb, *Intake, *hopper;
 
 public:
     Pneumatics();

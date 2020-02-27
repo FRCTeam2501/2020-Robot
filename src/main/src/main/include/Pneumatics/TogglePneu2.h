@@ -2,8 +2,8 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/InstantCommand.h>
-#include "Utils/include.h"
-#include "Pneumatics/Pneumatics.h"
+#include "include.h"
+#include "Classes/Pneumatics.h"
 
 class ToggleClimb
     : public frc2::CommandHelper<frc2::InstantCommand,

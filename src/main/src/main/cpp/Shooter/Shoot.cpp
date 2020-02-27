@@ -1,4 +1,4 @@
-#include "Shooter/Shoot.h"
+#include "Subsystems/Shoot.h"
 
 Shoot::Shoot(Shooter* subsystem)
 : shoot(subsystem) {

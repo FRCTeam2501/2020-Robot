@@ -3,9 +3,9 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "Shooter/Shooter.h"
+#include "Subsystems/Shooter.h"
 
-#include "Utils/include.h"
+#include "include.h"
 
 class Shoot
     : public frc2::CommandHelper<frc2::CommandBase, Shoot> {

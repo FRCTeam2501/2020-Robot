@@ -1,4 +1,4 @@
-#include "Drivetrain/SwitchDirection.h"
+#include "Subsystems/SwitchDirection.h"
 
 SwitchDirection::SwitchDirection(Drivetrain* subsystem)
 	: drive(subsystem) {

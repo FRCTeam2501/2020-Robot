@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Drivetrain/AutoDrive.h"
+#include "Subsystems/AutoDrive.h"
 
 AutoDrive::AutoDrive() {
   // Use addRequirements() here to declare subsystem dependencies.
