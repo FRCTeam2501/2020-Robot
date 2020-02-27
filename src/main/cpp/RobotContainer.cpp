@@ -87,10 +87,12 @@ RobotContainer::RobotContainer()  {
 		{climber}
 	));
 
-	climber->SetDefaultCommand(VariableSpeed(
-		  climber,
-		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)-1)/2;}
-	));
+	climber->SetDefaultCommand(frc2::RunCommand(
+		[this] {
+			climber->SetSpeed((controlStick->GetRawAxis(JOYSTICK::Z)-1)/2);
+		},
+		{ climber }
+	))
 
 
 	ShootTrigger = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
