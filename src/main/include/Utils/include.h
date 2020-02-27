@@ -13,6 +13,7 @@
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/button/POVButton.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/SubsystemBase.h>
