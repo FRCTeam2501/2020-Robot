@@ -19,6 +19,13 @@ spinnyShootyRight = new CANSparkMax(CAN::SHOOTER_RIGHT,CANSparkMax::MotorType::k
     spinnyShootyLeft->SetInverted(true);
     spinnyShootyRight->Follow (*spinnyShootyLeft, true);
 
+    spinnyShootyLeft->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+    spinnyShootyRight->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+
+    spinnyShootyLeft->SetSecondaryCurrentLimit(100);
+    spinnyShootyRight->SetSecondaryCurrentLimit(100);
+
+
 
     rpm = new double(0);
 }

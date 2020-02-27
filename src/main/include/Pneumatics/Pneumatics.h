@@ -12,7 +12,7 @@ class Pneumatics : public frc2::SubsystemBase
 private:
     
     Compressor *compressor;
-    DoubleSolenoid *VerticalLift, *Climb, *Intake;
+    DoubleSolenoid *VerticalLift, *Climb, *Intake, *pins;
 
 public:
     Pneumatics();

@@ -4,6 +4,8 @@
 namespace CONSTANTS {
 
 	namespace SHOOTER{
+		constexpr units::current::ampere_t
+			CURRENT_LIMIT = 40_A;
 		const double 
 		kP = 6e-5,
 		//kP is the thing that keeps it at that speed
@@ -36,13 +38,15 @@ namespace CONSTANTS {
 
 	namespace INTAKE {
 		constexpr units::current::ampere_t
-			CURRENT_LIMIT = 60_A,
+			CURRENT_LIMIT = 20_A,
 			PEAK_LIMIT = 30_A;
 	}
 
 	namespace HOPPER {
 		constexpr units::current::ampere_t
-			CURRENT_LIMIT = 40_A;
+			CURRENT_LIMIT = 20_A,
+			PEAK_LIMIT = 30_A;
+
 		constexpr double 
 			MIN = -1.0,
 			MAX = 1.0,

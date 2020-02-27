@@ -14,9 +14,9 @@ Drivetrain::Drivetrain() {
     rearRight->Follow(*frontRight);
 
     frontLeft->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
-    frontRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT);
-    rearLeft->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT);
-    rearRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT);
+    frontRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+    rearLeft->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
+    rearRight->SetSmartCurrentLimit(CONSTANTS::DRIVETRAIN::CURRENT_LIMIT.to<double>());
 
     frontLeft->SetSecondaryCurrentLimit(100);
     frontRight->SetSecondaryCurrentLimit(100);

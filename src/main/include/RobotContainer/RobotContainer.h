@@ -36,7 +36,9 @@ class RobotContainer {
                        *ShootTrigger,
                        *intakeDeployButton, *intakeSet, *intakeReverse, *intakeRun,
                        *winchForward, *winchReverse, *winchSelect,
-                       *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, *runHopper;
+                       *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, 
+                       *runHopper;
+  frc2::POVButton *reverseHopper;
   Pneumatics *pneu;
   Intake *intake;
   Shooter *shoot;

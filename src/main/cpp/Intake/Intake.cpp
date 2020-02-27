@@ -26,6 +26,14 @@ void Intake::Periodic() {
     running = new bool(false);
     changed = new bool(false);
     inverted = new bool(false);
+
+    motorLeft->ConfigContinuousCurrentLimit(CONSTANTS::INTAKE::CURRENT_LIMIT.to<double>());
+    motorLeft->ConfigPeakCurrentLimit(CONSTANTS::INTAKE::PEAK_LIMIT.to<double>());
+    motorLeft->ConfigPeakCurrentDuration(500);
+
+    motorRight->ConfigContinuousCurrentLimit(CONSTANTS::INTAKE::CURRENT_LIMIT.to<double>());
+    motorRight->ConfigPeakCurrentLimit(CONSTANTS::INTAKE::PEAK_LIMIT.to<double>());
+    motorRight->ConfigPeakCurrentDuration(500);
  }
 
 

@@ -45,4 +45,17 @@ namespace JOYSTICK
         BUTTON_10 = 10,
         BUTTON_11 = 11,
         BUTTON_12 = 12;
+
+        namespace POV
+        {
+            const uint32_t
+			TOP = 0,
+			TOP_RIGHT = 45,
+			RIGHT = 90,
+			BOTTOM_RIGHT = 135,
+			BOTTOM = 180,
+			BOTTOM_LEFT = 225,
+			LEFT = 270,
+			TOP_LEFT = 315;
+        }
 }

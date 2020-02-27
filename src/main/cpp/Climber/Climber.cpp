@@ -13,6 +13,13 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
     right = new rev::CANSparkMax(CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
     right->Follow(*left);
+
+    left->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
+    right->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
+
+    left->SetSecondaryCurrentLimit(100);
+    right->SetSecondaryCurrentLimit(100);
+
 }
 
 Climber::~Climber(){

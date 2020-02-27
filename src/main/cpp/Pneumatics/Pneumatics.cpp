@@ -129,5 +129,20 @@ void Pneumatics::ToggleIntake(){
 }
 
 void Pneumatics::ToggleHopper() {
+    switch(pins->Get()){
+        case DoubleSolenoid::kForward:
+             pins->Set(DoubleSolenoid::kReverse);
+            break;
 
+        case DoubleSolenoid::kReverse:
+             pins->Set(DoubleSolenoid::kForward);
+             break;
+
+        case DoubleSolenoid::kOff:
+             pins->Set(DoubleSolenoid::kForward);
+            break;
+
+        default:
+            break;
+    }
 }

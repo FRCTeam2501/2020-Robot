@@ -10,9 +10,12 @@ public:
     Hopper(Pneumatics *pneumatics); 
     ~Hopper(); 
 
-       void HopperToggle();
+    void HopperToggle();
     void Periodic(); 
     void UppyWuppy(double speed);
+
+    void NoPin(double speed);
+    
     private:
    
    WPI_TalonSRX *hopper;
