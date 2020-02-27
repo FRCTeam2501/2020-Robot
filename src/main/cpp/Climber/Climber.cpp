@@ -134,10 +134,7 @@ void Climber::SetSpeed(double speed){
 }
 
 void Climber::WinchToggle(){
-    *winchState++;
-    if(*winchState = 2){
-        *winchState = 0;
-    };
+    //todo
 }
 
 void Climber::Periodic() {

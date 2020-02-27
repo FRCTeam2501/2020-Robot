@@ -23,7 +23,6 @@ RobotContainer::RobotContainer()  {
 	));
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
-	
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
 	intakeDeployButton = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
@@ -139,7 +138,7 @@ RobotContainer::RobotContainer()  {
 	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
 	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
 		[this] {
-			hopper->UppyWuppy(-1.0);
+			hopper->UppyWuppy(1.0);
 		},
 		[this] {
 			hopper->UppyWuppy(0.0);

@@ -3,21 +3,21 @@
 
 namespace CONSTANTS {
 
-    namespace SHOOTER {
-    const double 
-		kP = 6e-5, 
-		kI = 1e-6, 
+	namespace SHOOTER{
+		const double 
+		kP = 6e-5,
+		//kP is the thing that keeps it at that speed
+		kI = 5e-7, 
+		//kI is the thing that gets it up to speed
 		kD = 0, 
+		//kD is the thing that is ocelation prevention
 		kIz = 0, 
-		kFF = 0.000015, 
+		kFF = 0, 
 		kMaxOutput = 1.0, 
-		kMinOutput = -1.0;
-
-	constexpr units::angular_velocity::revolutions_per_minute_t
-		MAX_RPM = 5700_rpm,
-		adjustSpeed_RPM = 50_rpm;
-
-    }
+		kMinOutput = -1.0,
+		adjustSpeed = 50,
+		MaxRPM = 5700;
+	}
 
 	namespace DRIVETRAIN {
 		constexpr units::current::ampere_t

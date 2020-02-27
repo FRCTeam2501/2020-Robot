@@ -1,16 +1,37 @@
 #include "Intake/Intake.h"
 
- void Intake::Periodic() {}
+void Intake::Periodic() {
+    if(*running){
+        if(*inverted){
+            motorLeft->Set(*speed*-1);
+        }
+        else{
+            motorLeft->Set(*speed);
+        }
+    }
+    else{
+        motorLeft->Set(0);
+    }
+ }
 
  Intake::Intake(Pneumatics *pneumatics) : pneumatics(pneumatics) {
-    motor1 = new WPI_TalonSRX(CAN::INTAKE_LEFT);
-    motor2 = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
+    motorLeft = new WPI_TalonSRX(CAN::INTAKE_LEFT);
+    motorRight = new WPI_TalonSRX(CAN::INTAKE_RIGHT);
+
+   // motorLeft->SetInverted(true);
+    motorRight->SetInverted(true);
+    motorRight->Follow(*motorLeft);
+
+    speed = new double(0.0);
+    running = new bool(false);
+    changed = new bool(false);
+    inverted = new bool(false);
  }
 
 
 Intake::~Intake() {
-    delete motor1;
-    delete motor2;
+    delete motorLeft;
+    delete motorRight;
     delete pneumatics;
 }
 
@@ -28,8 +49,4 @@ void Intake::IntakeToggle(){
 
 void Intake::IntakeInvert(){
     *inverted = !*inverted;
-}
-
-void Intake::Periodic(){
-    
 }
