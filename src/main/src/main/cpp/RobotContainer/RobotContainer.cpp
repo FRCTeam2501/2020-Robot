@@ -6,7 +6,7 @@ RobotContainer::RobotContainer()  {
 	controlStick = new Joystick(OIConstants::kControlControllerPort);
 
 	pneu = new Pneumatics();
-	shoot = new Shooter();
+	shooter = new Shooter();
 	intake = new Intake(pneu);
 	climber = new Climber(pneu);
 
@@ -37,7 +37,7 @@ RobotContainer::RobotContainer()  {
 
 	ShootTrigger = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 
-	ShootTrigger->WhenPressed(new Shoot(shoot));
+	ShootTrigger->WhenPressed(new Shoot(shooter));
 
 	intakeDeployButton = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_8);
 
@@ -84,7 +84,7 @@ RobotContainer::~RobotContainer(){
 void RobotContainer::Periodic() {
 	if(driveStick->GetTrigger()) {
 		if(!state) {
-			shoot->ToggleShoot();
+			shooter->ToggleShoot();
 			state = true;
 		}
 	}

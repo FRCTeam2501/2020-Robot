@@ -38,7 +38,7 @@ void Robot::DisabledPeriodic() {}
 
 void Robot::AutonomousInit() {
   if(autoCommand == nullptr){
-    autoCommand = container->GitAutoCommand();
+    autoCommand = container->GetAutoCommand();
     autoCommand->Schedule();
   }
 }

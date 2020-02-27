@@ -1,15 +1,17 @@
 #include "RobotContainer.h"
 
+
 RobotContainer::RobotContainer()  {
-  	drive = new Drivetrain();
-	driveStick = new Joystick(0);
-	controlStick = new Joystick(1);
+	drive = new Drivetrain();
+	climber = new Climber(pneu);
+	intake = new Intake(pneu);
+	hopper = new Hopper(pneu);
+	shooter = new Shooter();
 
 	pneu = new Pneumatics();
-	shoot = new Shooter();
-	intake = new Intake(pneu);
-	climber = new Climber(pneu);
-	hopper = new Hopper(pneu);
+
+	driveStick = new Joystick(0);
+	controlStick = new Joystick(1);
 
 	drive->SetDefaultCommand(frc2::RunCommand(
 		[this] {
@@ -92,15 +94,14 @@ RobotContainer::RobotContainer()  {
 			climber->SetSpeed((controlStick->GetRawAxis(JOYSTICK::Z)-1)/2);
 		},
 		{ climber }
-	))
-
+	));
 
 	ShootTrigger = new frc2::JoystickButton(controlStick, JOYSTICK::TRIGGER);
 	ShootTrigger->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			shoot->Toggle();
+			shooter->Toggle();
 		},
-		{ shoot }
+		{ shooter }
 	));
 
 	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
@@ -119,17 +120,17 @@ RobotContainer::RobotContainer()  {
 	shootUp = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_5);
 	shootUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			shoot->moreSpeed();
+			shooter->moreSpeed();
 		},
-		{ shoot }
+		{ shooter }
 	));
 
 	shootDown = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_3);
 	shootDown->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			shoot->lessSpeed();
+			shooter->lessSpeed();
 		},
-		{ shoot }
+		{ shooter }
 	));
 
 	climbForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_7);
@@ -159,6 +160,7 @@ RobotContainer::RobotContainer()  {
 		{ hopper }
 	));
 }
+
 RobotContainer::~RobotContainer(){
 	delete drive;
 	delete driveStick;
@@ -173,7 +175,7 @@ void RobotContainer::Periodic() {
 
 }
 
-frc2::Command *RobotContainer::GitAutoCommand() {
+frc2::Command *RobotContainer::GetAutoCommand() {
 	return new frc2::ParallelRaceGroup(
 		frc2::WaitCommand(50_s),
 		frc2::StartEndCommand(
