@@ -1,20 +1,17 @@
 
 #pragma once
-
+#include "Utils/include.h"
 #include <frc2/command/Command.h>
-
-
-
-
+#include "hopper/hopper.h"
+#include "Utils/ButtonMap.h"
 
 class RobotContainer {
  public:
-  RobotContainer();
+ RobotContainer();
+ ~RobotContainer();
+private:
+ frc2::JoystickButton *reverseHopper *startHopper
 
-//rats rats were the rats we stalk at night we sneak at night we prey at night were the rats im the giant rat that makes all of da rules lets see what kind of trouble we can get ourselves into
+  Hopper *hopper;                     
 
- private:
-
-
-  void ConfigureButtonBindings();
 };

@@ -1,21 +1,14 @@
 #pragma once
-/**
- * Port declarations
- * 
- * Access each by accessing the namespace then the port name
- * Example: AI:EMPTY0
- */
 
-//Pick one of the following:
+
+
 #define MXP_DIO
-//#define MXP_PWM
 
-//Define if using pneumatics
 #define PNEUMATICS
 
-namespace JOYSTICK	//USB Joystick Ports
+namespace JOYSTICK	
 {
-	//Can have a dynamic number of devices
+
 	enum JOYSTICK_ID
 	{
 		DRIVER = 0,
@@ -23,9 +16,8 @@ namespace JOYSTICK	//USB Joystick Ports
 		CONTROL
 	};
 }
-namespace PWM		//RoboRIO PWM Ports
+namespace PWM		
 {
-	//Do not add more ports, the RIO only has 10
 	enum PWM_OUTPUT
 	{
 		RIGHT_FRONT = 0,
@@ -40,9 +32,9 @@ namespace PWM		//RoboRIO PWM Ports
 		EMPTY_9
 	};
 }
-namespace CAN		//RoboRIO CAN Devices
+namespace CAN		
 {
-	//Can have a dynamic number of devices
+	
 	enum CAN_DEVICES
 	{
 		LEFT_FRONT = 0,

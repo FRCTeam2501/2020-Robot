@@ -1,6 +1,7 @@
 #pragma once
 #include "frc/WPILib.h"
 #include "frc2/command/SubsystemBase.h"
+#include "frc2/command/button/JoystickButton.h"
 #include "ctre/Phoenix.h"
 #include <time.h>
 #include "ports.h"

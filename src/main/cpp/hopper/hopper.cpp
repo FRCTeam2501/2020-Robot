@@ -15,7 +15,7 @@ void Hopper::HopperToggle(){
     pneumatics->ToggleHopper();
 }
 
-void Hopper::UppyWuppy(double speed){
-    hopper->Set(speed);         
+void Hopper::UppyWuppy(double x){
+    hopper->Set(x);         
     }
 

@@ -12,7 +12,8 @@ public:
 
        void HopperToggle();
     void Periodic(); 
-    void UppyWuppy(double speed);
+    void UppyWuppy(double x);
+    void Reverse(double y);
     private:
    
    WPI_TalonSRX *hopper;
