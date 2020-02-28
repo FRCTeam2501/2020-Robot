@@ -9,6 +9,7 @@ class Cameras : frc2::SubsystemBase
 private:
     cs::UsbCamera *WideCam;
     cs::MjpegServer *dashStream;
+    frc::Servo *cameraRotator;
 
     char *stream;
 
