@@ -9,6 +9,13 @@ VerticalLift = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIF
 Climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
 
 Intake = new DoubleSolenoid (PCM::SOL_INTAKE_A, PCM::SOL_INTAKE_B);
+
+pins = new DoubleSolenoid(PCM::SOL_PINS_A, PCM::SOL_PINS_B);
+}
+
+void Pneumatics::Initialize() {
+    VerticalLiftRetract();
+    ClimbRetract();
 }
 
 

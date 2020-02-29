@@ -171,12 +171,16 @@ void RobotContainer::Periodic() {
 
 }
 
+void RobotContainer::InitalizeRobot() {
+	pneu->Initialize();
+}
+
 frc2::Command *RobotContainer::GitAutoCommand() {
 	return new frc2::ParallelRaceGroup(
 		frc2::WaitCommand(50_s),
 		frc2::StartEndCommand(
 			[this] {
-				drive->ArcadeDrive(1, 0.0);
+				drive->ArcadeDrive(10, 0.0);
 			},
 			[this] {
 				drive->ArcadeDrive(0.0, 0.0);

@@ -25,6 +25,8 @@ class RobotContainer {
   RobotContainer();
   ~RobotContainer();
 
+  void InitalizeRobot();
+
   void Periodic();
   frc2::Command *GitAutoCommand();
   

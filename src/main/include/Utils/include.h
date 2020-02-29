@@ -32,3 +32,5 @@
 #include "rev/CANEncoder.h"
 
 #include "ctre/Phoenix.h"
+
+#define cout wpi::outs()

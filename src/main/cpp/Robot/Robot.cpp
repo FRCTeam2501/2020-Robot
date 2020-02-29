@@ -25,7 +25,9 @@ Robot::~Robot() {
   delete container;
 }
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+
+}
 
 void Robot::RobotPeriodic() {
     frc2::CommandScheduler::GetInstance().Run();
@@ -41,6 +43,7 @@ void Robot::AutonomousInit() {
     autoCommand = container->GitAutoCommand();
     autoCommand->Schedule();
   }
+  container->InitalizeRobot();
 }
 
 void Robot::AutonomousPeriodic() {}
@@ -49,6 +52,9 @@ void Robot::TeleopInit() {
   if(autoCommand != nullptr){
     autoCommand->Cancel();
     autoCommand = nullptr;
+  }
+  else{
+    container->InitalizeRobot();
   }
 }
 

@@ -33,4 +33,6 @@ public:
     void ToggleIntake();
 
     void ToggleHopper();
+
+    void Initialize();
 };

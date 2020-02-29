@@ -53,7 +53,6 @@ void Climber::StateUp(){
             pneumatics->ClimbRetract();
             *armState = RETRACT;
             SmartDashboard::PutString("CLimb", "EXTEND->RETRACT");
-
             break;
         case RETRACT:
             pneumatics->VerticalLiftRetract();
@@ -141,7 +140,7 @@ void Climber::SetSpeed(double speed){
 }
 
 void Climber::WinchToggle(){
-    //todo
+
 }
 
 void Climber::Periodic() {
