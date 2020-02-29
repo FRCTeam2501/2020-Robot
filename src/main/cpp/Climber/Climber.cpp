@@ -12,7 +12,8 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
     left = new rev::CANSparkMax(CAN::CLIMBER_LEFT, rev::CANSparkMax::MotorType::kBrushless);
     right = new rev::CANSparkMax(CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
-    right->Follow(*left);
+    right->SetInverted(true);
+    //right->Follow(*left);
 
     left->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
     right->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
@@ -38,28 +39,22 @@ void Climber::StateUp(){
             pneumatics->ClimbRetract();
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
-            SmartDashboard::PutString("CLimb", "DEFAULT->DOWN");
             break;
         case DOWN:
             pneumatics->VerticalLiftExtend();
             *armState = UP;
-            SmartDashboard::PutString("CLimb", "DOWN->UP");
             break;
         case UP:
             pneumatics->ClimbExtend();
             *armState = EXTEND;
-            SmartDashboard::PutString("CLimb", "UP->EXTEND");
-
             break;
         case EXTEND:
             pneumatics->ClimbRetract();
             *armState = RETRACT;
-            SmartDashboard::PutString("CLimb", "EXTEND->RETRACT");
             break;
         case RETRACT:
             pneumatics->VerticalLiftRetract();
             *armState = DOWN;
-            SmartDashboard::PutString("CLimb", "RETRACT->DOWN");
             break;
         default:
             break;
@@ -97,10 +92,6 @@ void Climber::StateBack(){
             default:
                 break;
     }
-}
-
-void Climber::SetClimb(double speed){
-    left->Set(speed);
 }
 
 void Climber::ToggleWinchOn(){
@@ -146,12 +137,15 @@ void Climber::WinchToggle(){
         case BOTH:
         default:
             *winchState = LEFT;
+            cout<<"BOTH TO LEFT";
         break;
         case LEFT:
             *winchState = RIGHT;
+            cout<< "LEFT TO RIGHT";
         break;
         case RIGHT:
             *winchState = BOTH;
+            cout<< "RIGHT TO BOTH";
         break;
     }
 }
@@ -159,15 +153,12 @@ void Climber::WinchToggle(){
 void Climber::Periodic() {
 //    if(*changed) {
         if(*armState == RETRACT){
-            wpi::outs() << "IN RETRACT";
             double speed = 0.0;
             switch(*runState) {
                 case FORWARD:
                     speed = *speedWinch;
-                    wpi::outs() << "forward ";
                     break;
                 case REVERSE:
-                    wpi::outs() << "reverse ";
                     speed = *speedWinch * -1.0;
                     break;
                 case OFF:

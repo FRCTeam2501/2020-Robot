@@ -1,6 +1,7 @@
-#pragma once;
+#pragma once
 
 #include "Utils/include.h"
+
 
 using namespace frc;
 
@@ -14,6 +15,8 @@ private:
     char *stream;
 
     const int WITH = 320, HEIGHT = 230, FPS = 30;
+    const double changeAngle = 5;
+    double cameraAngle = 100;
     
 public:
     Cameras();
@@ -21,5 +24,6 @@ public:
 
     void StreamWideCam();
     char GetStream();
-
+    void RotateCameraUp();
+    void RotateCameraDown();
 };

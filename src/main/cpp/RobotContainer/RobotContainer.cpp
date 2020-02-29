@@ -14,13 +14,22 @@ RobotContainer::RobotContainer()  {
   	drive->SetDefaultCommand(ManualDrive(
 		  drive,
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
-		  [this] { return driveStick->GetRawAxis(0); }
+		  [this] { return driveStick->GetRawAxis(0)*.8; }
 	));
 
 	intake->SetDefaultCommand(IntakeSpeed(
 		  intake,
 		  [this] {return (driveStick->GetRawAxis(JOYSTICK::Z) - 1.0) / -2.0;}
 	));
+	try
+	{
+		cameras = new Cameras();
+	}
+	catch(std::exception e)
+	{
+		cout<<"CAMERAS BROKE\n";
+		throw e;
+	}
 
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	switchDirection->WhenPressed(new SwitchDirection(drive));
@@ -29,7 +38,7 @@ RobotContainer::RobotContainer()  {
 	intakeDeployButton->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->Toggledeploy();
-			
+
 		},
 		{ intake }
 	));
@@ -112,7 +121,7 @@ RobotContainer::RobotContainer()  {
 	evacHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			hopper->HopperToggle();
-			hopper->UppyWuppy(1.0);
+			hopper->UppyWuppy(0.8);
 		},
 		{ hopper }
 	));
@@ -173,7 +182,7 @@ RobotContainer::RobotContainer()  {
 	reverseHopper = new frc2::POVButton(controlStick, 180);
 	reverseHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			hopper->UppyWuppy(-0.6);
+			hopper->UppyWuppy(-0.45);
 		},
 		{ hopper }
 	));
@@ -183,6 +192,21 @@ RobotContainer::RobotContainer()  {
 		},
 		{ hopper }
 	));
+	cameraUp = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
+	cameraUp->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			cameraRotator->RotateCameraUp();
+		},
+		{ cameraRotator }
+	));
+	cameraDown = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
+	cameraDown->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			cameraRotator->RotateCameraDown();
+		},
+		{ cameraRotator }
+	));
+
 }
 RobotContainer::~RobotContainer(){
 	delete drive;
@@ -203,12 +227,15 @@ void RobotContainer::InitalizeRobot() {
 }
 
 frc2::Command *RobotContainer::GitAutoCommand() {
-	return new frc2::ParallelRaceGroup(
-		frc2::WaitCommand(50_s),
-		frc2::StartEndCommand(
+	return new frc2::SequentialCommandGroup(
+		frc2::InstantCommand(
 			[this] {
-				drive->ArcadeDrive(100, 0.0);
+				drive->ArcadeDrive(0.5,0);
 			},
+			{ drive }
+		),
+		frc2::WaitCommand(units::second_t (5)),
+		frc2::InstantCommand(
 			[this] {
 				drive->ArcadeDrive(0.0, 0.0);
 			},

@@ -33,3 +33,14 @@ dashStream->SetSource(*WideCam);
 char Cameras::GetStream(){
   return *stream;
 }
+
+void Cameras::RotateCameraUp(){
+cameraAngle += changeAngle;
+ SetAngle(cameraAngle);
+
+}
+void Cameras::RotateCameraDown(){
+cameraAngle -= changeAngle;
+SetAngle(cameraAngle);
+
+}

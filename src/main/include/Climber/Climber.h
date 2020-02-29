@@ -13,7 +13,6 @@ class Climber : public frc2::SubsystemBase {
 
   void StateUp();
   void StateBack();
-  void SetClimb(double speed);
 
   void ToggleWinchOn();
   void ToggleWinchOff();

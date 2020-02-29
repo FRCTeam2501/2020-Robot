@@ -45,7 +45,7 @@ void Shooter::Toggle(){
     toggle = !toggle;
 
     if (toggle) {
-        *rpm = 3900.0;
+        *rpm = 3800.0;
     } else {
         *rpm = 0.0;
     }

@@ -17,6 +17,8 @@
 
 #include "Hopper/Hopper.h"
 
+#include "Cameras/Cameras.h"
+
 using namespace frc;
 
 class RobotContainer {
@@ -39,10 +41,12 @@ class RobotContainer {
                        *intakeDeployButton, *intakeSet, *intakeReverse, *intakeRun,
                        *winchForward, *winchReverse, *winchSelect,
                        *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, 
-                       *runHopper;
+                       *runHopper, *cameraUp, *cameraDown;
   frc2::POVButton *reverseHopper;
   Pneumatics *pneu;
   Intake *intake;
   Shooter *shoot;
   Hopper *hopper;
+  Cameras *cameras; *cameraRotator;
+  
 };
