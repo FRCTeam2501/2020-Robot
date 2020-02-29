@@ -20,6 +20,8 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
     left->SetSecondaryCurrentLimit(100);
     right->SetSecondaryCurrentLimit(100);
 
+    left->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+    right->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 }
 
 Climber::~Climber(){
