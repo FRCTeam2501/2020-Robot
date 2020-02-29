@@ -1,21 +1,25 @@
-#pragma once
+#pragma once;
 
-#include "Utils/Include.h"
-#include <frc2/command/SubsystemBase.h>
+#include "Utils/include.h"
 
-class Cameras : public frc2::SubsystemBase {
- public:
+using namespace frc;
 
-  Cameras();
-  ~Cameras();
-
-  void Periodic();
-
- private:
-
-    cs::UsbCamera *wideCam;
+class Cameras : frc2::SubsystemBase
+{
+private:
+    cs::UsbCamera *WideCam;
     cs::MjpegServer *dashStream;
+    frc::Servo *cameraRotator;
 
-    const int WIDTH = 320, HEIGHT = 240, FPS = 30;
- 
+    char *stream;
+
+    const int WITH = 320, HEIGHT = 230, FPS = 30;
+    
+public:
+    Cameras();
+    ~Cameras();
+
+    void StreamWideCam();
+    char GetStream();
+
 };
