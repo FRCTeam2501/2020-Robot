@@ -1,24 +1,35 @@
 #include "Cameras/Cameras.h"
 
-Cameras::Cameras() {
-    wideCam = new cs::UsbCamera("Top Camera", 0);
 
-    dashStream = new cs::MjpegServer("Dashboard Stream", 1185);
+using namespace frc; 
 
-    wideCam->SetResolution(WIDTH, HEIGHT);
-	wideCam->SetFPS(FPS);
-	wideCam->SetConnectionStrategy(cs::VideoSource::kConnectionKeepOpen);
+Cameras::Cameras(){
 
-    dashStream->SetResolution(WIDTH, HEIGHT);
-	dashStream->SetFPS(FPS);
+  WideCam = new cs::UsbCamera("Top Camera", 0);
+  dashStream = new cs::MjpegServer("Dashboard Stream", 1185);
 
-    dashStream->SetSource(*wideCam);
+    WideCam->SetResolution(WITH, HEIGHT);
+    WideCam->SetFPS(FPS);
+    WideCam->SetConnectionStrategy(cs::VideoSource::kConnectionKeepOpen);
+
+
+    dashStream->SetResolution(WITH, HEIGHT);
+    dashStream->SetFPS(FPS);
+
+    dashStream->SetSource(*WideCam);
 }
 
-Cameras::~Cameras() {
-    delete wideCam;
-    delete dashStream;
+Cameras::~Cameras(){
+delete WideCam;
+delete dashStream;
 }
 
-void Cameras::Periodic() {}
 
+void Cameras::StreamWideCam(){
+dashStream->SetSource(*WideCam);
+	*stream = 'O';
+}
+
+char Cameras::GetStream(){
+  return *stream;
+}
