@@ -29,6 +29,7 @@ RobotContainer::RobotContainer()  {
 	intakeDeployButton->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			intake->Toggledeploy();
+			
 		},
 		{ intake }
 	));
@@ -206,7 +207,7 @@ frc2::Command *RobotContainer::GitAutoCommand() {
 		frc2::WaitCommand(50_s),
 		frc2::StartEndCommand(
 			[this] {
-				drive->ArcadeDrive(10, 0.0);
+				drive->ArcadeDrive(100, 0.0);
 			},
 			[this] {
 				drive->ArcadeDrive(0.0, 0.0);

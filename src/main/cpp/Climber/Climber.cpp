@@ -142,7 +142,18 @@ void Climber::SetSpeed(double speed){
 }
 
 void Climber::WinchToggle(){
-
+    switch(*winchState){
+        case BOTH:
+        default:
+            *winchState = LEFT;
+        break;
+        case LEFT:
+            *winchState = RIGHT;
+        break;
+        case RIGHT:
+            *winchState = BOTH;
+        break;
+    }
 }
 
 void Climber::Periodic() {
