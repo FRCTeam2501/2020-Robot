@@ -42,14 +42,19 @@ RobotContainer::RobotContainer()  {
 	));
 
 	intakeRun = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
-	intakeRun->ToggleWhenPressed(new frc2::StartEndCommand(
-		[this]{
+	intakeRun->WhenPressed(new frc2::InstantCommand(
+		[this] {
 			intake->IntakeToggle();
+			cout << "Starting\n";
 		},
-		[this]{
+		{ intake }
+	));
+	intakeRun->WhenReleased(new frc2::InstantCommand(
+		[this] {
 			intake->IntakeToggle();
+			cout << "Ending\n";
 		},
-		{intake}
+		{ intake }
 	));
 
 	winchSelect = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
@@ -61,17 +66,29 @@ RobotContainer::RobotContainer()  {
 	));
 
 	winchForward = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_6);
-	winchForward->ToggleWhenPressed(new frc2::InstantCommand(
+	winchForward->WhenPressed(new frc2::InstantCommand(
 		[this]{
 			climber->ToggleWinchOn();
 		},
 		{climber}
 	));
+	winchForward->WhenReleased(new frc2::InstantCommand(
+		[this]{
+			climber->ToggleWinchOff();
+		},
+		{climber}
+	));
 
 	winchReverse = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_4);
-	winchReverse->ToggleWhenPressed(new frc2::InstantCommand(
+	winchReverse->WhenPressed(new frc2::InstantCommand(
 		[this]{
 			climber->ToggleWinchDownOn();
+		},
+		{climber}
+	));
+	winchReverse->WhenReleased(new frc2::InstantCommand(
+		[this]{
+			climber->ToggleWinchDownOff();
 		},
 		{climber}
 	));
@@ -91,11 +108,14 @@ RobotContainer::RobotContainer()  {
 	));
 
 	evacHopper = new frc2::JoystickButton(controlStick, JOYSTICK::THUMB);
-	evacHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+	evacHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
 			hopper->HopperToggle();
 			hopper->UppyWuppy(1.0);
 		},
+		{ hopper }
+	));
+	evacHopper->WhenReleased(new frc2::InstantCommand(
 		[this] {
 			hopper->HopperToggle();
 			hopper->UppyWuppy(0.0);
@@ -136,21 +156,27 @@ RobotContainer::RobotContainer()  {
 	));
 
 	runHopper = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_11);
-	runHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+	runHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			hopper->UppyWuppy(1.0);
+			hopper->UppyWuppy(0.6);
 		},
+		{ hopper }
+	));
+	runHopper->WhenReleased(new frc2::InstantCommand(
 		[this] {
 			hopper->UppyWuppy(0.0);
 		},
 		{ hopper }
 	));
 
-	reverseHopper = new frc2::POVButton(controlStick, JOYSTICK::POV::TOP);
-	reverseHopper->ToggleWhenPressed(new frc2::StartEndCommand(
+	reverseHopper = new frc2::POVButton(controlStick, 180);
+	reverseHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			hopper->UppyWuppy(1.0);
+			hopper->UppyWuppy(-1.0);
 		},
+		{ hopper }
+	));
+	reverseHopper->WhenReleased(new frc2::InstantCommand(
 		[this] {
 			hopper->UppyWuppy(0.0);
 		},

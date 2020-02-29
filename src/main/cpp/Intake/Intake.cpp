@@ -3,17 +3,14 @@
 void Intake::Periodic() {
     if(*running){
         if(*inverted){
-            cout << "Running Inverted\n";
             motorLeft->Set(*speed*-1);
         }
         else{
-            cout << "RuNNiNg nORmAl\n";
             motorLeft->Set(*speed);
         }
     }
     else{
         motorLeft->Set(0.0);
-        cout <<"ruNNIng OfF\n";
     }
  }
 
