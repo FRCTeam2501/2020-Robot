@@ -172,7 +172,7 @@ RobotContainer::RobotContainer()  {
 	reverseHopper = new frc2::POVButton(controlStick, 180);
 	reverseHopper->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			hopper->UppyWuppy(-1.0);
+			hopper->UppyWuppy(-0.6);
 		},
 		{ hopper }
 	));
