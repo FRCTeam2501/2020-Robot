@@ -10,6 +10,7 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/DoubleSolenoid.h>
 #include <frc/Compressor.h>
+#include <frc/Servo.h>
 
 #include <frc2/command/CommandScheduler.h>
 #include <frc2/command/button/JoystickButton.h>

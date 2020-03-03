@@ -12,14 +12,14 @@ using namespace frc;
 
 RobotContainer::RobotContainer(){
 	WPI_TalonSRX *talon = new WPI_TalonSRX(6);
-  //drive = new Drivetrain();
+  drive = new Drivetrain();
   driveStick = new Joystick(JOYSTICK::DRIVER);
 	shooter = new Shooter();
-/*drive->SetDefaultCommand(ManualDrive(
+drive->SetDefaultCommand(ManualDrive(
 		  drive,
 		  [this] { return -1.0 * driveStick->GetRawAxis(1); },
 		  [this] { return driveStick->GetRawAxis(0); }
-	));*/
+	));
 
 	shooterToggle = new frc2::JoystickButton(driveStick, JOYSTICK::TRIGGER);
 	shooterToggle->WhenPressed(new frc2::InstantCommand(
@@ -46,7 +46,25 @@ lessSpeed = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_3);
 		},
 		{ shooter }
 	)); 
+
+RotateCameraUp = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
+	RotateCameraUp->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			camera->RotateCameraUp();
+		},
+		{ camera }
+	));
+
+RotateCameraDown = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
+	RotateCameraDown->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			camera->RotateCameraDown();
+		},
+		{ camera }
+	));
+
 }
+
 RobotContainer::~RobotContainer(){
 	delete drive;
 	delete driveStick;
@@ -54,7 +72,9 @@ RobotContainer::~RobotContainer(){
 	delete shooterToggle;
 	delete lessSpeed;
 	delete moreSpeed;
-
+	delete shooter;
+	delete RotateCameraUp;
+	delete RotateCameraDown;
 }
 
 

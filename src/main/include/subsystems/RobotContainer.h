@@ -17,6 +17,7 @@
 #include "subsystems/Pneumatics.h"
 #include "subsystems/Shooter.h"
 #include "frc/WPILib.h"
+#include "subsystems/Cameras.h"
 
 using namespace frc;
 using namespace JOYSTICK;
@@ -32,6 +33,7 @@ private:
   Shooter *shooter;
    Drivetrain *drive;
    Joystick *driveStick;
-  Cameras *cameras;
-  frc2::JoystickButton *shooterToggle, *lessSpeed, *moreSpeed;
+  Cameras *camera;
+  frc2::JoystickButton *shooterToggle, *lessSpeed, *moreSpeed, *RotateCameraUp, *RotateCameraDown;
+  
 };
