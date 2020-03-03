@@ -21,6 +21,7 @@ RobotContainer::RobotContainer()  {
 		  intake,
 		  [this] {return (driveStick->GetRawAxis(JOYSTICK::Z) - 1.0) / -2.0;}
 	));
+	
 	try
 	{
 		cameras = new Cameras();
@@ -30,7 +31,7 @@ RobotContainer::RobotContainer()  {
 		cout<<"CAMERAS BROKE\n";
 		throw e;
 	}
-
+	
 	switchDirection = new frc2::JoystickButton(driveStick, JOYSTICK::THUMB);
 	switchDirection->WhenPressed(new SwitchDirection(drive));
 
@@ -192,6 +193,7 @@ RobotContainer::RobotContainer()  {
 		},
 		{ hopper }
 	));
+	/*
 	cameraUp = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
 	cameraUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
@@ -206,7 +208,7 @@ RobotContainer::RobotContainer()  {
 		},
 		{ cameraRotator }
 	));
-
+*/
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

@@ -18,7 +18,7 @@ public:
     
     private:
    
-   WPI_TalonSRX *hopper;
+   //WPI_TalonSRX *hopper;
    
     Pneumatics *pneumatics;
 

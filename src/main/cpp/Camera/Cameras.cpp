@@ -34,13 +34,14 @@ char Cameras::GetStream(){
   return *stream;
 }
 
-void Cameras::RotateCameraUp(){
+/*void Cameras::RotateCameraUp(){
 cameraAngle += changeAngle;
  SetAngle(cameraAngle);
 
-}
-void Cameras::RotateCameraDown(){
+}*/
+
+/*void Cameras::RotateCameraDown(){
 cameraAngle -= changeAngle;
 SetAngle(cameraAngle);
 
-}
+}*/

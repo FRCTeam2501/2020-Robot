@@ -151,8 +151,7 @@ void Climber::WinchToggle(){
 }
 
 void Climber::Periodic() {
-//    if(*changed) {
-        if(*armState == RETRACT){
+        if(true || *armState == RETRACT){
             double speed = 0.0;
             switch(*runState) {
                 case FORWARD:
@@ -175,11 +174,11 @@ void Climber::Periodic() {
                 case LEFT:
                     wpi::outs() << "left\n";
                     left->Set(speed);
-                    right->Set(0);
+                    right->Set(0.0);
                 break;
                 case RIGHT:
                     wpi::outs() << "right\n";
-                    left->Set(0);
+                    left->Set(0.0);
                     right->Set(speed);
                 break;
             }

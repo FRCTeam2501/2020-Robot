@@ -28,7 +28,7 @@ public:
         void Periodic(); 
 
 private:
-    WPI_TalonSRX *motorLeft, *motorRight;
+    //WPI_TalonSRX *motorLeft, *motorRight;
     Pneumatics *pneumatics;
     bool *running, *changed, *inverted;
     double *speed;
