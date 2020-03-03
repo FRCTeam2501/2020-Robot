@@ -57,7 +57,7 @@ namespace DIO		//RoboRIO DIO Ports
 	{
 		LS_BOTTOM = 0,
 		LS_TOP,
-		EMPTY_2,
+		porthole,
 		EMPTY_3,
 		EMPTY_4,
 		AUTO_A,
@@ -77,12 +77,12 @@ namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 		enum DIO_ON_MXP
 		{
 			EMPTY0 = 10,
-			EMPTY1,
-			EMPTY2,
-			EMPTY3,
-			EMPTY4,
-			EMPTY5,
-			EMPTY6,
+			porthole,
+			brian,
+			is,
+			uppy,
+			wuppy,
+			indeed,
 			EMPTY7,
 			EMPTY8,
 			EMPTY9
