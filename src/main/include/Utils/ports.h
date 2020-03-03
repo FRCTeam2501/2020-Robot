@@ -32,7 +32,7 @@ namespace PWM		//RoboRIO PWM Ports
 		RIGHT_REAR,
 		LEFT_FRONT,
 		LEFT_REAR,
-		LIFTER,
+		CAMERAROTATE_4,
 		EMPTY_5,
 		EMPTY_6,
 		EMPTY_7,
@@ -116,7 +116,7 @@ namespace MXP		//RoboRIO's MyRIO eXpansion Ports
 		enum PWM_ON_MXP
 		{	//Do not add more ports, the RIO only has 10 on MXP
 			EMPTY0 = 10,
-			EMPTY1,
+			CAMERA_1,
 			EMPTY2,
 			EMPTY3,
 			EMPTY4,

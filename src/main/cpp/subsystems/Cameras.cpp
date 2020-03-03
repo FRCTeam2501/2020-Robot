@@ -7,7 +7,7 @@ Cameras::Cameras(){
 
   WideCam = new cs::UsbCamera("Top Camera", 0);
   dashStream = new cs::MjpegServer("Dashboard Stream", 1185);
-  cameraRotator = new frc::Servo(cameraAngle);
+  cameraRotator = new frc::Servo(PWM::CAMERAROTATE_4);
 
     WideCam->SetResolution(WITH, HEIGHT);
     WideCam->SetFPS(FPS);
