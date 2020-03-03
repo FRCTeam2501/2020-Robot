@@ -24,7 +24,7 @@ RobotContainer::RobotContainer()  {
 	
 	try
 	{
-		cameras = new Cameras();
+		camera = new Cameras();
 	}
 	catch(std::exception e)
 	{
@@ -193,22 +193,23 @@ RobotContainer::RobotContainer()  {
 		},
 		{ hopper }
 	));
-	/*
-	cameraUp = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
-	cameraUp->WhenPressed(new frc2::InstantCommand(
+	
+	RotateCameraUp = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_9);
+	RotateCameraUp->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			cameraRotator->RotateCameraUp();
+			camera->RotateCameraUp();
 		},
-		{ cameraRotator }
+		{ camera }
 	));
-	cameraDown = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
-	cameraDown->WhenPressed(new frc2::InstantCommand(
+
+RotateCameraDown = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON_11);
+	RotateCameraDown->WhenPressed(new frc2::InstantCommand(
 		[this] {
-			cameraRotator->RotateCameraDown();
+			camera->RotateCameraDown();
 		},
-		{ cameraRotator }
+		{ camera }
 	));
-*/
+
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

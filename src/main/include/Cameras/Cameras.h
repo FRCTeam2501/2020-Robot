@@ -5,18 +5,18 @@
 
 using namespace frc;
 
-class Cameras : frc2::SubsystemBase
+class Cameras : public frc2::SubsystemBase
 {
 private:
     cs::UsbCamera *WideCam;
     cs::MjpegServer *dashStream;
-    //frc::Servo *cameraRotator;
+    frc::Servo *cameraRotator;
 
     char *stream;
 
     const int WITH = 320, HEIGHT = 230, FPS = 30;
-    //const double changeAngle = 5;
-    //double cameraAngle = 100;
+    const double changeAngle = 5.0;
+    double cameraAngle = 0;
     
 public:
     Cameras();
@@ -24,6 +24,8 @@ public:
 
     void StreamWideCam();
     char GetStream();
-    //void RotateCameraUp();
-    //void RotateCameraDown();
+    
+    void RotateCameraUp();
+    void RotateCameraDown();
+    
 };

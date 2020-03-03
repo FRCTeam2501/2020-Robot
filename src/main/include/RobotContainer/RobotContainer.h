@@ -31,8 +31,8 @@ class RobotContainer {
 
   void Periodic();
   frc2::Command *GitAutoCommand();
-  
- private:
+  private:
+ 
   Drivetrain *drive;
   Joystick *driveStick, *controlStick;
   Climber *climber;
@@ -41,12 +41,13 @@ class RobotContainer {
                        *intakeDeployButton, *intakeSet, *intakeReverse, *intakeRun,
                        *winchForward, *winchReverse, *winchSelect,
                        *evacHopper, *shootUp, *shootDown, *climbForward, *climbReverse, 
-                       *runHopper;
+                       *runHopper, *RotateCameraUp, *RotateCameraDown;
   frc2::POVButton *reverseHopper;
   Pneumatics *pneu;
   Intake *intake;
   Shooter *shoot;
   Hopper *hopper;
-  Cameras *cameras; //*cameraRotator;
+  Cameras *camera;
+  
   
 };
