@@ -45,16 +45,18 @@ namespace CONSTANTS {
 	namespace SHOOTER {
 		constexpr double
 					MIN = -1.0, MAX = 1.0,
-					P = 1e-7, I = 0, D = 0, IZ = 0,
+					P = 6e-5, I = 5e-7, D = 0, IZ = 0,
 					FF = 0;
 		constexpr units::current::ampere_t
-					CURRENT_LIMIT = 40_A,
-					HARD_CURRENT_LIMIT = 100_A;
+					STALL_CURRENT_LIMIT = 20_A,
+					FREE_CURRENT_LIMIT = 60_A,
+					HARD_CURRENT_LIMIT = 80_A;
 		constexpr units::angular_velocity::revolutions_per_minute_t
 					ON_SPEED = 3900_rpm,
 					OFF_SPEED = 0_rpm,
 					ADJUST_SPEED = 50_rpm,
-					MAX_SPEED = 5700_rpm;
+					MAX_SPEED = 5700_rpm,
+					STALL_SPEED = 300_rpm;
 	}
 	namespace CAMERA {
 		constexpr uint32_t

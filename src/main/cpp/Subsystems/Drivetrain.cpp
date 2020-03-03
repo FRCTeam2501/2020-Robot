@@ -32,6 +32,8 @@ Drivetrain::Drivetrain() {
 
 	drive = new frc::DifferentialDrive(*leftFront, *rightFront);
 
+	drive->SetSafetyEnabled(false);
+
 	left = new double(0.0);
 	right = new double(0.0);
 	inverted = new bool(false);

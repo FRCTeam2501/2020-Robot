@@ -9,11 +9,11 @@ Shooter::Shooter() {
 	on = new bool(false);
 	changed = new bool(false);
 
-	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::STALL_CURRENT_LIMIT.to<double>(), CONSTANTS::SHOOTER::FREE_CURRENT_LIMIT.to<double>(), CONSTANTS::SHOOTER::STALL_SPEED.to<double>());
 	left->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	left->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
-	right->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
+	right->SetSmartCurrentLimit(CONSTANTS::SHOOTER::STALL_CURRENT_LIMIT.to<double>(), CONSTANTS::SHOOTER::FREE_CURRENT_LIMIT.to<double>(), CONSTANTS::SHOOTER::STALL_SPEED.to<double>());
 	right->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
 	right->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 

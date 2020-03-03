@@ -32,7 +32,7 @@ private:
 	}
 	void SetDrivetrainSide(uint32_t front_start, uint32_t front_end, uint32_t rear_start, uint32_t rear_end, frc::Color8Bit color, double percentLength) {
 		double frontPercent, rearPercent;
-		if(percentLength > 0) {
+		if(percentLength > 0.0) {
 			frontPercent = percentLength;
 			rearPercent = 0.0;
 		}
@@ -50,29 +50,29 @@ private:
 	void RunClimber();
 	void SetClimbArm(double percentLength) {
 		frc::Color8Bit color = GetAllianceColor();
-		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::START, CONSTANTS::RGB::CLIMBER::LEFT_ARM_END, color, percentLength);
-		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::RIGHT_ARM_START, CONSTANTS::RGB::CLIMBER::RIGHT_ARM_END, color, percentLength);
+		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::START, CONSTANTS::RGB::CLIMBER::LEFT_ARM_END, color, abs(percentLength));
+		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::RIGHT_ARM_START, CONSTANTS::RGB::CLIMBER::RIGHT_ARM_END, color, abs(percentLength));
 	}
 	void SetClimbWinch(double leftPercent, double rightPercent) {
 		frc::Color8Bit color = GetAllianceColor();
-		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::LEFT_WINCH_START, CONSTANTS::RGB::CLIMBER::LEFT_WINCH_END, color, leftPercent);
-		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::RIGHT_WINCH_START, CONSTANTS::RGB::CLIMBER::END, color, rightPercent);
+		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::LEFT_WINCH_START, CONSTANTS::RGB::CLIMBER::LEFT_WINCH_END, color, abs(leftPercent));
+		SetLEDsPercent(CONSTANTS::RGB::CLIMBER::RIGHT_WINCH_START, CONSTANTS::RGB::CLIMBER::END, color, abs(rightPercent));
 	}
 
 	bool *intakeRunning, *intakeInverted;
 	double *intakeSpeed;
 	void RunIntake();
 	void SetIntake(frc::Color8Bit color, double percentLength) {
-		SetLEDsPercent(CONSTANTS::RGB::INTAKE::START, CONSTANTS::RGB::INTAKE::LEFT_END, color, percentLength);
-		SetLEDsPercent(CONSTANTS::RGB::INTAKE::RIGHT_START, CONSTANTS::RGB::INTAKE::END, color, percentLength);
+		SetLEDsPercent(CONSTANTS::RGB::INTAKE::START, CONSTANTS::RGB::INTAKE::LEFT_END, color, abs(percentLength));
+		SetLEDsPercent(CONSTANTS::RGB::INTAKE::RIGHT_START, CONSTANTS::RGB::INTAKE::END, color, abs(percentLength));
 	}
 
 	units::angular_velocity::revolutions_per_minute_t *shooterSpeed;
 	bool *shooterOn;
 	void RunShooter();
 	void SetShooter(frc::Color8Bit color, double percentLength) {
-		SetLEDsPercent(CONSTANTS::RGB::SHOOTER::START, CONSTANTS::RGB::SHOOTER::LEFT_END, color, percentLength);
-		SetLEDsPercent(CONSTANTS::RGB::SHOOTER::RIGHT_START, CONSTANTS::RGB::SHOOTER::END, color, percentLength);
+		SetLEDsPercent(CONSTANTS::RGB::SHOOTER::START, CONSTANTS::RGB::SHOOTER::LEFT_END, color, abs(percentLength));
+		SetLEDsPercent(CONSTANTS::RGB::SHOOTER::RIGHT_START, CONSTANTS::RGB::SHOOTER::END, color, abs(percentLength));
 	}
 
 public:
@@ -83,6 +83,7 @@ public:
 	 * Runs RGB on all subsystems, rate limited at 10 times a second.
 	 */
 	void Periodic();
+
 	void Start() {
 		leds->Start();
 	}
