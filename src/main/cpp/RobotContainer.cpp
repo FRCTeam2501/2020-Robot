@@ -2,9 +2,11 @@
 
 
 void RobotContainer::BootSubsystems() {
+	//	Create joystick objects.
 	driveStick = new frc::Joystick(PORTS::JOYSTICK::DRIVER);
 	controlStick = new frc::Joystick(PORTS::JOYSTICK::CONTROL);
 
+	//	Create subsystem objects.
 	drive = new Drivetrain();
 	pneumatics = new Pneumatics();
 	climber = new Climber(pneumatics);
@@ -12,6 +14,7 @@ void RobotContainer::BootSubsystems() {
 	hopper = new Hopper(pneumatics);
 	shooter = new Shooter();
 
+	//	Create helper objects.
 	autoInput = new AutoInput();
 	cameras = new Cameras();
 	rgb = new RGB(drive, climber, intake, shooter);
@@ -20,16 +23,19 @@ void RobotContainer::BootSubsystems() {
 }
 
 void RobotContainer::BootDefaultCommands() {
+	//	Create default commands for each subsystem that needs one.
+
 	drive->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			drive->ArcadeDrive(-1.0 * driveStick->GetRawAxis(JOYSTICK::AXIS::Y), driveStick->GetRawAxis(JOYSTICK::AXIS::X));
+			//	Run the drivetrain with Y and RZ from the joysticks.
+			drive->ArcadeDrive(CONSTANTS::DRIVETRAIN::Y_SPEED * driveStick->GetRawAxis(JOYSTICK::AXIS::Y), CONSTANTS::DRIVETRAIN::RZ_SPEED * driveStick->GetRawAxis(JOYSTICK::AXIS::X));
 		},
 		{ drive }
 	));
 
 	climber->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			//Varies speed from 0% to 100%
+			//	Varies climber winch speed from 0% to 100%.
 			climber->SetWinchSpeed((controlStick->GetRawAxis(JOYSTICK::AXIS::Z) + 1) / 2);
 		},
 		{ climber }
@@ -37,8 +43,8 @@ void RobotContainer::BootDefaultCommands() {
 
 	intake->SetDefaultCommand(frc2::RunCommand(
 		[this] {
-			//Varies speed from 50% to 100%
-			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::AXIS::Z) + 3) / 4);
+			//	Varies intake speed from 50% to 100%.
+			intake->SetSpeed((driveStick->GetRawAxis(JOYSTICK::AXIS::Z) + 1) / 2);
 		},
 		{ intake }
 	));
@@ -47,6 +53,8 @@ void RobotContainer::BootDefaultCommands() {
 }
 
 void RobotContainer::BootInstantCommands() {
+	//	Create joystick buttons and commands for controlling the robot.
+
 	toggleDrive = new frc2::JoystickButton(driveStick, JOYSTICK::BUTTON::THUMB);
 	toggleDrive->WhenPressed(new frc2::InstantCommand(
 		[this] {
@@ -180,22 +188,17 @@ void RobotContainer::BootInstantCommands() {
 	cout << "Instant Commands Booted!\n";
 }
 
-void RobotContainer::BootAutoCommands() {
-	autoCommand = nullptr;
-
-	cout << "Auto Commands Booted!\n";
-}
-
 RobotContainer::RobotContainer() {
 	BootSubsystems();
 	BootDefaultCommands();
 	BootInstantCommands();
-	BootAutoCommands();
 
 	cout << "RobotContainer Booted!\n";
 }
 
 void RobotContainer::DeleteSubsystems() {
+	//	Delete all joysticks, subsystems, and helper class objects.
+
 	delete driveStick;
 	delete controlStick;
 
@@ -213,7 +216,19 @@ void RobotContainer::DeleteSubsystems() {
 	cout << "Subsystems Deleted!\n";
 }
 
+void RobotContainer::DeleteDefaultCommands() {
+	//	Get default commands from subsystems and delete them.
+
+	delete drive->GetDefaultCommand();
+	delete climber->GetDefaultCommand();
+	delete intake->GetDefaultCommand();
+
+	cout << "Default Commands Deleted!\n";
+}
+
 void RobotContainer::DeleteInstantCommands() {
+	//	Delete all joystick buttons.
+
 	delete toggleDrive;
 
 	delete forwardClimbState;
@@ -236,25 +251,24 @@ void RobotContainer::DeleteInstantCommands() {
 	cout << "Instant Commands Deleted!\n";
 }
 
-void RobotContainer::DeleteAutoCommands() {
-	delete autoCommand;
-
-	cout << "Auto Commands Deleted!\n";
-}
-
 RobotContainer::~RobotContainer() {
 	DeleteSubsystems();
 	DeleteInstantCommands();
-	DeleteAutoCommands();
 
 	cout << "RobotContainer Deleted!\n";
 }
 
 void RobotContainer::Periodic() {
+	//	Run any periodic functions of helper classes.
+
 	rgb->Periodic();
 }
 
 frc2::Command* RobotContainer::GetAutoCommand() {
+	//	Return a command for autonomous.
+
+	frc2::Command* autoCommand = nullptr;
+
 	switch(autoInput->Get()) {
 		case CONSTANTS::AUTO::ADV_DRIVE::MODE:
 			autoCommand = new frc2::SequentialCommandGroup(
@@ -400,5 +414,6 @@ frc2::Command* RobotContainer::GetAutoCommand() {
 			autoCommand = new frc2::PrintCommand("Error: " + autoInput->GetTwine());
 			break;
 	}
+
 	return autoCommand;
 }

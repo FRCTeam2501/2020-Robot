@@ -5,6 +5,9 @@
 
 class TylerRobot : public frc::TimedRobot {
 private:
+	/*
+	 *	The robot container "contains" all subsystems and sets up all buttons.
+	 */
 	RobotContainer *container;
 	frc2::Command *autoCommand;
 

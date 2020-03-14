@@ -18,6 +18,10 @@ namespace CONSTANTS {
 					WHEEL_CIR = (WHEEL_DIAMETER * units::constants::pi);
 		constexpr auto
 					TURN_TO_METER = WHEEL_CIR * GEAR_RATIO / units::angle::turn_t(1);
+		constexpr double
+			//	Constant scalars to the robot's drive speed.
+					Y_SPEED = -1.0,
+					RZ_SPEED = 0.6;
 	}
 	namespace CLIMBER {
 		constexpr units::current::ampere_t
@@ -38,13 +42,16 @@ namespace CONSTANTS {
 		constexpr units::millisecond_t
 					PEAK_TIME = 500_ms;
 		constexpr double
-			ON = 0.5,
-			OFF = 0,
-			REVERSE = -0.5;
+			//	Constant hopper speeds.
+					ON = 0.5,
+					OFF = 0,
+					REVERSE = -0.5;
 	}
 	namespace SHOOTER {
 		constexpr double
+			//	Min and max outputs for SparkMax.
 					MIN = -1.0, MAX = 1.0,
+			//	PID constants.
 					P = 6e-5, I = 5e-7, D = 0, IZ = 0,
 					FF = 0;
 		constexpr units::current::ampere_t
@@ -52,27 +59,35 @@ namespace CONSTANTS {
 					FREE_CURRENT_LIMIT = 60_A,
 					HARD_CURRENT_LIMIT = 80_A;
 		constexpr units::angular_velocity::revolutions_per_minute_t
+			//	Set angular speeds.
 					ON_SPEED = 3900_rpm,
 					OFF_SPEED = 0_rpm,
 					ADJUST_SPEED = 50_rpm,
 					MAX_SPEED = 5700_rpm,
 					STALL_SPEED = 300_rpm;
 	}
+
 	namespace CAMERA {
 		constexpr uint32_t
-			WIDTH = 320,
-			HEIGHT = 240,
-			FPS = 30;
+			//	Camera setting constants.
+					WIDTH = 320,
+					HEIGHT = 240,
+					FPS = 30;
 	}
 	namespace RGB {
+		constexpr units::frequency::hertz_t
+			//Frequency of RGB updates.
+					FREQUENCY = 10_Hz;
 		constexpr units::millisecond_t
-			PERIOD = 100_ms;
+			//	Period of RGB updates.
+					PERIOD = 100_ms;
 		constexpr uint32_t
-			//Length of entire strip
-			LENGTH = 150,
-			START = 0,
-			END = LENGTH - 1;
+			//	Length of entire strip.
+					LENGTH = 150,
+					START = 0,
+					END = LENGTH - 1;
 
+			//	Tons of magical constants to do fancy sub-strip functions.
 			namespace DRIVETRAIN {
 				constexpr uint32_t
 					LENGTH = 30,
@@ -130,8 +145,9 @@ namespace CONSTANTS {
 			}
 
 			constexpr frc::Color8Bit
-				DISABLED = frc::Color::kGray,
-				ERROR = frc::Color::kDeepPink;
+				//	Constant defined colors.
+						DISABLED = frc::Color::kGray,
+						ERROR = frc::Color::kDeepPink;
 	}
 
 	namespace AUTO {

@@ -15,6 +15,9 @@
 
 class RobotContainer : public frc::ErrorBase {
 private:
+	/*
+	 *	Declare pointers to all of the robot's subsystems.
+	 */
 	Drivetrain *drive;
 	Pneumatics *pneumatics;
 	Climber *climber;
@@ -22,10 +25,16 @@ private:
 	Hopper *hopper;
 	Shooter *shooter;
 
+	/*
+	 *	Declare pointers to all of the robot's helper classes.
+	 */
 	AutoInput *autoInput;
 	Cameras *cameras;
 	RGB *rgb;
 
+	/*
+	 *	Declare pointers to all of the robot's joysticks and buttons.
+	 */
 	frc::Joystick *driveStick, *controlStick;
 	frc2::JoystickButton *toggleDrive,
 		*forwardClimbState, *reverseClimbState, *forwardClimbWinch, *reverseClimbWinch, *toggleWinches,
@@ -34,22 +43,28 @@ private:
 		*toggleShooter, *shooterUp, *shooterDown;
 	frc2::POVButton *reverseHopper;
 
-	frc2::Command *autoCommand;
-
+	//	Create the robot's subsystems
 	void BootSubsystems();
+	//	Setup the robot's default commands
 	void BootDefaultCommands();
+	//	Setup the robot's instant commands
 	void BootInstantCommands();
-	void BootAutoCommands();
-
+	//	Delete the robot's subsystems
 	void DeleteSubsystems();
+	//	Delete the robot's default commands
+	void DeleteDefaultCommands();
+	//	Delete the robot's instant commands
 	void DeleteInstantCommands();
-	void DeleteAutoCommands();
 
 public:
+	//	Create a RobotContainer
 	RobotContainer();
+	//	Delete a RobotContainer
 	~RobotContainer();
 
+	//	Run helper classes
 	void Periodic();
 
+	//	Get command for autonomous
 	frc2::Command* GetAutoCommand();
 };
