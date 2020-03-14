@@ -6,12 +6,12 @@ Climber::Climber(Pneumatics *pneumatics) : pneumatics(pneumatics) {
 	right = new rev::CANSparkMax(PORTS::CAN::CLIMBER_RIGHT, rev::CANSparkMax::MotorType::kBrushless);
 
 	left->RestoreFactoryDefaults();
-	left->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
-	left->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
+	left->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
+	left->SetSecondaryCurrentLimit(CONSTANTS::CLIMBER::HARD_CURRENT_LIMIT.to<double>());
 	left->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 	right->RestoreFactoryDefaults();
-	right->SetSmartCurrentLimit(CONSTANTS::SHOOTER::CURRENT_LIMIT.to<double>());
-	right->SetSecondaryCurrentLimit(CONSTANTS::SHOOTER::HARD_CURRENT_LIMIT.to<double>());
+	right->SetSmartCurrentLimit(CONSTANTS::CLIMBER::CURRENT_LIMIT.to<double>());
+	right->SetSecondaryCurrentLimit(CONSTANTS::CLIMBER::HARD_CURRENT_LIMIT.to<double>());
 	right->SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
 
 	winchSpeed = new double(0.0);
