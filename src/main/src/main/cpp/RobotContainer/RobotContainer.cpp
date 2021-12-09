@@ -69,6 +69,14 @@ RobotContainer::RobotContainer()  {
 		  climber,
 		  [this] { return (controlStick->GetRawAxis(JOYSTICK::Z)+1)/2;}
 	));
+
+	clearSticky = new frc2::JoystickButton(controlStick, JOYSTICK::BUTTON_12);
+	clearSticky->WhenPressed(new frc2::InstantCommand(
+		[this] {
+			pneumatics->Check();
+		},
+		{pneumatics}
+	));
 }
 RobotContainer::~RobotContainer(){
 	delete drive;

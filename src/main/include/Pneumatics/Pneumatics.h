@@ -2,7 +2,6 @@
 
 #include "Utils/include.h"
 
-
 using namespace frc;
 
 
@@ -10,25 +9,30 @@ using namespace frc;
 class Pneumatics : public frc2::SubsystemBase 
 {
 private:
-    
-    Compressor *compressor;
-    DoubleSolenoid *VerticalLift, *Climb, *Intake;
+	Compressor *compressor;
+	DoubleSolenoid *verticalLift, *climb, *intake;
+
+	void checkSticky();
+	void checkFaults();
+	void clearSticky();
 
 public:
-    Pneumatics();
-    ~Pneumatics();
+	Pneumatics();
+	~Pneumatics();
 
-    void InitPneumatics();
-    void DisableAll();
+	void InitPneumatics();
+	void DisableAll();
 
-    void VerticalLiftExtend();
-    void VerticalLiftRetract();
+	void VerticalLiftExtend();
+	void VerticalLiftRetract();
 
-    void ClimbExtend();
-    void ClimbRetract();
+	void ClimbExtend();
+	void ClimbRetract();
 
-    void ToggleVert();
-    void ToggleClimb();
+	void ToggleVert();
+	void ToggleClimb();
 
-    void ToggleIntake();
+	void ToggleIntake();
+
+	void Check();
 };

@@ -2,114 +2,140 @@
 
 
 
-
 Pneumatics::Pneumatics() {
+	compressor = new Compressor(CAN::CAN_PCM);
+	verticalLift = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIFT_B);
+	climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
+	intake = new DoubleSolenoid (PCM::SOL_INTAKE_A, PCM::SOL_INTAKE_B);
 
-compressor = new Compressor(CAN::CAN_PCM);
+	checkFaults();
+	checkSticky();
+	clearSticky();
 
-VerticalLift = new DoubleSolenoid (PCM::SOL_VERTICALLIFT_A, PCM::SOL_VERTICALLIFT_B);
-
-Climb = new DoubleSolenoid (PCM::SOL_CLIMB_A, PCM::SOL_CLIMB_B);
-
-Intake = new DoubleSolenoid (PCM::SOL_INTAKE_A, PCM::SOL_INTAKE_B);
-
-
-
+	checkFaults();
+	checkSticky();
 }
 
+void Pneumatics::checkSticky() {
+	if(compressor->GetCompressorShortedStickyFault())
+		std::cout << "Compressor shorted sticky fault.\n";
+	if(compressor->GetCompressorCurrentTooHighStickyFault())
+		std::cout << "Compressor current too high sticky fault.\n";
+	if(compressor->GetCompressorNotConnectedStickyFault())
+		std::cout << "Compressor not connected sticky fault.\n";
+}
+
+void Pneumatics::checkFaults() {
+	if(compressor->GetCompressorShortedFault())
+		std::cout << "Compressor shorted.\n";
+	if(compressor->GetCompressorCurrentTooHighFault())
+		std::cout << "Compressor current too high.\n";
+	if(compressor->GetCompressorNotConnectedFault())
+		std::cout << "Compressor not connected.\n";
+}
+
+void Pneumatics::clearSticky() {
+	compressor->ClearAllPCMStickyFaults();
+}
 
 Pneumatics::~Pneumatics(){
-
-delete Intake;
-delete compressor;
-delete VerticalLift;
-delete Climb;
-
+	delete intake;
+	delete compressor;
+	delete verticalLift;
+	delete climb;
 }
-
 
 void Pneumatics::InitPneumatics(){
 
-    VerticalLift->Set(DoubleSolenoid::kReverse);
-    Climb->Set(DoubleSolenoid::kReverse);
+	verticalLift->Set(DoubleSolenoid::kReverse);
+	climb->Set(DoubleSolenoid::kReverse);
 
 }
 
 void Pneumatics::DisableAll()
 {
-	VerticalLift->Set(DoubleSolenoid::kOff);
-	Climb->Set(DoubleSolenoid::kOff);
+	verticalLift->Set(DoubleSolenoid::kOff);
+	climb->Set(DoubleSolenoid::kOff);
 }
- 
+
 void Pneumatics::VerticalLiftExtend(){
-    VerticalLift->Set(DoubleSolenoid::kForward);
+	verticalLift->Set(DoubleSolenoid::kForward);
 }
 
 void Pneumatics::VerticalLiftRetract(){
-    VerticalLift->Set(DoubleSolenoid::kReverse);
+	verticalLift->Set(DoubleSolenoid::kReverse);
 }
 
 void Pneumatics::ClimbExtend(){
-    Climb->Set(DoubleSolenoid::kForward);
+	climb->Set(DoubleSolenoid::kForward);
 }
 
 void Pneumatics::ClimbRetract(){
-    Climb->Set(DoubleSolenoid::kReverse);
+	climb->Set(DoubleSolenoid::kReverse);
 }
 
 void Pneumatics::ToggleVert(){
-    switch(VerticalLift->Get()){
-        case DoubleSolenoid::kForward:
-             VerticalLift->Set(DoubleSolenoid::kReverse);
-            break;
+	switch(verticalLift->Get()){
+		case DoubleSolenoid::kForward:
+			verticalLift->Set(DoubleSolenoid::kReverse);
+			break;
 
-        case DoubleSolenoid::kReverse:
-             VerticalLift->Set(DoubleSolenoid::kForward);
-             break;
+		case DoubleSolenoid::kReverse:
+			verticalLift->Set(DoubleSolenoid::kForward);
+			break;
 
-        case DoubleSolenoid::kOff:
-             VerticalLift->Set(DoubleSolenoid::kForward);
-            break;
+		case DoubleSolenoid::kOff:
+			verticalLift->Set(DoubleSolenoid::kForward);
+			break;
 
-        default:
-            break;
-    }
+		default:
+			break;
+	}
 }
 
 void Pneumatics::ToggleClimb(){
-    switch(Climb->Get()){    
-        case DoubleSolenoid::kForward:
-             Climb->Set(DoubleSolenoid::kForward);     
-            break;
+	switch(climb->Get()){    
+		case DoubleSolenoid::kForward:
+			climb->Set(DoubleSolenoid::kForward);     
+			break;
 
-        case DoubleSolenoid::kReverse:
-             Climb->Set(DoubleSolenoid::kReverse);
-            break;
+		case DoubleSolenoid::kReverse:
+			climb->Set(DoubleSolenoid::kReverse);
+			break;
 
-        case DoubleSolenoid::kOff:
-             Climb->Set(DoubleSolenoid::kForward);
-            break;
+		case DoubleSolenoid::kOff:
+			climb->Set(DoubleSolenoid::kForward);
+			break;
 
-        default:
-            break;
-    }
+		default:
+			break;
+	}
 }
 
 void Pneumatics::ToggleIntake(){
-    switch(Intake->Get()){    
-        case DoubleSolenoid::kForward:
-             Intake->Set(DoubleSolenoid::kForward);     
-            break;
+	switch(intake->Get()){    
+		case DoubleSolenoid::kForward:
+			intake->Set(DoubleSolenoid::kForward);     
+			break;
 
-        case DoubleSolenoid::kReverse:
-             Intake->Set(DoubleSolenoid::kReverse);
-            break;
+		case DoubleSolenoid::kReverse:
+			intake->Set(DoubleSolenoid::kReverse);
+			break;
 
-        case DoubleSolenoid::kOff:
-             Intake->Set(DoubleSolenoid::kForward);
-            break;
+		case DoubleSolenoid::kOff:
+			intake->Set(DoubleSolenoid::kForward);
+			break;
 
-        default:
-            break;
-    }
+		default:
+			break;
+	}
+}
+
+void Pneumatics::Check() {
+	checkFaults();
+	checkSticky();
+	clearSticky();
+
+	checkFaults();
+	checkSticky();
 }
